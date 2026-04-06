@@ -1,0 +1,74 @@
+# Alto Code Highlight - YAML Example
+name: Alto Code Highlight
+version: 1.0.0
+description: >
+  A state-of-the-art, semantic syntax highlighter
+  built specifically for PHP 8.4+.
+
+keywords:
+  - php
+  - syntax
+  - highlighting
+
+authors:
+  - name: Simon André
+    email: smn.andre@gmail.com
+    role: Creator
+
+dependencies:
+  php: "^8.4"
+  ext-mbstring: "*"
+
+# Configuration
+config:
+  enabled: true
+  theme: "alto-dark"
+  languages:
+    - php
+    - html
+    - css
+    - javascript
+    - yaml
+
+# Advanced Features
+features:
+  semantic_parsing: true
+  embedded_languages:
+    html: [css, javascript, php]
+    markdown: [php, json, yaml]
+  
+  performance:
+    caching: false
+    memory_limit: 128M
+
+# Anchors and Aliases
+defaults: &defaults
+  adapter: local
+  timeout: 30
+
+development:
+  <<: *defaults
+  debug: true
+
+production:
+  <<: *defaults
+  debug: false
+
+# Data Types
+types:
+  integer: 42
+  float: 3.14159
+  boolean: true
+  null_value: null
+  date: 2023-12-25
+  iso_time: 2023-12-25T14:30:00Z
+
+# Block Styles
+scripts: |
+  echo "Hello World";
+  ls -la;
+
+messages: >
+  This is a folded style
+  where newlines are replaced
+  by spaces.

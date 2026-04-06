@@ -1,0 +1,28 @@
+{% extends "layout.twig" %}
+
+{% block styles %}
+    <style>
+        .post {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .post-title {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="posts">
+        {% for post in posts %}
+            <div class="post">
+                <h2 class="post-title">{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+/.phpunit.cache/
+/var/
+/vendor/
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+/coverage.xml
+/composer.lock
+/phpstan.neon
+/phpunit.xml

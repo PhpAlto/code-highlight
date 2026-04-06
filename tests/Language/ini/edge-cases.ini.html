@@ -1,0 +1,105 @@
+<pre class="alto-highlight language-ini"><code class="language-ini"><span class="alto-comment">; Edge cases for INI coverage</span>
+<span class="alto-comment"># Both comment styles</span>
+
+<span class="alto-comment">; Empty section</span>
+<span class="alto-punctuation">[</span><span class="alto-punctuation">]</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Section1</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Basic key-value pairs</span>
+<span class="alto-constant">key1</span><span class="alto-operator">=</span><span class="alto-string">value1</span>
+<span class="alto-constant">key2</span> <span class="alto-operator">=</span> <span class="alto-string">value2</span>
+<span class="alto-constant">key_with_underscores</span><span class="alto-operator">=</span><span class="alto-string">test</span>
+<span class="alto-constant">KeyWithCaps</span><span class="alto-operator">=</span><span class="alto-string">Value</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Section.Subsection</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Quoted strings - double quotes</span>
+<span class="alto-constant">double_quoted</span><span class="alto-operator">=</span><span class="alto-string">&quot;hello world&quot;</span>
+<span class="alto-constant">double_with_escape</span><span class="alto-operator">=</span><span class="alto-string">&quot;quote: \&quot; backslash: \\&quot;</span>
+<span class="alto-constant">double_with_newline</span><span class="alto-operator">=</span><span class="alto-string">&quot;line1\nline2&quot;</span>
+<span class="alto-constant">empty_double</span><span class="alto-operator">=</span><span class="alto-string">&quot;&quot;</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Section.Subsection.Deep</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Quoted strings - single quotes</span>
+<span class="alto-constant">single_quoted</span><span class="alto-operator">=</span><span class="alto-string">&#039;hello world&#039;</span>
+<span class="alto-constant">single_with_escape</span><span class="alto-operator">=</span><span class="alto-string">&#039;can&#039;</span><span class="alto-string">\</span><span class="alto-string">&#039;&#039;</span><span class="alto-string">t</span><span class="alto-string">&#039;</span>
+<span class="alto-constant">empty_single</span><span class="alto-operator">=</span><span class="alto-string">&#039;&#039;</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Environment Variables</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; ${VAR} format</span>
+<span class="alto-constant">var_with_braces</span><span class="alto-operator">=</span><span class="alto-variable">${HOME}</span><span class="alto-string">/path</span>
+<span class="alto-constant">var_multiple</span><span class="alto-operator">=</span><span class="alto-variable">${HOST}</span><span class="alto-string">:</span><span class="alto-variable">${PORT}</span>
+
+<span class="alto-comment">; %VAR% format</span>
+<span class="alto-constant">var_with_percent</span><span class="alto-operator">=</span><span class="alto-variable">%USERPROFILE%</span><span class="alto-string">\path</span>
+<span class="alto-constant">var_percent_multiple</span><span class="alto-operator">=</span><span class="alto-variable">%HOST%</span><span class="alto-string">:</span><span class="alto-variable">%PORT%</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Boolean Values</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Various boolean formats</span>
+<span class="alto-constant">bool_true</span><span class="alto-operator">=</span><span class="alto-number">true</span>
+<span class="alto-constant">bool_false</span><span class="alto-operator">=</span><span class="alto-number">false</span>
+<span class="alto-constant">bool_yes</span><span class="alto-operator">=</span><span class="alto-number">yes</span>
+<span class="alto-constant">bool_no</span><span class="alto-operator">=</span><span class="alto-number">no</span>
+<span class="alto-constant">bool_on</span><span class="alto-operator">=</span><span class="alto-number">on</span>
+<span class="alto-constant">bool_off</span><span class="alto-operator">=</span><span class="alto-number">off</span>
+<span class="alto-constant">BOOL_TRUE_CAPS</span><span class="alto-operator">=</span><span class="alto-number">TRUE</span>
+<span class="alto-constant">BOOL_FALSE_CAPS</span><span class="alto-operator">=</span><span class="alto-number">FALSE</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Null Values</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">null_lowercase</span><span class="alto-operator">=</span><span class="alto-number">null</span>
+<span class="alto-constant">null_uppercase</span><span class="alto-operator">=</span><span class="alto-number">NULL</span>
+<span class="alto-constant">null_none</span><span class="alto-operator">=</span><span class="alto-number">none</span>
+<span class="alto-constant">null_none_caps</span><span class="alto-operator">=</span><span class="alto-number">NONE</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Numbers</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Integers</span>
+<span class="alto-constant">int_positive</span><span class="alto-operator">=</span><span class="alto-number">42</span>
+<span class="alto-constant">int_negative</span><span class="alto-operator">=</span><span class="alto-number">-123</span>
+<span class="alto-constant">int_zero</span><span class="alto-operator">=</span><span class="alto-number">0</span>
+
+<span class="alto-comment">; Floats</span>
+<span class="alto-constant">float_simple</span><span class="alto-operator">=</span><span class="alto-number">3.14</span>
+<span class="alto-constant">float_negative</span><span class="alto-operator">=</span><span class="alto-number">-2.71</span>
+<span class="alto-constant">float_scientific</span><span class="alto-operator">=</span><span class="alto-number">1.5e10</span>
+<span class="alto-constant">float_scientific_neg</span><span class="alto-operator">=</span><span class="alto-number">2.3e-5</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Mixed Content</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; URLs and paths</span>
+<span class="alto-constant">url</span><span class="alto-operator">=</span><span class="alto-string">https://example.com:8080/path</span>
+<span class="alto-constant">path</span><span class="alto-operator">=</span><span class="alto-string">/usr/local/bin</span>
+<span class="alto-constant">windows_path</span><span class="alto-operator">=</span><span class="alto-string">C:\Program</span> <span class="alto-string">Files\App</span>
+
+<span class="alto-comment">; Unquoted strings with special chars</span>
+<span class="alto-constant">unquoted_with_space</span><span class="alto-operator">=</span><span class="alto-string">value</span> <span class="alto-string">with</span> <span class="alto-string">spaces</span>
+<span class="alto-constant">unquoted_with_underscore</span><span class="alto-operator">=</span><span class="alto-string">value_with_underscore</span>
+<span class="alto-constant">unquoted_with_dash</span><span class="alto-operator">=</span><span class="alto-string">value-with-dash</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Whitespace Handling</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Leading/trailing spaces</span>
+<span class="alto-constant">spaces_around</span> <span class="alto-operator">=</span> <span class="alto-string">value_with_spaces</span>
+<span class="alto-constant">tabs_around</span>	<span class="alto-operator">=</span>	<span class="alto-string">value_with_tabs</span>
+<span class="alto-constant">no_spaces</span><span class="alto-operator">=</span><span class="alto-string">no_spaces</span>
+
+<span class="alto-comment">; Empty values</span>
+<span class="alto-constant">empty_value</span><span class="alto-operator">=</span>
+<span class="alto-constant">empty_value_with_spaces</span> <span class="alto-operator">=</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Inline Comments</span><span class="alto-punctuation">]</span>
+<span class="alto-comment">; Note: Inline comments after values are not standard INI</span>
+<span class="alto-constant">key_with_text</span><span class="alto-operator">=</span><span class="alto-string">value</span> <span class="alto-comment">; this is not a comment, it&#039;s part of the value</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Special Characters in Section Names</span><span class="alto-punctuation">]</span>
+<span class="alto-punctuation">[</span><span class="alto-type">Section-with-dash</span><span class="alto-punctuation">]</span>
+<span class="alto-punctuation">[</span><span class="alto-type">Section_with_underscore</span><span class="alto-punctuation">]</span>
+<span class="alto-punctuation">[</span><span class="alto-type">Section.with.dots</span><span class="alto-punctuation">]</span>
+<span class="alto-punctuation">[</span><span class="alto-type">Section with spaces</span><span class="alto-punctuation">]</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Escaped Characters</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">value_with_backslash</span><span class="alto-operator">=</span><span class="alto-string">C:\\path\\to\\file</span>
+<span class="alto-constant">value_with_quote</span><span class="alto-operator">=</span><span class="alto-string">value\</span><span class="alto-string">&quot;with\&quot;quotes</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">Array-like Values</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">array_style[]</span><span class="alto-operator">=</span><span class="alto-string">value1</span>
+<span class="alto-constant">array_style[]</span><span class="alto-operator">=</span><span class="alto-string">value2</span>
+<span class="alto-constant">indexed_array[0]</span><span class="alto-operator">=</span><span class="alto-string">first</span>
+<span class="alto-constant">indexed_array[1]</span><span class="alto-operator">=</span><span class="alto-string">second</span>
+</code></pre>

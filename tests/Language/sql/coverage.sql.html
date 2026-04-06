@@ -1,0 +1,11 @@
+<pre class="alto-highlight language-sql"><code class="language-sql"><span class="alto-comment">-- Single line comment</span>
+<span class="alto-comment">/* Multi-line</span>
+<span class="alto-comment">   comment */</span>
+<span class="alto-keyword">SELECT</span> <span class="alto-string">&#039;string with \n escape&#039;</span><span class="alto-punctuation">,</span> <span class="alto-variable">&quot;quoted &quot;&quot;id&quot;&quot; identifier&quot;</span><span class="alto-punctuation">,</span> <span class="alto-variable">`backtick ``id`` identifier`</span>
+<span class="alto-keyword">FROM</span> <span class="alto-keyword">table</span>
+<span class="alto-keyword">WHERE</span> <span class="alto-variable">col</span> <span class="alto-operator">=</span> <span class="alto-number">1.5</span> <span class="alto-keyword">AND</span> <span class="alto-variable">@var</span> <span class="alto-operator">=</span> <span class="alto-function">COUNT</span><span class="alto-punctuation">(</span><span class="alto-variable">x</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">SELECT</span> <span class="alto-operator">!</span> <span class="alto-keyword">FROM</span> <span class="alto-variable">tbl</span><span class="alto-punctuation">;</span> <span class="alto-comment">-- Unknown character test</span>
+<span class="alto-keyword">SELECT</span> <span class="alto-string">&#039;unclosed string</span>
+<span class="alto-punctuation">#</span> <span class="alto-variable">unknown</span> <span class="alto-variable">char</span>
+<span class="alto-comment">/* unclosed comment</span>
+</code></pre>

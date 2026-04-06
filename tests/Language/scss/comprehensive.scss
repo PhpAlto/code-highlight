@@ -1,0 +1,245 @@
+// Comprehensive SCSS Test - All Features
+
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$font-stack: Helvetica, Arial, sans-serif;
+$base-spacing: 1rem;
+$border-radius: 4px;
+
+// Numbers and calculations
+$width: 100px;
+$half-width: $width / 2;
+$double-width: $width * 2;
+
+// Nesting
+.card {
+  background: white;
+  padding: $base-spacing;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &.active {
+    border-color: $primary-color;
+  }
+
+  &-header {
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &-body {
+    padding: $base-spacing;
+
+    p {
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Mixins
+@mixin flexbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin border-radius($radius: $border-radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin button-variant($bg-color, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+}
+
+// Using mixins
+.flex-container {
+  @include flexbox;
+}
+
+.rounded {
+  @include border-radius(8px);
+}
+
+.btn-primary {
+  @include button-variant($primary-color);
+}
+
+// Placeholder selectors
+%button-base {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  @include border-radius;
+}
+
+.button {
+  @extend %button-base;
+  background: $primary-color;
+}
+
+// Functions
+@function calculate-spacing($multiplier) {
+  @return $base-spacing * $multiplier;
+}
+
+@function strip-unit($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+.spaced {
+  margin: calculate-spacing(2);
+  padding: calculate-spacing(1);
+}
+
+// Interpolation
+$side: left;
+$property: margin;
+
+.interpolated {
+  #{$property}-#{$side}: 1rem;
+  border-#{$side}-color: red;
+}
+
+// Maps
+$theme-colors: (
+  primary: #007bff,
+  secondary: #6c757d,
+  success: #28a745,
+  danger: #dc3545,
+  warning: #ffc107,
+  info: #17a2b8
+);
+
+// Accessing map values
+.alert-primary {
+  background: map-get($theme-colors, primary);
+}
+
+// Lists
+$sizes: 8px, 16px, 24px, 32px;
+$fonts: Arial, Helvetica, sans-serif;
+
+// Control directives
+@if $primary-color == #007bff {
+  .brand {
+    color: $primary-color;
+  }
+} @else {
+  .brand {
+    color: blue;
+  }
+}
+
+// For loop
+@for $i from 1 through 4 {
+  .col-#{$i} {
+    width: percentage($i / 4);
+  }
+}
+
+// Each loop
+@each $name, $color in $theme-colors {
+  .text-#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+// While loop
+$i: 1;
+@while $i <= 3 {
+  .item-#{$i} {
+    z-index: $i;
+  }
+  $i: $i + 1;
+}
+
+// Parent selector variations
+.nav {
+  &-item {
+    padding: 0.5rem;
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+
+  & &-link {
+    color: inherit;
+  }
+
+  .theme-dark & {
+    background: #1a1a1a;
+  }
+}
+
+// Multiple ampersands
+.button {
+  & + & {
+    margin-left: 0.5rem;
+  }
+
+  & & {
+    margin: 0;
+  }
+}
+
+// Nested media queries
+.responsive {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+
+    @media (orientation: landscape) {
+      width: 75%;
+    }
+  }
+}
+
+// Import (partials)
+@import 'variables';
+@import 'mixins';
+@import 'components/buttons';
+
+// Use and forward (modern syntax)
+@use 'sass:math';
+@use 'sass:color';
+
+.calculated {
+  width: math.div(100px, 3);
+  color: color.adjust(#007bff, $lightness: 20%);
+}
+
+// Default values
+$custom-spacing: 2rem !default;
+$global-color: blue !global;
+
+// Comments
+// Single line comment
+
+/*
+ * Multi-line comment
+ * preserved in CSS output
+ */
+
+/*! Important comment */
+
+// Silent comment (not in CSS output)

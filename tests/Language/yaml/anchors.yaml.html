@@ -1,0 +1,16 @@
+<pre class="alto-highlight language-yaml"><code class="language-yaml"><span class="alto-comment"># YAML Anchors and Aliases</span>
+<span class="alto-constant">default_settings</span><span class="alto-punctuation">:</span> <span class="alto-variable">&amp;defaults</span>
+  <span class="alto-constant">debug</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+  <span class="alto-constant">logging</span><span class="alto-punctuation">:</span>
+    <span class="alto-constant">level</span><span class="alto-punctuation">:</span> <span class="alto-string">info</span>
+    <span class="alto-constant">file</span><span class="alto-punctuation">:</span> <span class="alto-string">/var/log/app.log</span>
+
+<span class="alto-constant">web_server</span><span class="alto-punctuation">:</span>
+  <span class="alto-punctuation">&lt;&lt;</span><span class="alto-punctuation">:</span> <span class="alto-variable">*defaults</span>
+  <span class="alto-constant">port</span><span class="alto-punctuation">:</span> <span class="alto-number">80</span>
+  <span class="alto-constant">host</span><span class="alto-punctuation">:</span> <span class="alto-string">example.com</span>
+
+<span class="alto-constant">worker</span><span class="alto-punctuation">:</span>
+  <span class="alto-punctuation">&lt;&lt;</span><span class="alto-punctuation">:</span> <span class="alto-variable">*defaults</span>
+  <span class="alto-constant">concurrency</span><span class="alto-punctuation">:</span> <span class="alto-number">10</span>
+</code></pre>

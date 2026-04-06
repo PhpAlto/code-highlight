@@ -1,0 +1,598 @@
+<pre class="alto-highlight language-typescript"><code class="language-typescript"><span class="alto-comment">// Comprehensive TypeScript Test - All Features</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Type Annotations</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">let</span> <span class="alto-variable">stringVar</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;hello&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">numberVar</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-number">42</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">booleanVar</span><span class="alto-punctuation">:</span> <span class="alto-type">boolean</span> <span class="alto-operator">=</span> <span class="alto-variable">true</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">anyVar</span><span class="alto-punctuation">:</span> <span class="alto-keyword">any</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;anything&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">unknownVar</span><span class="alto-punctuation">:</span> <span class="alto-keyword">unknown</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;unknown&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">neverVar</span><span class="alto-punctuation">:</span> <span class="alto-keyword">never</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">voidFunc</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">nullVar</span><span class="alto-punctuation">:</span> <span class="alto-type">null</span> <span class="alto-operator">=</span> <span class="alto-variable">null</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">undefinedVar</span><span class="alto-punctuation">:</span> <span class="alto-type">undefined</span> <span class="alto-operator">=</span> <span class="alto-variable">undefined</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">bigIntVar</span><span class="alto-punctuation">:</span> <span class="alto-keyword">bigint</span> <span class="alto-operator">=</span> <span class="alto-number">100</span><span class="alto-variable">n</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">symbolVar</span><span class="alto-punctuation">:</span> <span class="alto-keyword">symbol</span> <span class="alto-operator">=</span> <span class="alto-keyword">Symbol</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;sym&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Arrays and Tuples</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">let</span> <span class="alto-variable">numberArray</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">stringArray</span><span class="alto-punctuation">:</span> <span class="alto-type">Array</span><span class="alto-operator">&lt;</span><span class="alto-type">string</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;a&#039;</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;b&#039;</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;c&#039;</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">mixedTuple</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">number</span><span class="alto-punctuation">,</span> <span class="alto-type">boolean</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;text&#039;</span><span class="alto-punctuation">,</span> <span class="alto-number">42</span><span class="alto-punctuation">,</span> <span class="alto-type">true</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">readonlyArray</span><span class="alto-punctuation">:</span> <span class="alto-keyword">readonly</span> <span class="alto-type">number</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Interfaces</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Person</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">age</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">email</span><span class="alto-operator">?</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">readonly</span> <span class="alto-variable">id</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Employee</span> <span class="alto-keyword">extends</span> <span class="alto-type">Person</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">department</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">salary</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Callable</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">(</span><span class="alto-variable">x</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Indexable</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-variable">key</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-keyword">any</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Generic</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">;</span>
+  <span class="alto-function">getValue</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Type Aliases</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">StringOrNumber</span> <span class="alto-operator">=</span> <span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">Callback</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-type">data</span><span class="alto-operator">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-keyword">void</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">Point</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-type">x</span><span class="alto-operator">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">y</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">Nullable</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-type">T</span> <span class="alto-operator">|</span> <span class="alto-type">null</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">ReadonlyPoint</span> <span class="alto-operator">=</span> <span class="alto-keyword">Readonly</span><span class="alto-constant">&lt;Point&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">PartialPerson</span> <span class="alto-operator">=</span> <span class="alto-type">Partial</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">RequiredPerson</span> <span class="alto-operator">=</span> <span class="alto-type">Required</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">PickedPerson</span> <span class="alto-operator">=</span> <span class="alto-type">Pick</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;name&#039;</span> <span class="alto-operator">|</span> <span class="alto-string">&#039;age&#039;</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">OmittedPerson</span> <span class="alto-operator">=</span> <span class="alto-type">Omit</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;email&#039;</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Union and Intersection Types</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">ID</span> <span class="alto-operator">=</span> <span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">Status</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;pending&#039;</span> <span class="alto-operator">|</span> <span class="alto-string">&#039;approved&#039;</span> <span class="alto-operator">|</span> <span class="alto-string">&#039;rejected&#039;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">Named</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span> <span class="alto-type">name</span><span class="alto-operator">:</span> <span class="alto-type">string</span> <span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">Aged</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span> <span class="alto-type">age</span><span class="alto-operator">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">NamedAndAged</span> <span class="alto-operator">=</span> <span class="alto-type">Named</span> <span class="alto-operator">&amp;</span> <span class="alto-type">Aged</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Enums</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">enum</span> <span class="alto-type">Direction</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">Up</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Down</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Left</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Right</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">enum</span> <span class="alto-type">Color</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">Red</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;RED&#039;</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Green</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;GREEN&#039;</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Blue</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;BLUE&#039;</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">enum</span> <span class="alto-type">FileAccess</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">None</span> <span class="alto-operator">=</span> <span class="alto-number">0</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Read</span> <span class="alto-operator">=</span> <span class="alto-number">1</span> <span class="alto-operator">&lt;&lt;</span> <span class="alto-number">0</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">Write</span> <span class="alto-operator">=</span> <span class="alto-number">1</span> <span class="alto-operator">&lt;&lt;</span> <span class="alto-number">1</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">ReadWrite</span> <span class="alto-operator">=</span> <span class="alto-variable">Read</span> <span class="alto-operator">|</span> <span class="alto-variable">Write</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">const</span> <span class="alto-keyword">enum</span> <span class="alto-type">ConstEnum</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">A</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">B</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">C</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Functions with Type Annotations</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">add</span><span class="alto-punctuation">(</span><span class="alto-variable">a</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">,</span> <span class="alto-type">b</span><span class="alto-operator">:</span> <span class="alto-variable">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">a</span> <span class="alto-operator">+</span> <span class="alto-type">b</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">greet</span><span class="alto-punctuation">(</span><span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">greeting</span><span class="alto-operator">:</span> <span class="alto-variable">string</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;Hello&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-string">${greeting}</span><span class="alto-string">, </span><span class="alto-string">${name}</span><span class="alto-string">`</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">optional</span><span class="alto-punctuation">(</span><span class="alto-variable">required</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">optional</span><span class="alto-operator">?</span><span class="alto-operator">:</span> <span class="alto-variable">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span> <span class="alto-punctuation">{</span>
+  <span class="alto-type">console</span><span class="alto-punctuation">.</span><span class="alto-type">log</span><span class="alto-punctuation">(</span><span class="alto-type">required</span><span class="alto-punctuation">,</span> <span class="alto-type">optional</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">rest</span><span class="alto-punctuation">(</span><span class="alto-operator">...</span><span class="alto-variable">numbers</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">numbers</span><span class="alto-punctuation">.</span><span class="alto-type">reduce</span><span class="alto-punctuation">(</span><span class="alto-punctuation">(</span><span class="alto-type">sum</span><span class="alto-punctuation">,</span> <span class="alto-type">n</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">sum</span> <span class="alto-operator">+</span> <span class="alto-variable">n</span><span class="alto-punctuation">,</span> <span class="alto-number">0</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">arrowTyped</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">x</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=&gt;</span> <span class="alto-type">x</span> <span class="alto-operator">*</span> <span class="alto-number">2</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">arrowWithGenerics</span> <span class="alto-operator">=</span> <span class="alto-constant">&lt;T&gt;</span><span class="alto-punctuation">(</span><span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span> <span class="alto-operator">=&gt;</span> <span class="alto-type">value</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Generics</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-variable">identity</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-variable">arg</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">arg</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-variable">mapArray</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-punctuation">,</span> <span class="alto-type">U</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-variable">array</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">,</span> <span class="alto-type">fn</span><span class="alto-operator">:</span> <span class="alto-punctuation">(</span><span class="alto-variable">item</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">U</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">U</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">array</span><span class="alto-punctuation">.</span><span class="alto-type">map</span><span class="alto-punctuation">(</span><span class="alto-type">fn</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">GenericClass</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">private</span> <span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">value</span> <span class="alto-operator">=</span> <span class="alto-variable">value</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-function">getValue</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-type">value</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">GenericInterface</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-punctuation">,</span> <span class="alto-type">U</span><span class="alto-operator">&gt;</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">first</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">second</span><span class="alto-punctuation">:</span> <span class="alto-type">U</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Generic constraints</span>
+<span class="alto-keyword">function</span> <span class="alto-variable">longest</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-punctuation">{</span> <span class="alto-variable">length</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">}</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-type">a</span><span class="alto-operator">:</span> <span class="alto-type">T</span><span class="alto-punctuation">,</span> <span class="alto-type">b</span><span class="alto-operator">:</span> <span class="alto-variable">T</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">a</span><span class="alto-punctuation">.</span><span class="alto-type">length</span> <span class="alto-operator">&gt;=</span> <span class="alto-type">b</span><span class="alto-punctuation">.</span><span class="alto-type">length</span> <span class="alto-operator">?</span> <span class="alto-type">a</span> <span class="alto-operator">:</span> <span class="alto-type">b</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Classes with TypeScript Features</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Animal</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">protected</span> <span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">name</span> <span class="alto-operator">=</span> <span class="alto-variable">name</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-keyword">public</span> <span class="alto-function">move</span><span class="alto-punctuation">(</span><span class="alto-variable">distance</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-number">0</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span> <span class="alto-punctuation">{</span>
+    <span class="alto-type">console</span><span class="alto-punctuation">.</span><span class="alto-type">log</span><span class="alto-punctuation">(</span><span class="alto-string">${this.name}</span><span class="alto-string"> moved </span><span class="alto-string">${distance}</span><span class="alto-string">m.`</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Dog</span> <span class="alto-keyword">extends</span> <span class="alto-type">Animal</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">private</span> <span class="alto-variable">breed</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">breed</span><span class="alto-operator">:</span> <span class="alto-variable">string</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">super</span><span class="alto-punctuation">(</span><span class="alto-variable">name</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">breed</span> <span class="alto-operator">=</span> <span class="alto-variable">breed</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-keyword">public</span> <span class="alto-function">bark</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span> <span class="alto-punctuation">{</span>
+    <span class="alto-type">console</span><span class="alto-punctuation">.</span><span class="alto-type">log</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;Woof! Woof!&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Abstract class</span>
+<span class="alto-keyword">abstract</span> <span class="alto-keyword">class</span> <span class="alto-type">Shape</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">abstract</span> <span class="alto-function">getArea</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-keyword">public</span> <span class="alto-function">describe</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-string">`Area: </span><span class="alto-string">${this.getArea()}</span><span class="alto-string">`</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Circle</span> <span class="alto-keyword">extends</span> <span class="alto-type">Shape</span> <span class="alto-punctuation">{</span>
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-keyword">private</span> <span class="alto-variable">radius</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">super</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-function">getArea</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-type">Math</span><span class="alto-punctuation">.</span><span class="alto-type">PI</span> <span class="alto-operator">*</span> <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-type">radius</span> <span class="alto-operator">**</span> <span class="alto-number">2</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Class with access modifiers</span>
+<span class="alto-keyword">class</span> <span class="alto-type">BankAccount</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">public</span> <span class="alto-keyword">readonly</span> <span class="alto-variable">accountNumber</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">private</span> <span class="alto-variable">balance</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">protected</span> <span class="alto-variable">owner</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-variable">accountNumber</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">initialBalance</span><span class="alto-operator">:</span> <span class="alto-variable">number</span><span class="alto-punctuation">,</span> <span class="alto-type">owner</span><span class="alto-operator">:</span> <span class="alto-variable">string</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">accountNumber</span> <span class="alto-operator">=</span> <span class="alto-variable">accountNumber</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">balance</span> <span class="alto-operator">=</span> <span class="alto-variable">initialBalance</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">owner</span> <span class="alto-operator">=</span> <span class="alto-variable">owner</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-keyword">public</span> <span class="alto-function">deposit</span><span class="alto-punctuation">(</span><span class="alto-variable">amount</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-type">balance</span> <span class="alto-operator">+=</span> <span class="alto-type">amount</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-keyword">private</span> <span class="alto-function">calculateInterest</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-type">balance</span> <span class="alto-operator">*</span> <span class="alto-number">0.05</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Class with static members</span>
+<span class="alto-keyword">class</span> <span class="alto-type">MathUtils</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">static</span> <span class="alto-variable">PI</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-number">3.14159</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-variable">static</span> <span class="alto-function">circleArea</span><span class="alto-punctuation">(</span><span class="alto-variable">radius</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-type">PI</span> <span class="alto-operator">*</span> <span class="alto-type">radius</span> <span class="alto-operator">**</span> <span class="alto-number">2</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Decorators</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">sealed</span><span class="alto-punctuation">(</span><span class="alto-variable">constructor</span><span class="alto-punctuation">:</span> <span class="alto-keyword">Function</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">Object</span><span class="alto-punctuation">.</span><span class="alto-function">seal</span><span class="alto-punctuation">(</span><span class="alto-variable">constructor</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">Object</span><span class="alto-punctuation">.</span><span class="alto-function">seal</span><span class="alto-punctuation">(</span><span class="alto-variable">constructor</span><span class="alto-punctuation">.</span><span class="alto-variable">prototype</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">logMethod</span><span class="alto-punctuation">(</span><span class="alto-variable">target</span><span class="alto-punctuation">:</span> <span class="alto-keyword">any</span><span class="alto-punctuation">,</span> <span class="alto-type">propertyKey</span><span class="alto-operator">:</span> <span class="alto-variable">string</span><span class="alto-punctuation">,</span> <span class="alto-type">descriptor</span><span class="alto-operator">:</span> <span class="alto-variable">PropertyDescriptor</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">const</span> <span class="alto-variable">originalMethod</span> <span class="alto-operator">=</span> <span class="alto-variable">descriptor</span><span class="alto-punctuation">.</span><span class="alto-variable">value</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">descriptor</span><span class="alto-punctuation">.</span><span class="alto-variable">value</span> <span class="alto-operator">=</span> <span class="alto-keyword">function</span> <span class="alto-punctuation">(</span><span class="alto-operator">...</span><span class="alto-variable">args</span><span class="alto-punctuation">:</span> <span class="alto-keyword">any</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">console</span><span class="alto-punctuation">.</span><span class="alto-function">log</span><span class="alto-punctuation">(</span><span class="alto-string">`Calling </span><span class="alto-string">${propertyKey}</span><span class="alto-string"> with args:`</span><span class="alto-punctuation">,</span> <span class="alto-type">args</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">return</span> <span class="alto-variable">originalMethod</span><span class="alto-punctuation">.</span><span class="alto-function">apply</span><span class="alto-punctuation">(</span><span class="alto-keyword">this</span><span class="alto-punctuation">,</span> <span class="alto-type">args</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">return</span> <span class="alto-variable">descriptor</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-variable">@sealed</span>
+<span class="alto-keyword">class</span> <span class="alto-type">DecoratedClass</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">@logMethod</span>
+  <span class="alto-function">someMethod</span><span class="alto-punctuation">(</span><span class="alto-variable">arg</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span> <span class="alto-punctuation">{</span>
+    <span class="alto-type">console</span><span class="alto-punctuation">.</span><span class="alto-type">log</span><span class="alto-punctuation">(</span><span class="alto-type">arg</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Type Assertions</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">let</span> <span class="alto-variable">someValue</span><span class="alto-punctuation">:</span> <span class="alto-keyword">unknown</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;this is a string&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">strLength1</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">someValue</span> <span class="alto-keyword">as</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">.</span><span class="alto-variable">length</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">strLength2</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-constant">&lt;string&gt;</span><span class="alto-variable">someValue</span><span class="alto-punctuation">)</span><span class="alto-punctuation">.</span><span class="alto-variable">length</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// Non-null assertion</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">maybeString</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">null</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;hello&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">definitelyString</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-operator">=</span> <span class="alto-variable">maybeString</span><span class="alto-operator">!</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Type Guards</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">isString</span><span class="alto-punctuation">(</span><span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-keyword">unknown</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">value</span> <span class="alto-keyword">is</span> <span class="alto-type">string</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-keyword">typeof</span> <span class="alto-type">value</span> <span class="alto-operator">===</span> <span class="alto-string">&#039;string&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">isNumber</span><span class="alto-punctuation">(</span><span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-keyword">unknown</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">value</span> <span class="alto-keyword">is</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-keyword">typeof</span> <span class="alto-type">value</span> <span class="alto-operator">===</span> <span class="alto-string">&#039;number&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">processValue</span><span class="alto-punctuation">(</span><span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">if</span> <span class="alto-punctuation">(</span><span class="alto-keyword">typeof</span> <span class="alto-variable">value</span> <span class="alto-operator">===</span> <span class="alto-string">&#039;string&#039;</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-variable">value</span><span class="alto-punctuation">.</span><span class="alto-function">toUpperCase</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span> <span class="alto-keyword">else</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-variable">value</span><span class="alto-punctuation">.</span><span class="alto-function">toFixed</span><span class="alto-punctuation">(</span><span class="alto-number">2</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Conditional Types</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">IsString</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-type">string</span> <span class="alto-operator">?</span> <span class="alto-type">true</span> <span class="alto-operator">:</span> <span class="alto-type">false</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">ExtractString</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-type">string</span> <span class="alto-operator">?</span> <span class="alto-type">T</span> <span class="alto-operator">:</span> <span class="alto-keyword">never</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">TypeName</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-type">string</span>
+  <span class="alto-operator">?</span> <span class="alto-string">&#039;string&#039;</span>
+  <span class="alto-operator">:</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-type">number</span>
+  <span class="alto-operator">?</span> <span class="alto-string">&#039;number&#039;</span>
+  <span class="alto-operator">:</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-type">boolean</span>
+  <span class="alto-operator">?</span> <span class="alto-string">&#039;boolean&#039;</span>
+  <span class="alto-operator">:</span> <span class="alto-string">&#039;object&#039;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Mapped Types</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">Optional</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-type">P</span> <span class="alto-keyword">in</span> <span class="alto-keyword">keyof</span> <span class="alto-type">T</span><span class="alto-punctuation">]</span><span class="alto-operator">?</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">ReadonlyType</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">readonly</span> <span class="alto-punctuation">[</span><span class="alto-type">P</span> <span class="alto-keyword">in</span> <span class="alto-keyword">keyof</span> <span class="alto-type">T</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">Getters</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-type">K</span> <span class="alto-keyword">in</span> <span class="alto-keyword">keyof</span> <span class="alto-type">T</span> <span class="alto-keyword">as</span> <span class="alto-string">`get</span><span class="alto-string">${Capitalize&lt;string &amp; K&gt;}</span><span class="alto-string">`</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">T</span><span class="alto-punctuation">[</span><span class="alto-variable">K</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Utility Types</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">PersonPartial</span> <span class="alto-operator">=</span> <span class="alto-type">Partial</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">PersonRequired</span> <span class="alto-operator">=</span> <span class="alto-type">Required</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">PersonReadonly</span> <span class="alto-operator">=</span> <span class="alto-keyword">Readonly</span><span class="alto-constant">&lt;Person&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">PersonRecord</span> <span class="alto-operator">=</span> <span class="alto-type">Record</span><span class="alto-operator">&lt;</span><span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">Person</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">PersonNameAge</span> <span class="alto-operator">=</span> <span class="alto-type">Pick</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;name&#039;</span> <span class="alto-operator">|</span> <span class="alto-string">&#039;age&#039;</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">PersonWithoutEmail</span> <span class="alto-operator">=</span> <span class="alto-type">Omit</span><span class="alto-operator">&lt;</span><span class="alto-type">Person</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;email&#039;</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">ExtractNumbers</span> <span class="alto-operator">=</span> <span class="alto-type">Extract</span><span class="alto-operator">&lt;</span><span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">number</span> <span class="alto-operator">|</span> <span class="alto-type">boolean</span><span class="alto-punctuation">,</span> <span class="alto-type">number</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">ExcludeNumbers</span> <span class="alto-operator">=</span> <span class="alto-type">Exclude</span><span class="alto-operator">&lt;</span><span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">number</span> <span class="alto-operator">|</span> <span class="alto-type">boolean</span><span class="alto-punctuation">,</span> <span class="alto-type">number</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">NonNullableString</span> <span class="alto-operator">=</span> <span class="alto-type">NonNullable</span><span class="alto-operator">&lt;</span><span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">null</span> <span class="alto-operator">|</span> <span class="alto-type">undefined</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">ReturnTypeExample</span> <span class="alto-operator">=</span> <span class="alto-type">ReturnType</span><span class="alto-operator">&lt;</span><span class="alto-keyword">typeof</span> <span class="alto-type">add</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">ParametersExample</span> <span class="alto-operator">=</span> <span class="alto-type">Parameters</span><span class="alto-operator">&lt;</span><span class="alto-keyword">typeof</span> <span class="alto-type">add</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Template Literal Types</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">EventNames</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;click&#039;</span> <span class="alto-operator">|</span> <span class="alto-string">&#039;scroll&#039;</span> <span class="alto-operator">|</span> <span class="alto-string">&#039;mousemove&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">EventHandlers</span> <span class="alto-operator">=</span> <span class="alto-string">`on</span><span class="alto-string">${Capitalize&lt;EventNames&gt;}</span><span class="alto-string">`</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">PropEventSource</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-type">on</span><span class="alto-operator">&lt;</span><span class="alto-type">K</span> <span class="alto-keyword">extends</span> <span class="alto-type">string</span> <span class="alto-operator">&amp;</span> <span class="alto-keyword">keyof</span> <span class="alto-type">T</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-type">eventName</span><span class="alto-operator">:</span> <span class="alto-string">${K}</span><span class="alto-string">Changed`</span><span class="alto-punctuation">,</span> <span class="alto-type">callback</span><span class="alto-operator">:</span> <span class="alto-punctuation">(</span><span class="alto-variable">newValue</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">K</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-keyword">void</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Namespaces</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">namespace</span> <span class="alto-type">Validation</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">export</span> <span class="alto-keyword">interface</span> <span class="alto-type">StringValidator</span> <span class="alto-punctuation">{</span>
+    <span class="alto-function">isValid</span><span class="alto-punctuation">(</span><span class="alto-variable">s</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">boolean</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-keyword">export</span> <span class="alto-keyword">class</span> <span class="alto-type">EmailValidator</span> <span class="alto-keyword">implements</span> <span class="alto-type">StringValidator</span> <span class="alto-punctuation">{</span>
+    <span class="alto-function">isValid</span><span class="alto-punctuation">(</span><span class="alto-variable">s</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">boolean</span> <span class="alto-punctuation">{</span>
+      <span class="alto-keyword">return</span> <span class="alto-type">s</span><span class="alto-punctuation">.</span><span class="alto-type">includes</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;@&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+  <span class="alto-punctuation">}</span>
+
+  <span class="alto-keyword">export</span> <span class="alto-keyword">function</span> <span class="alto-function">validateEmail</span><span class="alto-punctuation">(</span><span class="alto-variable">email</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">boolean</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">const</span> <span class="alto-type">validator</span> <span class="alto-operator">=</span> <span class="alto-keyword">new</span> <span class="alto-function">EmailValidator</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">return</span> <span class="alto-variable">validator</span><span class="alto-punctuation">.</span><span class="alto-function">isValid</span><span class="alto-punctuation">(</span><span class="alto-variable">email</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Modules</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">export</span> <span class="alto-keyword">type</span> <span class="alto-type">ExportedType</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-type">id</span><span class="alto-operator">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">export</span> <span class="alto-keyword">interface</span> <span class="alto-type">ExportedInterface</span> <span class="alto-punctuation">{</span>
+  <span class="alto-function">method</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">export</span> <span class="alto-keyword">class</span> <span class="alto-type">ExportedClass</span> <span class="alto-punctuation">{</span>
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-keyword">public</span> <span class="alto-variable">value</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">export</span> <span class="alto-keyword">const</span> <span class="alto-variable">exportedConst</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-number">42</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">export</span> <span class="alto-keyword">function</span> <span class="alto-function">exportedFunction</span><span class="alto-punctuation">(</span><span class="alto-variable">param</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">param</span><span class="alto-punctuation">.</span><span class="alto-type">toUpperCase</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Default export</span>
+<span class="alto-keyword">export</span> <span class="alto-keyword">default</span> <span class="alto-keyword">class</span> <span class="alto-type">DefaultClass</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">private</span> <span class="alto-variable">data</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-function">constructor</span><span class="alto-punctuation">(</span><span class="alto-variable">data</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">data</span> <span class="alto-operator">=</span> <span class="alto-variable">data</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Re-exports</span>
+<span class="alto-keyword">export</span> <span class="alto-punctuation">{</span> <span class="alto-variable">Something</span> <span class="alto-punctuation">}</span> <span class="alto-keyword">from</span> <span class="alto-string">&#039;./other-module&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">export</span> <span class="alto-operator">*</span> <span class="alto-keyword">from</span> <span class="alto-string">&#039;./all-exports&#039;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Async/Await with Types</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">async</span> <span class="alto-keyword">function</span> <span class="alto-function">fetchData</span><span class="alto-punctuation">(</span><span class="alto-variable">url</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">Promise</span><span class="alto-operator">&lt;</span><span class="alto-type">Response</span><span class="alto-operator">&gt;</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">const</span> <span class="alto-type">response</span> <span class="alto-operator">=</span> <span class="alto-keyword">await</span> <span class="alto-function">fetch</span><span class="alto-punctuation">(</span><span class="alto-variable">url</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">return</span> <span class="alto-variable">response</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">async</span> <span class="alto-keyword">function</span> <span class="alto-variable">getData</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-variable">url</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">Promise</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">const</span> <span class="alto-type">response</span> <span class="alto-operator">=</span> <span class="alto-keyword">await</span> <span class="alto-function">fetch</span><span class="alto-punctuation">(</span><span class="alto-variable">url</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">const</span> <span class="alto-variable">data</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span> <span class="alto-operator">=</span> <span class="alto-keyword">await</span> <span class="alto-variable">response</span><span class="alto-punctuation">.</span><span class="alto-function">json</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">return</span> <span class="alto-variable">data</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">asyncArrow</span> <span class="alto-operator">=</span> <span class="alto-keyword">async</span> <span class="alto-punctuation">(</span><span class="alto-variable">id</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">Promise</span><span class="alto-operator">&lt;</span><span class="alto-type">string</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=&gt;</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">const</span> <span class="alto-type">result</span> <span class="alto-operator">=</span> <span class="alto-keyword">await</span> <span class="alto-function">fetchData</span><span class="alto-punctuation">(</span><span class="alto-string">`/api/items/</span><span class="alto-string">${id}</span><span class="alto-string">`</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-keyword">return</span> <span class="alto-variable">result</span><span class="alto-punctuation">.</span><span class="alto-function">text</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Index Signatures</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">StringDictionary</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-variable">key</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">NumberDictionary</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-variable">index</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">MixedDictionary</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-variable">key</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span> <span class="alto-operator">|</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">length</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// This Type</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Counter</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">count</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+  <span class="alto-function">increment</span><span class="alto-punctuation">(</span><span class="alto-keyword">this</span><span class="alto-operator">:</span> <span class="alto-variable">Counter</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-keyword">void</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">counter</span><span class="alto-punctuation">:</span> <span class="alto-type">Counter</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">count</span><span class="alto-punctuation">:</span> <span class="alto-number">0</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">increment</span><span class="alto-punctuation">(</span><span class="alto-keyword">this</span><span class="alto-operator">:</span> <span class="alto-variable">Counter</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">this</span><span class="alto-punctuation">.</span><span class="alto-variable">count</span><span class="alto-operator">++</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Readonly Arrays and Tuples</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">readonlyNumbers</span><span class="alto-punctuation">:</span> <span class="alto-keyword">readonly</span> <span class="alto-type">number</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">const</span> <span class="alto-variable">readonlyTuple</span><span class="alto-punctuation">:</span> <span class="alto-keyword">readonly</span> <span class="alto-punctuation">[</span><span class="alto-type">string</span><span class="alto-punctuation">,</span> <span class="alto-type">number</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;hello&#039;</span><span class="alto-punctuation">,</span> <span class="alto-number">42</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Const Assertions</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">literalString</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;hello&#039;</span> <span class="alto-keyword">as</span> <span class="alto-keyword">const</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">const</span> <span class="alto-variable">literalObject</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;John&#039;</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">age</span><span class="alto-operator">:</span> <span class="alto-number">30</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span> <span class="alto-keyword">as</span> <span class="alto-keyword">const</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">literalArray</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">]</span> <span class="alto-keyword">as</span> <span class="alto-keyword">const</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Discriminated Unions</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">SuccessResponse</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">type</span><span class="alto-operator">:</span> <span class="alto-string">&#039;success&#039;</span><span class="alto-punctuation">;</span>
+  <span class="alto-type">data</span><span class="alto-operator">:</span> <span class="alto-variable">string</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">ErrorResponse</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">type</span><span class="alto-operator">:</span> <span class="alto-string">&#039;error&#039;</span><span class="alto-punctuation">;</span>
+  <span class="alto-type">message</span><span class="alto-operator">:</span> <span class="alto-variable">string</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">Response</span> <span class="alto-operator">=</span> <span class="alto-type">SuccessResponse</span> <span class="alto-operator">|</span> <span class="alto-type">ErrorResponse</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">handleResponse</span><span class="alto-punctuation">(</span><span class="alto-variable">response</span><span class="alto-punctuation">:</span> <span class="alto-type">Response</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">if</span> <span class="alto-punctuation">(</span><span class="alto-variable">response</span><span class="alto-punctuation">.</span><span class="alto-keyword">type</span> <span class="alto-operator">===</span> <span class="alto-string">&#039;success&#039;</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-type">console</span><span class="alto-punctuation">.</span><span class="alto-function">log</span><span class="alto-punctuation">(</span><span class="alto-variable">response</span><span class="alto-punctuation">.</span><span class="alto-variable">data</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span> <span class="alto-keyword">else</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">console</span><span class="alto-punctuation">.</span><span class="alto-function">error</span><span class="alto-punctuation">(</span><span class="alto-variable">response</span><span class="alto-punctuation">.</span><span class="alto-variable">message</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Advanced Generics</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-variable">merge</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-punctuation">,</span> <span class="alto-type">U</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-variable">obj1</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">,</span> <span class="alto-type">obj2</span><span class="alto-operator">:</span> <span class="alto-variable">U</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span> <span class="alto-operator">&amp;</span> <span class="alto-type">U</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-punctuation">{</span> <span class="alto-operator">...</span><span class="alto-type">obj1</span><span class="alto-punctuation">,</span> <span class="alto-operator">...</span><span class="alto-variable">obj2</span> <span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">Constructor</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-keyword">new</span> <span class="alto-punctuation">(</span><span class="alto-operator">...</span><span class="alto-variable">args</span><span class="alto-punctuation">:</span> <span class="alto-keyword">any</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">T</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">function</span> <span class="alto-variable">Timestamped</span><span class="alto-operator">&lt;</span><span class="alto-type">TBase</span> <span class="alto-keyword">extends</span> <span class="alto-type">Constructor</span><span class="alto-operator">&gt;</span><span class="alto-punctuation">(</span><span class="alto-type">Base</span><span class="alto-operator">:</span> <span class="alto-type">TBase</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-keyword">class</span> <span class="alto-type">extends</span> <span class="alto-variable">Base</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">timestamp</span> <span class="alto-operator">=</span> <span class="alto-variable">Date</span><span class="alto-punctuation">.</span><span class="alto-function">now</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Keyof and Typeof</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">PersonType</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-type">string</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">age</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">PersonKeys</span> <span class="alto-operator">=</span> <span class="alto-keyword">keyof</span> <span class="alto-type">PersonType</span><span class="alto-punctuation">;</span> <span class="alto-comment">// &#039;name&#039; | &#039;age&#039;</span>
+
+<span class="alto-keyword">const</span> <span class="alto-variable">person</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">name</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;John&#039;</span><span class="alto-punctuation">,</span>
+  <span class="alto-type">age</span><span class="alto-operator">:</span> <span class="alto-number">30</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">PersonTypeof</span> <span class="alto-operator">=</span> <span class="alto-keyword">typeof</span> <span class="alto-type">person</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Infer Keyword</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">ReturnTypeCustom</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-punctuation">(</span><span class="alto-operator">...</span><span class="alto-type">args</span><span class="alto-operator">:</span> <span class="alto-keyword">any</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-keyword">infer</span> <span class="alto-type">R</span> <span class="alto-operator">?</span> <span class="alto-type">R</span> <span class="alto-operator">:</span> <span class="alto-keyword">never</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">type</span> <span class="alto-type">UnwrapPromise</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-type">T</span> <span class="alto-keyword">extends</span> <span class="alto-type">Promise</span><span class="alto-operator">&lt;</span><span class="alto-keyword">infer</span> <span class="alto-type">U</span><span class="alto-operator">&gt;</span> <span class="alto-operator">?</span> <span class="alto-type">U</span> <span class="alto-operator">:</span> <span class="alto-type">T</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Triple-Slash Directives</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-comment">/// &lt;reference path=&quot;./declarations.d.ts&quot; /&gt;</span>
+<span class="alto-comment">/// &lt;reference types=&quot;node&quot; /&gt;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Complex Type Combinations</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">DeepReadonly</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">readonly</span> <span class="alto-punctuation">[</span><span class="alto-type">P</span> <span class="alto-keyword">in</span> <span class="alto-keyword">keyof</span> <span class="alto-type">T</span><span class="alto-punctuation">]</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span> <span class="alto-keyword">extends</span> <span class="alto-type">object</span> <span class="alto-operator">?</span> <span class="alto-type">DeepReadonly</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span><span class="alto-operator">&gt;</span> <span class="alto-operator">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">type</span> <span class="alto-type">DeepPartial</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-operator">&gt;</span> <span class="alto-operator">=</span> <span class="alto-punctuation">{</span>
+  <span class="alto-punctuation">[</span><span class="alto-type">P</span> <span class="alto-keyword">in</span> <span class="alto-keyword">keyof</span> <span class="alto-type">T</span><span class="alto-punctuation">]</span><span class="alto-operator">?</span><span class="alto-punctuation">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span> <span class="alto-keyword">extends</span> <span class="alto-type">object</span> <span class="alto-operator">?</span> <span class="alto-type">DeepPartial</span><span class="alto-operator">&lt;</span><span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span><span class="alto-operator">&gt;</span> <span class="alto-operator">:</span> <span class="alto-type">T</span><span class="alto-punctuation">[</span><span class="alto-type">P</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// JSDoc with TypeScript</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-comment">/**</span>
+<span class="alto-comment"> * Calculates the sum of two numbers</span>
+<span class="alto-comment"> * @param a - First number</span>
+<span class="alto-comment"> * @param b - Second number</span>
+<span class="alto-comment"> * @returns The sum of a and b</span>
+<span class="alto-comment"> */</span>
+<span class="alto-keyword">function</span> <span class="alto-function">sum</span><span class="alto-punctuation">(</span><span class="alto-variable">a</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span><span class="alto-punctuation">,</span> <span class="alto-type">b</span><span class="alto-operator">:</span> <span class="alto-variable">number</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-punctuation">{</span>
+  <span class="alto-keyword">return</span> <span class="alto-type">a</span> <span class="alto-operator">+</span> <span class="alto-type">b</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+</code></pre>

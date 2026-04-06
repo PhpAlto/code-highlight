@@ -1,0 +1,425 @@
+<pre class="alto-highlight language-ruby"><code class="language-ruby"><span class="alto-comment"># More edge cases for Ruby coverage</span>
+
+<span class="alto-comment"># String interpolation edge cases</span>
+<span class="alto-string">&quot;simple #{var} interpolation&quot;</span>
+<span class="alto-string">&quot;nested #{outer &quot;</span><span class="alto-comment">#{inner}&quot;} interpolation&quot;</span>
+<span class="alto-string">&quot;multiple #{a} and #{b} #{c}&quot;</span>
+<span class="alto-string">&quot;complex #{obj.method(arg)}&quot;</span>
+
+<span class="alto-comment"># Regular expressions</span>
+<span class="alto-operator">/</span><span class="alto-variable">simple</span> <span class="alto-variable">regex</span><span class="alto-operator">/</span>
+<span class="alto-number">/regex with #{interpolation}/</span>
+<span class="alto-operator">/</span><span class="alto-punctuation">[</span><span class="alto-variable">character</span> <span class="alto-keyword">class</span><span class="alto-punctuation">]</span><span class="alto-operator">/</span>
+<span class="alto-number">/escape \/ slash/</span>
+<span class="alto-operator">/</span><span class="alto-operator">^</span><span class="alto-type">anchors</span><span class="alto-operator">/</span>
+<span class="alto-number">/(groups)/</span>
+<span class="alto-operator">/</span><span class="alto-punctuation">(</span><span class="alto-operator">?</span><span class="alto-string">:non</span><span class="alto-operator">-</span><span class="alto-variable">capturing</span><span class="alto-punctuation">)</span><span class="alto-operator">/</span>
+<span class="alto-number">/\d+ \w+ \s+/</span>
+<span class="alto-string">%r{alternative regex}</span>
+<span class="alto-string">%r|pipe delimiters|</span>
+<span class="alto-string">%r!exclamation!</span>
+
+<span class="alto-comment"># Symbols</span>
+<span class="alto-string">:simple</span>
+<span class="alto-string">:&#039;single quoted&#039;</span>
+<span class="alto-string">:&quot;double #{quoted}&quot;</span>
+<span class="alto-string">:&quot;escape \&quot; quote&quot;</span>
+
+<span class="alto-comment"># Percent literals</span>
+<span class="alto-string">%w[word array]</span>
+<span class="alto-string">%W[word array with #{interpolation}]</span>
+<span class="alto-string">%i[symbol array]</span>
+<span class="alto-string">%I[symbol array with #{interpolation}]</span>
+<span class="alto-string">%q{single quoted}</span>
+<span class="alto-string">%Q{double quoted with #{interpolation}}</span>
+<span class="alto-string">%x{command execution}</span>
+<span class="alto-string">%s{symbol}</span>
+<span class="alto-string">%r{regex}</span>
+
+<span class="alto-comment"># Heredocs</span>
+<span class="alto-string">&lt;&lt;EOF</span>
+<span class="alto-string">Basic heredoc</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">&lt;&lt;-EOF</span>
+<span class="alto-string">  Indented heredoc</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">&lt;&lt;~EOF</span>
+<span class="alto-string">  Squiggly heredoc</span>
+<span class="alto-string">  removes leading whitespace</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">&lt;&lt;&quot;EOF&quot;</span>
+<span class="alto-string">Double quoted heredoc with #{interpolation}</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">&lt;&lt;&#039;EOF&#039;</span>
+<span class="alto-string">Single quoted heredoc</span>
+<span class="alto-string">no #{interpolation}</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">&lt;&lt;`EOF`</span>
+<span class="alto-string">Command heredoc</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-comment"># Numbers with underscores</span>
+<span class="alto-number">1_000_000</span>
+<span class="alto-number">3.14_15_92</span>
+<span class="alto-number">0x_FF_FF</span>
+<span class="alto-number">0b_1010_1010</span>
+<span class="alto-number">0o_755_755</span>
+
+<span class="alto-comment"># Binary, octal, hex numbers</span>
+<span class="alto-number">0b101010</span>
+<span class="alto-number">0o755</span>
+<span class="alto-number">0xFFFF</span>
+<span class="alto-number">0xabcdef</span>
+<span class="alto-number">0XABCDEF</span>
+
+<span class="alto-comment"># Float with exponent</span>
+<span class="alto-number">1.5e10</span>
+<span class="alto-number">2.3e-5</span>
+<span class="alto-number">4.5E+3</span>
+
+<span class="alto-comment"># Character literals</span>
+<span class="alto-operator">?</span><span class="alto-variable">a</span>
+<span class="alto-operator">?</span>
+<span class="alto-operator">?</span><span class="alto-variable">n</span>
+<span class="alto-operator">?</span><span class="alto-variable">t</span>
+<span class="alto-operator">?</span><span class="alto-variable">s</span>
+
+<span class="alto-comment"># Range operators</span>
+<span class="alto-number">1</span><span class="alto-operator">..</span><span class="alto-number">10</span>
+<span class="alto-number">1</span><span class="alto-operator">...</span><span class="alto-number">10</span>
+<span class="alto-string">&#039;a&#039;</span><span class="alto-operator">..</span><span class="alto-string">&#039;z&#039;</span>
+<span class="alto-variable">start</span><span class="alto-operator">..</span><span class="alto-keyword">end</span>
+
+<span class="alto-comment"># Special variables</span>
+<span class="alto-variable">$0</span> <span class="alto-variable">$1</span> <span class="alto-variable">$2</span> <span class="alto-operator">&amp;</span>  <span class="alto-string">&#039; $+ $~</span>
+<span class="alto-string">$! $@ $/ $\ $; $, $. $=</span>
+<span class="alto-string">$* $$ $? $: $&quot;</span>
+<span class="alto-string">$LOAD_PATH</span>
+<span class="alto-string">$LOADED_FEATURES</span>
+<span class="alto-string">$DEBUG</span>
+<span class="alto-string">$VERBOSE</span>
+
+<span class="alto-string"># Global variables</span>
+<span class="alto-string">$global_var</span>
+<span class="alto-string">$_special</span>
+<span class="alto-string">$-w</span>
+<span class="alto-string">$-0</span>
+
+<span class="alto-string"># Instance variables</span>
+<span class="alto-string">@instance</span>
+<span class="alto-string">@_private</span>
+<span class="alto-string">@@class_variable</span>
+
+<span class="alto-string"># Constants</span>
+<span class="alto-string">CONST</span>
+<span class="alto-string">Module::CONST</span>
+<span class="alto-string">::TopLevel::CONST</span>
+
+<span class="alto-string"># Class and module definitions</span>
+<span class="alto-string">class SimpleClass</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">class InheritedClass &lt; ParentClass</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">class &lt;&lt; self</span>
+<span class="alto-string">  def singleton_method</span>
+<span class="alto-string">  end</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">module SimpleModule</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">module Nested::Module</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Method definitions with various syntaxes</span>
+<span class="alto-string">def simple_method</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_args(a, b, c)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_default(a = 1, b = 2)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_splat(*args)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_keyword(key: &#039;</span><span class="alto-variable">value</span><span class="alto-string">&#039;)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_double_splat(**kwargs)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_block(&amp;block)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_all(a, b = 2, *args, key: &#039;</span><span class="alto-variable">val</span><span class="alto-string">&#039;, **kwargs, &amp;block)</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method?</span>
+<span class="alto-string">  true</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method!</span>
+<span class="alto-string">  mutate!</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method=(value)</span>
+<span class="alto-string">  @value = value</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def []=(index, value)</span>
+<span class="alto-string">  @arr[index] = value</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def [](index)</span>
+<span class="alto-string">  @arr[index]</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def +(other)</span>
+<span class="alto-string">  self.value + other.value</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def self.class_method</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Lambda and proc</span>
+<span class="alto-string">lambda { |x| x * 2 }</span>
+<span class="alto-string">-&gt;(x) { x * 2 }</span>
+<span class="alto-string">proc { |x| x * 2 }</span>
+<span class="alto-string">Proc.new { |x| x * 2 }</span>
+
+<span class="alto-string"># Blocks</span>
+<span class="alto-string">[1, 2, 3].each { |x| puts x }</span>
+<span class="alto-string">[1, 2, 3].each do |x|</span>
+<span class="alto-string">  puts x</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Case statements</span>
+<span class="alto-string">case value</span>
+<span class="alto-string">when 1</span>
+<span class="alto-string">  &#039;</span><span class="alto-variable">one</span><span class="alto-string">&#039;</span>
+<span class="alto-string">when 2, 3</span>
+<span class="alto-string">  &#039;</span><span class="alto-variable">two</span> <span class="alto-keyword">or</span> <span class="alto-variable">three</span><span class="alto-string">&#039;</span>
+<span class="alto-string">when 4..10</span>
+<span class="alto-string">  &#039;</span><span class="alto-variable">four</span> <span class="alto-variable">to</span> <span class="alto-variable">ten</span><span class="alto-string">&#039;</span>
+<span class="alto-string">when String</span>
+<span class="alto-string">  &#039;</span><span class="alto-variable">string</span><span class="alto-string">&#039;</span>
+<span class="alto-string">when /regex/</span>
+<span class="alto-string">  &#039;</span><span class="alto-variable">matches</span> <span class="alto-variable">regex</span><span class="alto-string">&#039;</span>
+<span class="alto-string">else</span>
+<span class="alto-string">  &#039;</span><span class="alto-variable">default</span><span class="alto-string">&#039;</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Rescue and exception handling</span>
+<span class="alto-string">begin</span>
+<span class="alto-string">  risky_operation</span>
+<span class="alto-string">rescue StandardError =&gt; e</span>
+<span class="alto-string">  handle_error(e)</span>
+<span class="alto-string">rescue AnotherError, YetAnother =&gt; e</span>
+<span class="alto-string">  handle_multiple(e)</span>
+<span class="alto-string">rescue</span>
+<span class="alto-string">  handle_any</span>
+<span class="alto-string">ensure</span>
+<span class="alto-string">  cleanup</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">def method_with_rescue</span>
+<span class="alto-string">  operation</span>
+<span class="alto-string">rescue</span>
+<span class="alto-string">  fallback</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string">value rescue default</span>
+
+<span class="alto-string"># Modifiers</span>
+<span class="alto-string">puts &quot;hello&quot; if condition</span>
+<span class="alto-string">puts &quot;hello&quot; unless condition</span>
+<span class="alto-string">puts &quot;hello&quot; while condition</span>
+<span class="alto-string">puts &quot;hello&quot; until condition</span>
+<span class="alto-string">for i in 1..10 do</span>
+<span class="alto-string">  puts i</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Ternary operator</span>
+<span class="alto-string">condition ? true_value : false_value</span>
+
+<span class="alto-string"># Safe navigation</span>
+<span class="alto-string">object&amp;.method&amp;.chain</span>
+
+<span class="alto-string"># Double colon</span>
+<span class="alto-string">Module::Constant</span>
+<span class="alto-string">object::method</span>
+
+<span class="alto-string"># Embedded documents</span>
+<span class="alto-string">=begin</span>
+<span class="alto-string">Multi-line comment</span>
+<span class="alto-string">spanning multiple lines</span>
+<span class="alto-string">=end</span>
+
+<span class="alto-string">__END__</span>
+<span class="alto-string">Everything after this is ignored</span>
+<span class="alto-string">can put documentation here</span>
+
+<span class="alto-string"># Method visibility</span>
+<span class="alto-string">class VisibilityExample</span>
+<span class="alto-string">  public</span>
+<span class="alto-string">  def public_method</span>
+<span class="alto-string">  end</span>
+
+<span class="alto-string">  protected</span>
+<span class="alto-string">  def protected_method</span>
+<span class="alto-string">  end</span>
+
+<span class="alto-string">  private</span>
+<span class="alto-string">  def private_method</span>
+<span class="alto-string">  end</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Alias</span>
+<span class="alto-string">alias new_name old_name</span>
+<span class="alto-string">alias :symbol_new :symbol_old</span>
+
+<span class="alto-string"># Defined?</span>
+<span class="alto-string">defined? variable</span>
+<span class="alto-string">defined?(method)</span>
+
+<span class="alto-string"># BEGIN and END</span>
+<span class="alto-string">BEGIN {</span>
+<span class="alto-string">  puts &quot;startup&quot;</span>
+<span class="alto-string">}</span>
+
+<span class="alto-string">END {</span>
+<span class="alto-string">  puts &quot;cleanup&quot;</span>
+<span class="alto-string">}</span>
+
+<span class="alto-string"># Special methods</span>
+<span class="alto-string">attr_reader :name</span>
+<span class="alto-string">attr_writer :age</span>
+<span class="alto-string">attr_accessor :email</span>
+<span class="alto-string">attr :old_style</span>
+
+<span class="alto-string"># Module include/extend/prepend</span>
+<span class="alto-string">include ModuleName</span>
+<span class="alto-string">extend ModuleName</span>
+<span class="alto-string">prepend ModuleName</span>
+
+<span class="alto-string"># Refinements</span>
+<span class="alto-string">using MyRefinement</span>
+
+<span class="alto-string"># Method_missing</span>
+<span class="alto-string">def method_missing(method, *args, &amp;block)</span>
+<span class="alto-string">  super</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Respond_to_missing</span>
+<span class="alto-string">def respond_to_missing?(method, include_private = false)</span>
+<span class="alto-string">  super</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Autoload</span>
+<span class="alto-string">autoload :ConstantName, &#039;</span><span class="alto-variable">file</span><span class="alto-operator">/</span><span class="alto-variable">path</span><span class="alto-string">&#039;</span>
+
+<span class="alto-string"># Complex regex with modifiers</span>
+<span class="alto-string">/regex/i</span>
+<span class="alto-string">/regex/m</span>
+<span class="alto-string">/regex/x</span>
+<span class="alto-string">/regex/imx</span>
+
+<span class="alto-string"># Numeric methods</span>
+<span class="alto-string">42.times { }</span>
+<span class="alto-string">10.upto(20) { }</span>
+<span class="alto-string">20.downto(10) { }</span>
+<span class="alto-string">5.step(50, 5) { }</span>
+
+<span class="alto-string"># String methods</span>
+<span class="alto-string">&quot;string&quot;.upcase</span>
+<span class="alto-string">&quot;string&quot;.downcase</span>
+<span class="alto-string">&quot;string&quot;.capitalize</span>
+<span class="alto-string">&quot;string&quot;.reverse</span>
+<span class="alto-string">&quot;string&quot;.length</span>
+<span class="alto-string">&quot;string&quot;.size</span>
+<span class="alto-string">&quot;string&quot;.empty?</span>
+<span class="alto-string">&quot;string&quot;.include?(&quot;sub&quot;)</span>
+<span class="alto-string">&quot;string&quot;.start_with?(&quot;str&quot;)</span>
+<span class="alto-string">&quot;string&quot;.end_with?(&quot;ing&quot;)</span>
+
+<span class="alto-string"># Array methods</span>
+<span class="alto-string">[].push(1)</span>
+<span class="alto-string">[].pop</span>
+<span class="alto-string">[].shift</span>
+<span class="alto-string">[].unshift(1)</span>
+<span class="alto-string">[].first</span>
+<span class="alto-string">[].last</span>
+<span class="alto-string">[].size</span>
+<span class="alto-string">[].length</span>
+<span class="alto-string">[].empty?</span>
+<span class="alto-string">[].include?(1)</span>
+
+<span class="alto-string"># Hash methods</span>
+<span class="alto-string">{}.keys</span>
+<span class="alto-string">{}.values</span>
+<span class="alto-string">{}.has_key?(:key)</span>
+<span class="alto-string">{}.has_value?(value)</span>
+<span class="alto-string">{}.merge(other)</span>
+<span class="alto-string">{}.fetch(:key, default)</span>
+
+<span class="alto-string"># Parallel assignment</span>
+<span class="alto-string">a, b = 1, 2</span>
+<span class="alto-string">a, *rest = [1, 2, 3, 4]</span>
+<span class="alto-string">*start, last = [1, 2, 3, 4]</span>
+<span class="alto-string">first, *middle, last = [1, 2, 3, 4]</span>
+
+<span class="alto-string"># Conditional assignment</span>
+<span class="alto-string">a ||= default</span>
+<span class="alto-string">a &amp;&amp;= new_value</span>
+
+<span class="alto-string"># Pattern matching (Ruby 2.7+)</span>
+<span class="alto-string">case value</span>
+<span class="alto-string">in pattern</span>
+<span class="alto-string">  matched</span>
+<span class="alto-string">in [a, b]</span>
+<span class="alto-string">  array_pattern</span>
+<span class="alto-string">in {key: value}</span>
+<span class="alto-string">  hash_pattern</span>
+<span class="alto-string">else</span>
+<span class="alto-string">  no_match</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Endless method def (Ruby 3.0+)</span>
+<span class="alto-string">def endless_method = expression</span>
+
+<span class="alto-string"># Numbered parameters</span>
+<span class="alto-string">[1, 2, 3].map { _1 * 2 }</span>
+<span class="alto-string">[[1, 2], [3, 4]].map { _1 + _2 }</span>
+
+<span class="alto-string"># Rightward assignment (Ruby 3.1+)</span>
+<span class="alto-string">expression =&gt; variable</span>
+
+<span class="alto-string"># Multiple return values</span>
+<span class="alto-string">return a, b, c</span>
+
+<span class="alto-string"># Yield with block_given?</span>
+<span class="alto-string">def method_with_yield</span>
+<span class="alto-string">  yield if block_given?</span>
+<span class="alto-string">end</span>
+
+<span class="alto-string"># Super variations</span>
+<span class="alto-string">super</span>
+<span class="alto-string">super()</span>
+<span class="alto-string">super(arg1, arg2)</span>
+
+<span class="alto-string"># Retry in rescue</span>
+<span class="alto-string">begin</span>
+<span class="alto-string">  attempt</span>
+<span class="alto-string">rescue</span>
+<span class="alto-string">  retry</span>
+<span class="alto-string">end</span>
+</code></pre>

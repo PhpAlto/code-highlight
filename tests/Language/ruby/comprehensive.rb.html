@@ -1,0 +1,168 @@
+<pre class="alto-highlight language-ruby"><code class="language-ruby"><span class="alto-comment"># Line comment</span>
+<span class="alto-comment">=begin</span>
+<span class="alto-comment">Block comment</span>
+<span class="alto-comment">multiline</span>
+<span class="alto-comment">=end</span>
+
+<span class="alto-comment"># Boolean and nil</span>
+<span class="alto-variable">is_true</span> <span class="alto-operator">=</span> <span class="alto-number">true</span>
+<span class="alto-variable">is_false</span> <span class="alto-operator">=</span> <span class="alto-number">false</span>
+<span class="alto-variable">is_nil</span> <span class="alto-operator">=</span> <span class="alto-number">nil</span>
+
+<span class="alto-comment"># Numbers - decimal, hex, binary, octal, float</span>
+<span class="alto-variable">dec</span> <span class="alto-operator">=</span> <span class="alto-number">42</span>
+<span class="alto-variable">hex_num</span> <span class="alto-operator">=</span> <span class="alto-number">0xFF</span>
+<span class="alto-variable">bin_num</span> <span class="alto-operator">=</span> <span class="alto-number">0b1010</span>
+<span class="alto-variable">oct_num</span> <span class="alto-operator">=</span> <span class="alto-number">0o755</span>
+<span class="alto-variable">flt</span> <span class="alto-operator">=</span> <span class="alto-number">3.14</span>
+<span class="alto-variable">exp</span> <span class="alto-operator">=</span> <span class="alto-number">1.5e10</span>
+<span class="alto-variable">underscore</span> <span class="alto-operator">=</span> <span class="alto-number">1_000_000</span>
+
+<span class="alto-comment"># Symbols</span>
+<span class="alto-variable">sym</span> <span class="alto-operator">=</span> <span class="alto-string">:symbol</span>
+<span class="alto-variable">quote_sym</span> <span class="alto-operator">=</span> <span class="alto-string">:&#039;quoted symbol&#039;</span>
+
+<span class="alto-comment"># Strings</span>
+<span class="alto-variable">str1</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;Double quoted&quot;</span>
+<span class="alto-variable">str2</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;Single quoted&#039;</span>
+<span class="alto-variable">interp</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;Value: #{value}&quot;</span>
+<span class="alto-variable">percent</span> <span class="alto-operator">=</span> <span class="alto-operator">%</span><span class="alto-punctuation">{</span><span class="alto-type">Percent</span> <span class="alto-variable">string</span><span class="alto-punctuation">}</span>
+<span class="alto-variable">percent_q</span> <span class="alto-operator">=</span> <span class="alto-string">%Q{Percent Q}</span>
+<span class="alto-variable">percent_q_lower</span> <span class="alto-operator">=</span> <span class="alto-string">%q{Percent q}</span>
+
+<span class="alto-comment"># Heredoc</span>
+<span class="alto-variable">heredoc</span> <span class="alto-operator">=</span> <span class="alto-string">&lt;&lt;HEREDOC</span>
+<span class="alto-string">Multi</span>
+<span class="alto-string">line</span>
+<span class="alto-string">HEREDOC</span>
+
+<span class="alto-comment"># Regex</span>
+<span class="alto-variable">regex</span> <span class="alto-operator">=</span> <span class="alto-number">/pattern/</span>
+<span class="alto-variable">regex_i</span> <span class="alto-operator">=</span> <span class="alto-number">/pattern/i</span>
+<span class="alto-variable">percent_r</span> <span class="alto-operator">=</span> <span class="alto-string">%r{pattern}</span>
+
+<span class="alto-comment"># Two-char operators</span>
+<span class="alto-variable">a</span> <span class="alto-operator">==</span> <span class="alto-variable">b</span>
+<span class="alto-variable">c</span> <span class="alto-operator">!=</span> <span class="alto-variable">d</span>
+<span class="alto-variable">e</span> <span class="alto-operator">&lt;=</span> <span class="alto-variable">f</span>
+<span class="alto-variable">g</span> <span class="alto-operator">&gt;=</span> <span class="alto-variable">h</span>
+<span class="alto-variable">i</span> <span class="alto-operator">&amp;&amp;</span> <span class="alto-variable">j</span>
+<span class="alto-variable">k</span> <span class="alto-operator">||</span> <span class="alto-variable">l</span>
+<span class="alto-variable">m</span> <span class="alto-operator">..</span> <span class="alto-variable">n</span>
+<span class="alto-variable">o</span> <span class="alto-operator">...</span> <span class="alto-function">p</span>
+<span class="alto-variable">q</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">r</span>
+<span class="alto-variable">s</span> <span class="alto-operator">+=</span> <span class="alto-number">1</span>
+<span class="alto-variable">t</span> <span class="alto-operator">-=</span> <span class="alto-number">1</span>
+<span class="alto-variable">u</span> <span class="alto-operator">*=</span> <span class="alto-number">2</span>
+<span class="alto-variable">v</span> <span class="alto-operator">/=</span> <span class="alto-number">2</span>
+<span class="alto-variable">w</span> <span class="alto-operator">%=</span> <span class="alto-number">3</span>
+<span class="alto-variable">x</span> <span class="alto-operator">&amp;=</span> <span class="alto-number">4</span>
+<span class="alto-variable">y</span> <span class="alto-operator">|=</span> <span class="alto-number">5</span>
+<span class="alto-variable">z</span> <span class="alto-operator">^=</span> <span class="alto-number">6</span>
+<span class="alto-variable">aa</span> <span class="alto-operator">&lt;&lt;=</span> <span class="alto-number">1</span>
+<span class="alto-variable">bb</span> <span class="alto-operator">&gt;&gt;=</span> <span class="alto-number">1</span>
+<span class="alto-variable">cc</span> <span class="alto-operator">**=</span> <span class="alto-number">2</span>
+<span class="alto-variable">dd</span> <span class="alto-operator">&lt;=</span><span class="alto-operator">&gt;</span> <span class="alto-variable">ee</span>
+
+<span class="alto-comment"># Single-char operators</span>
+<span class="alto-operator">+</span> <span class="alto-operator">-</span> <span class="alto-operator">*</span> <span class="alto-operator">/</span>
+<span class="alto-comment"># Punctuation</span>
+<span class="alto-function">func</span><span class="alto-punctuation">(</span><span class="alto-variable">arg</span><span class="alto-punctuation">)</span>
+<span class="alto-variable">arr</span><span class="alto-punctuation">[</span><span class="alto-number">0</span><span class="alto-punctuation">]</span>
+<span class="alto-variable">obj</span><span class="alto-punctuation">.</span><span class="alto-variable">method</span>
+<span class="alto-punctuation">{</span><span class="alto-variable">key</span><span class="alto-punctuation">:</span> <span class="alto-variable">val</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">(</span><span class="alto-variable">a</span><span class="alto-punctuation">,</span> <span class="alto-variable">b</span><span class="alto-punctuation">)</span>
+<span class="alto-punctuation">:</span>
+
+<span class="alto-comment"># Keywords</span>
+<span class="alto-keyword">def</span> <span class="alto-function">method</span><span class="alto-punctuation">(</span><span class="alto-variable">param</span><span class="alto-punctuation">)</span>
+  <span class="alto-keyword">if</span> <span class="alto-variable">condition</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;yes&quot;</span>
+  <span class="alto-keyword">elsif</span> <span class="alto-variable">other</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;maybe&quot;</span>
+  <span class="alto-keyword">else</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;no&quot;</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">unless</span> <span class="alto-variable">condition</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;not&quot;</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">case</span> <span class="alto-variable">value</span>
+  <span class="alto-keyword">when</span> <span class="alto-number">1</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;one&quot;</span>
+  <span class="alto-keyword">when</span> <span class="alto-number">2</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;two&quot;</span>
+  <span class="alto-keyword">else</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;other&quot;</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">for</span> <span class="alto-variable">item</span> <span class="alto-keyword">in</span> <span class="alto-variable">items</span>
+    <span class="alto-keyword">break</span> <span class="alto-keyword">if</span> <span class="alto-variable">condition</span>
+    <span class="alto-keyword">next</span> <span class="alto-keyword">if</span> <span class="alto-variable">other</span>
+    <span class="alto-keyword">redo</span> <span class="alto-keyword">if</span> <span class="alto-variable">another</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">while</span> <span class="alto-variable">condition</span>
+    <span class="alto-keyword">retry</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">until</span> <span class="alto-variable">condition</span>
+    <span class="alto-function">puts</span> <span class="alto-string">&quot;waiting&quot;</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">begin</span>
+    <span class="alto-function">raise</span> <span class="alto-type">StandardError</span>
+  <span class="alto-keyword">rescue</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">e</span>
+    <span class="alto-function">puts</span> <span class="alto-variable">e</span>
+  <span class="alto-keyword">ensure</span>
+    <span class="alto-variable">cleanup</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">return</span> <span class="alto-variable">result</span>
+  <span class="alto-keyword">yield</span> <span class="alto-variable">block</span>
+  <span class="alto-keyword">super</span>
+
+  <span class="alto-keyword">class</span> <span class="alto-type">MyClass</span> <span class="alto-operator">&lt;</span> <span class="alto-type">Parent</span>
+    <span class="alto-function">attr_reader</span> <span class="alto-string">:field</span>
+    <span class="alto-function">attr_writer</span> <span class="alto-string">:other</span>
+    <span class="alto-function">attr_accessor</span> <span class="alto-string">:both</span>
+
+    <span class="alto-keyword">def</span> <span class="alto-function">initialize</span>
+      <span class="alto-variable">@instance</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;var&quot;</span>
+      <span class="alto-variable">@@class_var</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;val&quot;</span>
+    <span class="alto-keyword">end</span>
+
+    <span class="alto-keyword">def</span> <span class="alto-variable-special">self</span><span class="alto-punctuation">.</span><span class="alto-function">class_method</span>
+      <span class="alto-string">&quot;class&quot;</span>
+    <span class="alto-keyword">end</span>
+
+    <span class="alto-function">private</span>
+
+    <span class="alto-keyword">def</span> <span class="alto-function">private_method</span>
+      <span class="alto-string">&quot;private&quot;</span>
+    <span class="alto-keyword">end</span>
+
+    <span class="alto-function">protected</span>
+
+    <span class="alto-keyword">def</span> <span class="alto-function">protected_method</span>
+      <span class="alto-string">&quot;protected&quot;</span>
+    <span class="alto-keyword">end</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">module</span> <span class="alto-type">MyModule</span>
+    <span class="alto-function">include</span> <span class="alto-type">OtherModule</span>
+    <span class="alto-function">extend</span> <span class="alto-type">AnotherModule</span>
+    <span class="alto-function">prepend</span> <span class="alto-type">YetAnother</span>
+  <span class="alto-keyword">end</span>
+
+  <span class="alto-keyword">alias</span> <span class="alto-variable">new_name</span> <span class="alto-variable">old_name</span>
+  <span class="alto-keyword">undef</span> <span class="alto-variable">method_name</span>
+  <span class="alto-keyword">defined?</span> <span class="alto-variable">variable</span>
+
+  <span class="alto-function">lambda</span> <span class="alto-punctuation">{</span> <span class="alto-operator">|</span><span class="alto-variable">x</span><span class="alto-operator">|</span> <span class="alto-variable">x</span> <span class="alto-operator">+</span> <span class="alto-number">1</span> <span class="alto-punctuation">}</span>
+  <span class="alto-operator">-&gt;</span> <span class="alto-punctuation">(</span><span class="alto-variable">x</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span> <span class="alto-variable">x</span> <span class="alto-operator">+</span> <span class="alto-number">1</span> <span class="alto-punctuation">}</span>
+
+  <span class="alto-function">proc</span> <span class="alto-operator">=</span> <span class="alto-type">Proc</span><span class="alto-punctuation">.</span><span class="alto-function">new</span> <span class="alto-punctuation">{</span> <span class="alto-operator">|</span><span class="alto-variable">x</span><span class="alto-operator">|</span> <span class="alto-variable">x</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">end</span>
+</code></pre>

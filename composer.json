@@ -1,0 +1,71 @@
+{
+    "name": "alto/code-highlight",
+    "description": "A high-performance, semantic syntax highlighter for PHP 8.4+ with zero dependencies. Features context-aware parsing, language embedding, and compatibility with Highlight.js and Prism themes.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "php",
+        "syntax-highlighter",
+        "code-highlighting",
+        "semantic-parser",
+        "zero-dependencies",
+        "highlight-js",
+        "prism",
+        "themes",
+        "tokenizer",
+        "php84"
+    ],
+    "authors": [
+        {
+            "name": "Simon André",
+            "email": "smn.andre@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/phpalto/code-highlight",
+    "support": {
+        "issues": "https://github.com/phpalto/code-highlight/issues",
+        "docs": "https://github.com/phpalto/code-highlight#readme"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/smnandre"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "ext-mbstring": "*",
+        "ext-tokenizer": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.68",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^12.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Alto\\Code\\Highlight\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alto\\Code\\Highlight\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix --diff",
+        "qa": [
+            "@cs",
+            "@sa",
+            "@test"
+        ],
+        "sa": "vendor/bin/phpstan analyse --memory-limit=-1",
+        "test": "vendor/bin/phpunit",
+        "coverage": "vendor/bin/phpunit --coverage-text"
+    }
+}

@@ -1,0 +1,312 @@
+{# Edge cases for Twig coverage #}
+
+{# Comments #}
+{# Single line comment #}
+{#
+   Multi-line
+   comment
+#}
+
+{# Variables #}
+{{ simple }}
+{{ object.property }}
+{{ array[0] }}
+{{ array['key'] }}
+{{ nested.deep.property }}
+
+{# Filters #}
+{{ name|upper }}
+{{ price|number_format(2, '.', ',') }}
+{{ date|date('Y-m-d') }}
+{{ text|escape }}
+{{ text|e }}
+{{ text|raw }}
+{{ list|join(', ') }}
+{{ text|length }}
+{{ text|lower }}
+{{ text|title }}
+{{ text|capitalize }}
+{{ number|abs }}
+{{ number|round }}
+{{ array|first }}
+{{ array|last }}
+{{ array|keys }}
+{{ array|merge(other) }}
+{{ array|reverse }}
+{{ array|slice(1, 3) }}
+{{ array|sort }}
+{{ obj|json_encode }}
+{{ text|url_encode }}
+{{ html|striptags }}
+{{ text|trim }}
+{{ text|nl2br }}
+{{ text|default('fallback') }}
+
+{# Tests #}
+{% if variable is defined %}
+{% if variable is null %}
+{% if variable is empty %}
+{% if variable is even %}
+{% if variable is odd %}
+{% if variable is iterable %}
+{% if variable is same as(other) %}
+{% if variable is divisible by(3) %}
+
+{# Operators #}
+{{ 1 + 2 }}
+{{ 10 - 5 }}
+{{ 3 * 4 }}
+{{ 10 / 2 }}
+{{ 10 // 3 }}
+{{ 10 % 3 }}
+{{ 2 ** 3 }}
+{{ true and false }}
+{{ true or false }}
+{{ not true }}
+{{ var ?? 'default' }}
+{{ 'a' ~ 'b' }}
+{{ 5 < 10 }}
+{{ 5 <= 5 }}
+{{ 5 > 3 }}
+{{ 5 >= 5 }}
+{{ 5 == 5 }}
+{{ 5 != 3 }}
+{{ 5 === 5 }}
+{{ 5 !== '5' }}
+{{ var in [1, 2, 3] }}
+{{ var starts with 'prefix' }}
+{{ var ends with 'suffix' }}
+{{ var matches '/pattern/' }}
+
+{# Control structures #}
+{% if condition %}
+    true
+{% elseif other %}
+    other
+{% else %}
+    false
+{% endif %}
+
+{% for item in items %}
+    {{ loop.index }}: {{ item }}
+{% else %}
+    No items
+{% endfor %}
+
+{% for key, value in hash %}
+    {{ key }}: {{ value }}
+{% endfor %}
+
+{% for i in 0..10 %}
+    {{ i }}
+{% endfor %}
+
+{% for i in 0..10 step 2 %}
+    {{ i }}
+{% endfor %}
+
+{% while condition %}
+    continue
+{% endwhile %}
+
+{% set var = 'value' %}
+{% set var %}value{% endset %}
+
+{# Macros #}
+{% macro input(name, value, type = "text") %}
+    <input type="{{ type }}" name="{{ name }}" value="{{ value }}">
+{% endmacro %}
+
+{% import 'forms.twig' as forms %}
+{{ forms.input('name', 'value') }}
+
+{% from 'forms.twig' import input %}
+{{ input('name', 'value') }}
+
+{# Includes #}
+{% include 'template.twig' %}
+{% include 'template.twig' with {'var': value} %}
+{% include 'template.twig' with {'var': value} only %}
+{% include 'template.twig' ignore missing %}
+
+{# Extends and blocks #}
+{% extends 'base.twig' %}
+
+{% block title %}Page Title{% endblock %}
+
+{% block content %}
+    <p>Content</p>
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {# Empty block #}
+{% endblock sidebar %}
+
+{# Embed #}
+{% embed 'template.twig' %}
+    {% block title %}Embedded{% endblock %}
+{% endembed %}
+
+{# Use #}
+{% use 'blocks.twig' %}
+{% use 'blocks.twig' with sidebar as base_sidebar %}
+
+{# Whitespace control #}
+{{- var -}}
+{%- if true -%}
+    content
+{%- endif -%}
+
+{# Expressions #}
+{{ [1, 2, 3] }}
+{{ {'key': 'value', 'foo': 'bar'} }}
+{{ {1: 'one', 2: 'two'} }}
+{{ (1..10) }}
+{{ (1..10)|join(', ') }}
+
+{# String interpolation #}
+{{ "Hello #{name}!" }}
+{{ 'Single #{name}' }}
+
+{# Ternary operator #}
+{{ var ? 'yes' : 'no' }}
+{{ var ?: 'default' }}
+
+{# Null-safe #}
+{{ obj.property.subprop }}
+{{ obj?.property?.subprop }}
+
+{# Functions #}
+{{ range(1, 10) }}
+{{ cycle(['odd', 'even'], loop.index0) }}
+{{ date() }}
+{{ random(['apple', 'orange', 'citrus']) }}
+{{ random(0, 100) }}
+{{ max(1, 3, 2) }}
+{{ min(1, 3, 2) }}
+{{ attribute(object, method) }}
+{{ block('title') }}
+{{ constant('CONST_NAME') }}
+{{ dump(var) }}
+{{ include('template.twig') }}
+{{ source('template.twig') }}
+{{ template_from_string(template) }}
+
+{# Special variables #}
+{{ _self }}
+{{ _context }}
+{{ _charset }}
+
+{# Autoescape #}
+{% autoescape %}
+    {{ dangerous_html }}
+{% endautoescape %}
+
+{% autoescape 'html' %}
+    {{ content }}
+{% endautoescape %}
+
+{% autoescape 'js' %}
+    {{ content }}
+{% endautoescape %}
+
+{% autoescape false %}
+    {{ content }}
+{% endautoescape %}
+
+{# Raw #}
+{% verbatim %}
+    {{ this_is_not_parsed }}
+    {% this_too %}
+{% endverbatim %}
+
+{# Do #}
+{% do 1 + 2 %}
+{% do array.push('value') %}
+
+{# Flush #}
+{% flush %}
+
+{# Spaceless #}
+{% spaceless %}
+    <div>
+        <strong>foo</strong>
+    </div>
+{% endspaceless %}
+
+{# Apply #}
+{% apply upper %}
+    This text becomes uppercase
+{% endapply %}
+
+{% apply upper|escape %}
+    This text becomes uppercase and escaped
+{% endapply %}
+
+{# Deprecated #}
+{% deprecated 'This template is deprecated' %}
+
+{# With #}
+{% with {foo: 'bar'} %}
+    {{ foo }}
+{% endwith %}
+
+{# Sandbox #}
+{% sandbox %}
+    {% include 'user.twig' %}
+{% endsandbox %}
+
+{# Import #}
+{% import _self as forms %}
+
+{# Nested blocks #}
+{% block outer %}
+    {% block inner %}
+        nested
+    {% endblock %}
+{% endblock %}
+
+{# Complex expressions #}
+{{ (var1 + var2) * (var3 - var4) }}
+{{ array|filter(v => v > 5)|map(v => v * 2)|join(', ') }}
+{{ items|filter(item => item.active and item.price < 100) }}
+
+{# Arrow functions #}
+{% set squared = items|map(x => x * x) %}
+{% set filtered = items|filter((k, v) => k starts with 'prefix') %}
+
+{# Named arguments #}
+{{ date(timestamp, timezone='UTC', format='Y-m-d') }}
+
+{# Batch #}
+{% for row in items|batch(3, 'No item') %}
+    {% for item in row %}
+        {{ item }}
+    {% endfor %}
+{% endfor %}
+
+{# Slice #}
+{% for item in items|slice(5, 10) %}
+    {{ item }}
+{% endfor %}
+
+{# Hash merge #}
+{% set merged = hash1|merge(hash2) %}
+
+{# Special characters in strings #}
+{{ 'single\' quote' }}
+{{ "double\" quote" }}
+{{ 'line\nbreak' }}
+{{ 'tab\there' }}
+{{ 'unicode\u00A9' }}
+
+{# Complex filters chain #}
+{{ text|upper|escape|nl2br|raw }}
+
+{# Nested ternary #}
+{{ a ? b : c ? d : e }}
+
+{# Complex array/object access #}
+{{ data[key1][key2].property }}
+{{ data['key']['subkey'] }}

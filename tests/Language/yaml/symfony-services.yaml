@@ -1,0 +1,26 @@
+# Symfony services configuration
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Service\MyService:
+        arguments:
+            $logger: @monolog.logger
+            $cache: @?cache.app
+            $projectDir: %kernel.project_dir%
+            $env: %env(APP_ENV)%
+
+    app.handler:
+        class: App\Handler\MyHandler
+        tags:
+            - !tagged app.handlers
+
+    app.factory:
+        factory: [@app.service, createInstance]
+        arguments:
+            - !php/const App\Config::DEFAULT
+
+    app.listener:
+        calls:
+            - setLogger: [@logger]

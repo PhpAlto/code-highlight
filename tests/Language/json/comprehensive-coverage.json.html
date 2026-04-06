@@ -1,0 +1,43 @@
+<pre class="alto-highlight language-json"><code class="language-json"><span class="alto-punctuation">{</span>
+  <span class="alto-variable">&quot;escaped_strings&quot;</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">&quot;quote&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \&quot; quote&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;backslash&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \\ backslash&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;newline&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \n newline&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;tab&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \t tab&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;return&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \r return&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;formfeed&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \f formfeed&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;backspace&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \b backspace&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;slash&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \/ slash&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;unicode&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;string with \u0041 unicode&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;multiple&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;\\\&quot;\\n\\t\\\\&quot;</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">,</span>
+  <span class="alto-variable">&quot;decimal_numbers&quot;</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">&quot;simple&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">1.5</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;zero_prefix&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">0.123</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;negative&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">-3.14159</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;many_decimals&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">123.456789</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">,</span>
+  <span class="alto-variable">&quot;scientific_notation&quot;</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">&quot;lowercase_e&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">1e5</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;uppercase_e&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">1E5</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;positive_exp&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">1e+10</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;negative_exp&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">1e-5</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;decimal_with_exp&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">1.5e10</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;negative_decimal_exp&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">-2.5E-3</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;large&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">9.999999e+999</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">,</span>
+  <span class="alto-variable">&quot;whitespace_edge_cases&quot;</span>   <span class="alto-punctuation">:</span>   <span class="alto-punctuation">{</span>
+    <span class="alto-variable">&quot;lots_of_spaces_before_colon&quot;</span>     <span class="alto-punctuation">:</span>     <span class="alto-string">&quot;value&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;tabs_before_colon&quot;</span>		<span class="alto-punctuation">:</span>		<span class="alto-string">&quot;value&quot;</span><span class="alto-punctuation">,</span>
+    <span class="alto-variable">&quot;mixed&quot;</span>  	  <span class="alto-punctuation">:</span>  	  <span class="alto-string">&quot;value&quot;</span>
+  <span class="alto-punctuation">}</span><span class="alto-punctuation">,</span>
+  <span class="alto-variable">&quot;complex_combinations&quot;</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">{</span>
+    <span class="alto-variable">&quot;nested&quot;</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">{</span>
+      <span class="alto-variable">&quot;array&quot;</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2.5</span><span class="alto-punctuation">,</span> <span class="alto-number">3e10</span><span class="alto-punctuation">,</span> <span class="alto-number">-4.2E-5</span><span class="alto-punctuation">]</span><span class="alto-punctuation">,</span>
+      <span class="alto-variable">&quot;string&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;escaped \&quot; with \\ chars&quot;</span><span class="alto-punctuation">,</span>
+      <span class="alto-variable">&quot;bool&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span><span class="alto-punctuation">,</span>
+      <span class="alto-variable">&quot;null&quot;</span><span class="alto-punctuation">:</span> <span class="alto-number">null</span>
+    <span class="alto-punctuation">}</span>
+  <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+</code></pre>

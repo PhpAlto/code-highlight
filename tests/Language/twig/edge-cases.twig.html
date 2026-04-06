@@ -1,0 +1,313 @@
+<pre class="alto-highlight language-twig"><code class="language-twig"><span class="alto-comment">{# Edge cases for Twig coverage #}</span>
+
+<span class="alto-comment">{# Comments #}</span>
+<span class="alto-comment">{# Single line comment #}</span>
+<span class="alto-comment">{#</span>
+<span class="alto-comment">   Multi-line</span>
+<span class="alto-comment">   comment</span>
+<span class="alto-comment">#}</span>
+
+<span class="alto-comment">{# Variables #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">simple</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">object</span><span class="alto-operator">.</span><span class="alto-variable">property</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">[</span><span class="alto-number">0</span><span class="alto-operator">]</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">[</span><span class="alto-string">&#039;key&#039;</span><span class="alto-operator">]</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">nested</span><span class="alto-operator">.</span><span class="alto-variable">deep</span><span class="alto-operator">.</span><span class="alto-variable">property</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Filters #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">name</span><span class="alto-operator">|</span><span class="alto-variable">upper</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">price</span><span class="alto-operator">|</span><span class="alto-variable">number_format</span><span class="alto-operator">(</span><span class="alto-number">2</span><span class="alto-operator">,</span> <span class="alto-string">&#039;.&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;,&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">date</span><span class="alto-operator">|</span><span class="alto-variable">date</span><span class="alto-operator">(</span><span class="alto-string">&#039;Y-m-d&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">escape</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">e</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">raw</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">list</span><span class="alto-operator">|</span><span class="alto-variable">join</span><span class="alto-operator">(</span><span class="alto-string">&#039;, &#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">length</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">lower</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">title</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">capitalize</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">number</span><span class="alto-operator">|</span><span class="alto-variable">abs</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">number</span><span class="alto-operator">|</span><span class="alto-variable">round</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">first</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">last</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">keys</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">merge</span><span class="alto-operator">(</span><span class="alto-variable">other</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">reverse</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">slice</span><span class="alto-operator">(</span><span class="alto-number">1</span><span class="alto-operator">,</span> <span class="alto-number">3</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">sort</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">obj</span><span class="alto-operator">|</span><span class="alto-variable">json_encode</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">url_encode</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">html</span><span class="alto-operator">|</span><span class="alto-variable">striptags</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">trim</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">nl2br</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">default</span><span class="alto-operator">(</span><span class="alto-string">&#039;fallback&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Tests #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">defined</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-number">null</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">empty</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">even</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">odd</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">iterable</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">same</span> <span class="alto-keyword">as</span><span class="alto-operator">(</span><span class="alto-variable">other</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">variable</span> <span class="alto-variable">is</span> <span class="alto-variable">divisible</span> <span class="alto-variable">by</span><span class="alto-operator">(</span><span class="alto-number">3</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Operators #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">1</span> <span class="alto-operator">+</span> <span class="alto-number">2</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">10</span> <span class="alto-operator">-</span> <span class="alto-number">5</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">3</span> <span class="alto-operator">*</span> <span class="alto-number">4</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">10</span> <span class="alto-operator">/</span> <span class="alto-number">2</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">10</span> <span class="alto-operator">/</span><span class="alto-operator">/</span> <span class="alto-number">3</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">10</span> <span class="alto-operator">%</span> <span class="alto-number">3</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">2</span> <span class="alto-operator">*</span><span class="alto-operator">*</span> <span class="alto-number">3</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">true</span> <span class="alto-variable">and</span> <span class="alto-number">false</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">true</span> <span class="alto-variable">or</span> <span class="alto-number">false</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">not</span> <span class="alto-number">true</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-operator">?</span><span class="alto-operator">?</span> <span class="alto-string">&#039;default&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&#039;a&#039;</span> <span class="alto-punctuation">~</span> <span class="alto-string">&#039;b&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">&lt;</span> <span class="alto-number">10</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">&lt;</span><span class="alto-operator">=</span> <span class="alto-number">5</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">&gt;</span> <span class="alto-number">3</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">&gt;</span><span class="alto-operator">=</span> <span class="alto-number">5</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">=</span><span class="alto-operator">=</span> <span class="alto-number">5</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">!</span><span class="alto-operator">=</span> <span class="alto-number">3</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">=</span><span class="alto-operator">=</span><span class="alto-operator">=</span> <span class="alto-number">5</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-number">5</span> <span class="alto-operator">!</span><span class="alto-operator">=</span><span class="alto-operator">=</span> <span class="alto-string">&#039;5&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-keyword">in</span> <span class="alto-operator">[</span><span class="alto-number">1</span><span class="alto-operator">,</span> <span class="alto-number">2</span><span class="alto-operator">,</span> <span class="alto-number">3</span><span class="alto-operator">]</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-variable">starts</span> <span class="alto-keyword">with</span> <span class="alto-string">&#039;prefix&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-variable">ends</span> <span class="alto-keyword">with</span> <span class="alto-string">&#039;suffix&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-variable">matches</span> <span class="alto-string">&#039;/pattern/&#039;</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Control structures #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">if</span> <span class="alto-variable">condition</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    true</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">elseif</span> <span class="alto-variable">other</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    other</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">else</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    false</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endif</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">item</span> <span class="alto-keyword">in</span> <span class="alto-variable">items</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">loop</span><span class="alto-operator">.</span><span class="alto-variable">index</span> <span class="alto-punctuation">}}</span><span class="alto-punctuation">: </span><span class="alto-punctuation">{{</span> <span class="alto-variable">item</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">else</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    No items</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">key</span><span class="alto-operator">,</span> <span class="alto-variable">value</span> <span class="alto-keyword">in</span> <span class="alto-variable">hash</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">key</span> <span class="alto-punctuation">}}</span><span class="alto-punctuation">: </span><span class="alto-punctuation">{{</span> <span class="alto-variable">value</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">i</span> <span class="alto-keyword">in</span> <span class="alto-number">0</span><span class="alto-operator">.</span><span class="alto-operator">.</span><span class="alto-number">10</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">i</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">i</span> <span class="alto-keyword">in</span> <span class="alto-number">0</span><span class="alto-operator">.</span><span class="alto-operator">.</span><span class="alto-number">10</span> <span class="alto-variable">step</span> <span class="alto-number">2</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">i</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">while</span> <span class="alto-variable">condition</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    continue</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endwhile</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">set</span> <span class="alto-variable">var</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;value&#039;</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">set</span> <span class="alto-variable">var</span> <span class="alto-punctuation">%}</span><span class="alto-punctuation">value</span><span class="alto-punctuation">{%</span> <span class="alto-variable">endset</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Macros #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">macro</span> <span class="alto-variable">input</span><span class="alto-operator">(</span><span class="alto-variable">name</span><span class="alto-operator">,</span> <span class="alto-variable">value</span><span class="alto-operator">,</span> <span class="alto-variable">type</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;text&quot;</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-keyword">&lt;</span><span class="alto-keyword">input</span> <span class="alto-variable">type</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;</span><span class="alto-punctuation">{{</span> <span class="alto-variable">type</span> <span class="alto-punctuation">}}</span><span class="alto-punctuation">&quot; name=&quot;</span><span class="alto-punctuation">{{</span> <span class="alto-variable">name</span> <span class="alto-punctuation">}}</span><span class="alto-punctuation">&quot; value=&quot;</span><span class="alto-punctuation">{{</span> <span class="alto-variable">value</span> <span class="alto-punctuation">}}</span><span class="alto-punctuation">&quot;&gt;</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endmacro</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">import</span> <span class="alto-string">&#039;forms.twig&#039;</span> <span class="alto-keyword">as</span> <span class="alto-variable">forms</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">forms</span><span class="alto-operator">.</span><span class="alto-variable">input</span><span class="alto-operator">(</span><span class="alto-string">&#039;name&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;value&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">from</span> <span class="alto-string">&#039;forms.twig&#039;</span> <span class="alto-variable">import</span> <span class="alto-variable">input</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">input</span><span class="alto-operator">(</span><span class="alto-string">&#039;name&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;value&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Includes #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">include</span> <span class="alto-string">&#039;template.twig&#039;</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">include</span> <span class="alto-string">&#039;template.twig&#039;</span> <span class="alto-keyword">with</span> <span class="alto-operator">{</span><span class="alto-string">&#039;var&#039;</span><span class="alto-operator">:</span> <span class="alto-variable">value</span><span class="alto-operator">}</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">include</span> <span class="alto-string">&#039;template.twig&#039;</span> <span class="alto-keyword">with</span> <span class="alto-operator">{</span><span class="alto-string">&#039;var&#039;</span><span class="alto-operator">:</span> <span class="alto-variable">value</span><span class="alto-operator">}</span> <span class="alto-keyword">only</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">include</span> <span class="alto-string">&#039;template.twig&#039;</span> <span class="alto-variable">ignore</span> <span class="alto-variable">missing</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Extends and blocks #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">extends</span> <span class="alto-string">&#039;base.twig&#039;</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">title</span> <span class="alto-punctuation">%}</span><span class="alto-punctuation">Page Title</span><span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">content</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-keyword">&lt;</span><span class="alto-keyword">p</span><span class="alto-keyword">&gt;</span><span class="alto-punctuation">Content</span><span class="alto-keyword">&lt;/</span><span class="alto-keyword">p</span><span class="alto-keyword">&gt;</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">parent</span><span class="alto-operator">(</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">sidebar</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-comment">{# Empty block #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-variable">sidebar</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Embed #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">embed</span> <span class="alto-string">&#039;template.twig&#039;</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">title</span> <span class="alto-punctuation">%}</span><span class="alto-punctuation">Embedded</span><span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endembed</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Use #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">use</span> <span class="alto-string">&#039;blocks.twig&#039;</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">use</span> <span class="alto-string">&#039;blocks.twig&#039;</span> <span class="alto-keyword">with</span> <span class="alto-variable">sidebar</span> <span class="alto-keyword">as</span> <span class="alto-variable">base_sidebar</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Whitespace control #}</span>
+<span class="alto-punctuation">{{</span><span class="alto-operator">-</span> <span class="alto-variable">var</span> <span class="alto-operator">-</span><span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span><span class="alto-operator">-</span> <span class="alto-keyword">if</span> <span class="alto-number">true</span> <span class="alto-operator">-</span><span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    content</span>
+<span class="alto-punctuation">{%</span><span class="alto-operator">-</span> <span class="alto-keyword">endif</span> <span class="alto-operator">-</span><span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Expressions #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-operator">[</span><span class="alto-number">1</span><span class="alto-operator">,</span> <span class="alto-number">2</span><span class="alto-operator">,</span> <span class="alto-number">3</span><span class="alto-operator">]</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-operator">{</span><span class="alto-string">&#039;key&#039;</span><span class="alto-operator">:</span> <span class="alto-string">&#039;value&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;foo&#039;</span><span class="alto-operator">:</span> <span class="alto-string">&#039;bar&#039;</span><span class="alto-operator">}</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-operator">{</span><span class="alto-number">1</span><span class="alto-operator">:</span> <span class="alto-string">&#039;one&#039;</span><span class="alto-operator">,</span> <span class="alto-number">2</span><span class="alto-operator">:</span> <span class="alto-string">&#039;two&#039;</span><span class="alto-operator">}</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-operator">(</span><span class="alto-number">1</span><span class="alto-operator">.</span><span class="alto-operator">.</span><span class="alto-number">10</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-operator">(</span><span class="alto-number">1</span><span class="alto-operator">.</span><span class="alto-operator">.</span><span class="alto-number">10</span><span class="alto-operator">)</span><span class="alto-operator">|</span><span class="alto-variable">join</span><span class="alto-operator">(</span><span class="alto-string">&#039;, &#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# String interpolation #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&quot;Hello #{name}!&quot;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&#039;Single #{name}&#039;</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Ternary operator #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-operator">?</span> <span class="alto-string">&#039;yes&#039;</span> <span class="alto-operator">:</span> <span class="alto-string">&#039;no&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">var</span> <span class="alto-operator">?</span><span class="alto-operator">:</span> <span class="alto-string">&#039;default&#039;</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Null-safe #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">obj</span><span class="alto-operator">.</span><span class="alto-variable">property</span><span class="alto-operator">.</span><span class="alto-variable">subprop</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">obj</span><span class="alto-operator">?</span><span class="alto-operator">.</span><span class="alto-variable">property</span><span class="alto-operator">?</span><span class="alto-operator">.</span><span class="alto-variable">subprop</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Functions #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">range</span><span class="alto-operator">(</span><span class="alto-number">1</span><span class="alto-operator">,</span> <span class="alto-number">10</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">cycle</span><span class="alto-operator">(</span><span class="alto-operator">[</span><span class="alto-string">&#039;odd&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;even&#039;</span><span class="alto-operator">]</span><span class="alto-operator">,</span> <span class="alto-variable">loop</span><span class="alto-operator">.</span><span class="alto-variable">index0</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">date</span><span class="alto-operator">(</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">random</span><span class="alto-operator">(</span><span class="alto-operator">[</span><span class="alto-string">&#039;apple&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;orange&#039;</span><span class="alto-operator">,</span> <span class="alto-string">&#039;citrus&#039;</span><span class="alto-operator">]</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">random</span><span class="alto-operator">(</span><span class="alto-number">0</span><span class="alto-operator">,</span> <span class="alto-number">100</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">max</span><span class="alto-operator">(</span><span class="alto-number">1</span><span class="alto-operator">,</span> <span class="alto-number">3</span><span class="alto-operator">,</span> <span class="alto-number">2</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">min</span><span class="alto-operator">(</span><span class="alto-number">1</span><span class="alto-operator">,</span> <span class="alto-number">3</span><span class="alto-operator">,</span> <span class="alto-number">2</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">attribute</span><span class="alto-operator">(</span><span class="alto-variable">object</span><span class="alto-operator">,</span> <span class="alto-variable">method</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-keyword">block</span><span class="alto-operator">(</span><span class="alto-string">&#039;title&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">constant</span><span class="alto-operator">(</span><span class="alto-string">&#039;CONST_NAME&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">dump</span><span class="alto-operator">(</span><span class="alto-variable">var</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-keyword">include</span><span class="alto-operator">(</span><span class="alto-string">&#039;template.twig&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">source</span><span class="alto-operator">(</span><span class="alto-string">&#039;template.twig&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">template_from_string</span><span class="alto-operator">(</span><span class="alto-variable">template</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Special variables #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">_self</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">_context</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">_charset</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Autoescape #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">autoescape</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">dangerous_html</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endautoescape</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">autoescape</span> <span class="alto-string">&#039;html&#039;</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">content</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endautoescape</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">autoescape</span> <span class="alto-string">&#039;js&#039;</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">content</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endautoescape</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">autoescape</span> <span class="alto-number">false</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">content</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endautoescape</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Raw #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">verbatim</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">this_is_not_parsed</span> <span class="alto-punctuation">}}</span>
+    <span class="alto-punctuation">{%</span> <span class="alto-variable">this_too</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endverbatim</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Do #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">do</span> <span class="alto-number">1</span> <span class="alto-operator">+</span> <span class="alto-number">2</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">do</span> <span class="alto-variable">array</span><span class="alto-operator">.</span><span class="alto-variable">push</span><span class="alto-operator">(</span><span class="alto-string">&#039;value&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Flush #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">flush</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Spaceless #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">spaceless</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-keyword">&lt;</span><span class="alto-keyword">div</span><span class="alto-keyword">&gt;</span>
+        <span class="alto-keyword">&lt;</span><span class="alto-keyword">strong</span><span class="alto-keyword">&gt;</span><span class="alto-punctuation">foo</span><span class="alto-keyword">&lt;/</span><span class="alto-keyword">strong</span><span class="alto-keyword">&gt;</span>
+    <span class="alto-keyword">&lt;/</span><span class="alto-keyword">div</span><span class="alto-keyword">&gt;</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endspaceless</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Apply #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">apply</span> <span class="alto-variable">upper</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    This text becomes uppercase</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endapply</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-variable">apply</span> <span class="alto-variable">upper</span><span class="alto-operator">|</span><span class="alto-variable">escape</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">    This text becomes uppercase and escaped</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endapply</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Deprecated #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">deprecated</span> <span class="alto-string">&#039;This template is deprecated&#039;</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# With #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">with</span> <span class="alto-operator">{</span><span class="alto-variable">foo</span><span class="alto-operator">:</span> <span class="alto-string">&#039;bar&#039;</span><span class="alto-operator">}</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">foo</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endwith</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Sandbox #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">sandbox</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{%</span> <span class="alto-keyword">include</span> <span class="alto-string">&#039;user.twig&#039;</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">endsandbox</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Import #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-variable">import</span> <span class="alto-variable">_self</span> <span class="alto-keyword">as</span> <span class="alto-variable">forms</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Nested blocks #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">outer</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">inner</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">        nested</span>
+<span class="alto-punctuation">    </span><span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Complex expressions #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-operator">(</span><span class="alto-variable">var1</span> <span class="alto-operator">+</span> <span class="alto-variable">var2</span><span class="alto-operator">)</span> <span class="alto-operator">*</span> <span class="alto-operator">(</span><span class="alto-variable">var3</span> <span class="alto-operator">-</span> <span class="alto-variable">var4</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">array</span><span class="alto-operator">|</span><span class="alto-variable">filter</span><span class="alto-operator">(</span><span class="alto-variable">v</span> <span class="alto-operator">=</span><span class="alto-operator">&gt;</span> <span class="alto-variable">v</span> <span class="alto-operator">&gt;</span> <span class="alto-number">5</span><span class="alto-operator">)</span><span class="alto-operator">|</span><span class="alto-variable">map</span><span class="alto-operator">(</span><span class="alto-variable">v</span> <span class="alto-operator">=</span><span class="alto-operator">&gt;</span> <span class="alto-variable">v</span> <span class="alto-operator">*</span> <span class="alto-number">2</span><span class="alto-operator">)</span><span class="alto-operator">|</span><span class="alto-variable">join</span><span class="alto-operator">(</span><span class="alto-string">&#039;, &#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">items</span><span class="alto-operator">|</span><span class="alto-variable">filter</span><span class="alto-operator">(</span><span class="alto-variable">item</span> <span class="alto-operator">=</span><span class="alto-operator">&gt;</span> <span class="alto-variable">item</span><span class="alto-operator">.</span><span class="alto-variable">active</span> <span class="alto-variable">and</span> <span class="alto-variable">item</span><span class="alto-operator">.</span><span class="alto-variable">price</span> <span class="alto-operator">&lt;</span> <span class="alto-number">100</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Arrow functions #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">set</span> <span class="alto-variable">squared</span> <span class="alto-operator">=</span> <span class="alto-variable">items</span><span class="alto-operator">|</span><span class="alto-variable">map</span><span class="alto-operator">(</span><span class="alto-variable">x</span> <span class="alto-operator">=</span><span class="alto-operator">&gt;</span> <span class="alto-variable">x</span> <span class="alto-operator">*</span> <span class="alto-variable">x</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">set</span> <span class="alto-variable">filtered</span> <span class="alto-operator">=</span> <span class="alto-variable">items</span><span class="alto-operator">|</span><span class="alto-variable">filter</span><span class="alto-operator">(</span><span class="alto-operator">(</span><span class="alto-variable">k</span><span class="alto-operator">,</span> <span class="alto-variable">v</span><span class="alto-operator">)</span> <span class="alto-operator">=</span><span class="alto-operator">&gt;</span> <span class="alto-variable">k</span> <span class="alto-variable">starts</span> <span class="alto-keyword">with</span> <span class="alto-string">&#039;prefix&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Named arguments #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">date</span><span class="alto-operator">(</span><span class="alto-variable">timestamp</span><span class="alto-operator">,</span> <span class="alto-variable">timezone</span><span class="alto-operator">=</span><span class="alto-string">&#039;UTC&#039;</span><span class="alto-operator">,</span> <span class="alto-variable">format</span><span class="alto-operator">=</span><span class="alto-string">&#039;Y-m-d&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Batch #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">row</span> <span class="alto-keyword">in</span> <span class="alto-variable">items</span><span class="alto-operator">|</span><span class="alto-variable">batch</span><span class="alto-operator">(</span><span class="alto-number">3</span><span class="alto-operator">,</span> <span class="alto-string">&#039;No item&#039;</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">item</span> <span class="alto-keyword">in</span> <span class="alto-variable">row</span> <span class="alto-punctuation">%}</span>
+        <span class="alto-punctuation">{{</span> <span class="alto-variable">item</span> <span class="alto-punctuation">}}</span>
+    <span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Slice #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">item</span> <span class="alto-keyword">in</span> <span class="alto-variable">items</span><span class="alto-operator">|</span><span class="alto-variable">slice</span><span class="alto-operator">(</span><span class="alto-number">5</span><span class="alto-operator">,</span> <span class="alto-number">10</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">item</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Hash merge #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">set</span> <span class="alto-variable">merged</span> <span class="alto-operator">=</span> <span class="alto-variable">hash1</span><span class="alto-operator">|</span><span class="alto-variable">merge</span><span class="alto-operator">(</span><span class="alto-variable">hash2</span><span class="alto-operator">)</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-comment">{# Special characters in strings #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&#039;single\&#039;</span> <span class="alto-variable">quote</span><span class="alto-string">&#039; </span><span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&quot;double\&quot;</span> <span class="alto-variable">quote</span><span class="alto-string">&quot; </span><span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&#039;line\nbreak&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&#039;tab\there&#039;</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-string">&#039;unicode\u00A9&#039;</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Complex filters chain #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">text</span><span class="alto-operator">|</span><span class="alto-variable">upper</span><span class="alto-operator">|</span><span class="alto-variable">escape</span><span class="alto-operator">|</span><span class="alto-variable">nl2br</span><span class="alto-operator">|</span><span class="alto-variable">raw</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Nested ternary #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">a</span> <span class="alto-operator">?</span> <span class="alto-variable">b</span> <span class="alto-operator">:</span> <span class="alto-variable">c</span> <span class="alto-operator">?</span> <span class="alto-variable">d</span> <span class="alto-operator">:</span> <span class="alto-variable">e</span> <span class="alto-punctuation">}}</span>
+
+<span class="alto-comment">{# Complex array/object access #}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">data</span><span class="alto-operator">[</span><span class="alto-variable">key1</span><span class="alto-operator">]</span><span class="alto-operator">[</span><span class="alto-variable">key2</span><span class="alto-operator">]</span><span class="alto-operator">.</span><span class="alto-variable">property</span> <span class="alto-punctuation">}}</span>
+<span class="alto-punctuation">{{</span> <span class="alto-variable">data</span><span class="alto-operator">[</span><span class="alto-string">&#039;key&#039;</span><span class="alto-operator">]</span><span class="alto-operator">[</span><span class="alto-string">&#039;subkey&#039;</span><span class="alto-operator">]</span> <span class="alto-punctuation">}}</span>
+</code></pre>

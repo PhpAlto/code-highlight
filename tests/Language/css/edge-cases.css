@@ -1,0 +1,50 @@
+/* Edge cases for CSS coverage */
+
+/* Selectors - all types */
+* { /* universal */ }
+element { /* type */ }
+.class { /* class */ }
+#id { /* id */ }
+[attribute] { /* attribute */ }
+[attribute="value"] { /* attribute with value */ }
+[attribute~="value"] { /* attribute contains word */ }
+[attribute|="value"] { /* attribute starts with */ }
+[attribute^="value"] { /* attribute begins with */ }
+[attribute$="value"] { /* attribute ends with */ }
+[attribute*="value"] { /* attribute contains */ }
+:hover { /* pseudo-class */ }
+:first-child { /* pseudo-class */ }
+:last-child { /* pseudo-class */ }
+:nth-child(2n) { /* pseudo-class with function */ }
+:nth-child(odd) { /* pseudo-class odd */ }
+:nth-child(even) { /* pseudo-class even */ }
+:nth-of-type(2n+1) { /* pseudo-class formula */ }
+:not(.class) { /* negation pseudo-class */ }
+::before { /* pseudo-element */ }
+::after { /* pseudo-element */ }
+::first-line { /* pseudo-element */ }
+::first-letter { /* pseudo-element */ }
+::selection { /* pseudo-element */ }
+
+/* Combinators */
+div p { /* descendant */ }
+div > p { /* child */ }
+div + p { /* adjacent sibling */ }
+div ~ p { /* general sibling */ }
+
+/* Multiple selectors */
+h1, h2, h3 { /* grouped */ }
+div.class { /* compound */ }
+div#id.class[attr] { /* multiple compound */ }
+div > p.class + span { /* complex */ }
+
+/* @rules */
+@import url("style.css");
+@import "style.css" screen;
+@import "style.css" print and (orientation: landscape);
+
+@charset "UTF-8";
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@namespace svg url(http://www.w3.org/2000/svg);
+

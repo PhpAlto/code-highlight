@@ -1,0 +1,38 @@
+<pre class="alto-highlight language-bash"><code class="language-bash"><span class="alto-comment">#!/bin/bash</span>
+
+<span class="alto-comment"># Escaped quotes in double-quoted strings</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;She said \&quot;hello\&quot; to me&quot;</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;Path: \&quot;C:\\Program Files\\test\&quot;&quot;</span>
+
+<span class="alto-comment"># Backslash escaping in double-quoted strings</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;Line 1\nLine 2&quot;</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;Tab\there&quot;</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;Escaped backslash: \\&quot;</span>
+
+<span class="alto-string"># Here-doc with dash (&lt;&lt;-)</span>
+<span class="alto-string">cat &lt;&lt;-EOF</span>
+<span class="alto-string">	This is indented</span>
+<span class="alto-string">	And will be dedented</span>
+<span class="alto-string">	EOF</span>
+
+<span class="alto-string"># Braced variables</span>
+<span class="alto-string">echo &quot;</span><span class="alto-variable">${HOME}</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-variable">${USER:-default}</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-variable">${VAR%suffix}</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-variable">${VAR#prefix}</span><span class="alto-string">&quot;</span>
+
+<span class="alto-string"># Special variables</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">Script</span> <span class="alto-constant">name</span><span class="alto-operator">:</span> <span class="alto-variable">$0</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">Argument</span> <span class="alto-constant">count</span><span class="alto-operator">:</span> <span class="alto-variable">$#</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">All</span> <span class="alto-constant">arguments</span><span class="alto-operator">:</span> <span class="alto-variable">$@</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">Exit</span> <span class="alto-constant">status</span><span class="alto-operator">:</span> <span class="alto-variable">$?</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">Current</span> <span class="alto-constant">flags</span><span class="alto-operator">:</span> <span class="alto-variable">$-</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">Process</span> <span class="alto-constant">ID</span><span class="alto-operator">:</span> <span class="alto-variable">$$</span><span class="alto-string">&quot;</span>
+<span class="alto-string">echo &quot;</span><span class="alto-constant">Background</span> <span class="alto-constant">PID</span><span class="alto-operator">:</span> <span class="alto-variable">$!</span><span class="alto-string">&quot;</span>
+
+<span class="alto-string"># Escaped backticks</span>
+<span class="alto-string">result=`echo \`nested\` command`</span>
+
+<span class="alto-string"># Nested parentheses in command substitution</span>
+<span class="alto-string">output=$(echo $(echo $(echo nested)))</span>
+<span class="alto-string">calc=$((1 + (2 * (3 + 4))))</span></code></pre>

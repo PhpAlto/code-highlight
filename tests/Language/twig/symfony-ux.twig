@@ -1,0 +1,14 @@
+{# Symfony UX Components Example #}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<twig:Alert type="success" :message="message" />
+
+<twig:Button type="submit">
+    {{ buttonText }}
+</twig:Button>
+
+<twig:DataTable:Row>
+    <twig:DataTable:Cell>{{ item.name }}</twig:DataTable:Cell>
+</twig:DataTable:Row>
+{% endblock %}

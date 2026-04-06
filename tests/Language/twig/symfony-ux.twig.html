@@ -1,0 +1,15 @@
+<pre class="alto-highlight language-twig"><code class="language-twig"><span class="alto-comment">{# Symfony UX Components Example #}</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">extends</span> <span class="alto-string">&quot;base.html.twig&quot;</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">body</span> <span class="alto-punctuation">%}</span>
+<span class="alto-keyword">&lt;</span><span class="alto-keyword">twig:Alert</span> <span class="alto-variable">type</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;success&quot;</span> <span class="alto-variable">:message</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;message&quot;</span> <span class="alto-keyword">/</span><span class="alto-keyword">&gt;</span>
+
+<span class="alto-keyword">&lt;</span><span class="alto-keyword">twig:Button</span> <span class="alto-variable">type</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;submit&quot;</span><span class="alto-keyword">&gt;</span>
+    <span class="alto-punctuation">{{</span> <span class="alto-variable">buttonText</span> <span class="alto-punctuation">}}</span>
+<span class="alto-keyword">&lt;/</span><span class="alto-keyword">twig:Button</span><span class="alto-keyword">&gt;</span>
+
+<span class="alto-keyword">&lt;</span><span class="alto-keyword">twig:DataTable:Row</span><span class="alto-keyword">&gt;</span>
+    <span class="alto-keyword">&lt;</span><span class="alto-keyword">twig:DataTable:Cell</span><span class="alto-keyword">&gt;</span><span class="alto-punctuation">{{</span> <span class="alto-variable">item</span><span class="alto-operator">.</span><span class="alto-variable">name</span> <span class="alto-punctuation">}}</span><span class="alto-keyword">&lt;/</span><span class="alto-keyword">twig:DataTable:Cell</span><span class="alto-keyword">&gt;</span>
+<span class="alto-keyword">&lt;/</span><span class="alto-keyword">twig:DataTable:Row</span><span class="alto-keyword">&gt;</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+</code></pre>

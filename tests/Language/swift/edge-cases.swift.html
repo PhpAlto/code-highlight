@@ -1,0 +1,68 @@
+<pre class="alto-highlight language-swift"><code class="language-swift"><span class="alto-comment">// Edge cases for Swift coverage</span>
+
+<span class="alto-comment">// Nested block comments</span>
+<span class="alto-comment">/* Outer /* Inner /* Deep */ Inner */ Outer */</span>
+<span class="alto-comment">/** Doc /** Nested */ Doc */</span>
+
+<span class="alto-comment">// Multiline strings with interpolation</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">msg</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;&quot;&quot;</span>
+<span class="alto-string">Value: \(x + y)</span>
+<span class="alto-string">Name: \(user.name)</span>
+<span class="alto-string">&quot;&quot;&quot;</span>
+
+<span class="alto-comment">// Backtick identifiers (keywords as names)</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">`class`</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;reserved&quot;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">`init`</span> <span class="alto-operator">=</span> <span class="alto-number">42</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">`func`</span> <span class="alto-operator">=</span> <span class="alto-number">true</span>
+
+<span class="alto-comment">// Hex floats</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">hexFloat</span> <span class="alto-operator">=</span> <span class="alto-number">0xAp3</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">hexFloat2</span> <span class="alto-operator">=</span> <span class="alto-number">0xF.8p</span><span class="alto-operator">-</span><span class="alto-number">2</span>
+
+<span class="alto-comment">// Three-char operators</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">range</span> <span class="alto-operator">=</span> <span class="alto-number">1</span><span class="alto-operator">...</span><span class="alto-number">10</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">halfRange</span> <span class="alto-operator">=</span> <span class="alto-number">0</span><span class="alto-operator">..&lt;</span><span class="alto-number">5</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">assign</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">a</span> <span class="alto-operator">??=</span> <span class="alto-variable">b</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">leftShift</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">x</span> <span class="alto-operator">&lt;&lt;=</span> <span class="alto-number">2</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">rightShift</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">y</span> <span class="alto-operator">&gt;&gt;=</span> <span class="alto-number">1</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">identical</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">obj1</span> <span class="alto-operator">===</span> <span class="alto-variable">obj2</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">notIdentical</span> <span class="alto-operator">=</span> <span class="alto-punctuation">(</span><span class="alto-variable">obj1</span> <span class="alto-operator">!==</span> <span class="alto-variable">obj2</span><span class="alto-punctuation">)</span>
+
+<span class="alto-comment">// Attributes with arguments</span>
+<span class="alto-variable">@available</span><span class="alto-punctuation">(</span><span class="alto-variable">iOS</span> <span class="alto-number">15.0</span><span class="alto-punctuation">,</span> <span class="alto-variable">macOS</span> <span class="alto-number">12.0</span><span class="alto-punctuation">,</span> <span class="alto-operator">*</span><span class="alto-punctuation">)</span>
+<span class="alto-variable">@discardableResult</span>
+<span class="alto-variable">@MainActor</span>
+<span class="alto-variable">@resultBuilder</span>
+<span class="alto-keyword">func</span> <span class="alto-function">builder</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Compiler directives</span>
+<span class="alto-keyword">#if</span> <span class="alto-function">os</span><span class="alto-punctuation">(</span><span class="alto-variable">iOS</span><span class="alto-punctuation">)</span>
+  <span class="alto-function">print</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;iOS&quot;</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">#elseif</span> <span class="alto-function">os</span><span class="alto-punctuation">(</span><span class="alto-variable">macOS</span><span class="alto-punctuation">)</span>
+  <span class="alto-function">print</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;macOS&quot;</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">#else</span>
+  <span class="alto-function">print</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;Other&quot;</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">#endif</span>
+
+<span class="alto-keyword">#available</span><span class="alto-punctuation">(</span><span class="alto-variable">iOS</span> <span class="alto-number">15.0</span><span class="alto-punctuation">,</span> <span class="alto-operator">*</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">#selector</span><span class="alto-punctuation">(</span><span class="alto-variable">method</span><span class="alto-punctuation">)</span>
+<span class="alto-keyword">#file</span>
+<span class="alto-keyword">#line</span>
+<span class="alto-keyword">#column</span>
+<span class="alto-keyword">#function</span>
+
+<span class="alto-comment">// String interpolation edge cases</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">complex</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;Result: \(calc(a: 1, b: 2))&quot;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">nested</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;\(outer(&quot;\(inner)&quot;))&quot;</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">escaped</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;Quote: \&quot; Backslash: \\ Newline: \n&quot;</span>
+
+<span class="alto-comment">// Numbers with underscores</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">big</span> <span class="alto-operator">=</span> <span class="alto-number">1_000_000</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">hex</span> <span class="alto-operator">=</span> <span class="alto-number">0xFF_FF_FF</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">bin</span> <span class="alto-operator">=</span> <span class="alto-number">0b1010_1010</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">oct</span> <span class="alto-operator">=</span> <span class="alto-number">0o755_755</span>
+
+<span class="alto-comment">// Float exponent with signs</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">expPos</span> <span class="alto-operator">=</span> <span class="alto-number">1.5e+10</span>
+<span class="alto-keyword">let</span> <span class="alto-variable">expNeg</span> <span class="alto-operator">=</span> <span class="alto-number">2.3e-5</span>
+</code></pre>

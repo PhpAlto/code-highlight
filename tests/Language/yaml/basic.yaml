@@ -1,0 +1,11 @@
+# This is a comment
+key: value
+another_key: "string value"
+number_key: 123
+boolean_key: true
+null_key: null
+list_key:
+  - item1
+  - item2
+object_key:
+  nested_key: nested_value

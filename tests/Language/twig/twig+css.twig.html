@@ -1,0 +1,29 @@
+<pre class="alto-highlight language-twig"><code class="language-twig"><span class="alto-punctuation">{%</span> <span class="alto-keyword">extends</span> <span class="alto-string">&quot;layout.twig&quot;</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">styles</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-keyword">&lt;</span><span class="alto-keyword">style</span><span class="alto-keyword">&gt;</span>
+        <span class="alto-keyword">.post</span> <span class="alto-punctuation">{</span>
+            <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-constant">#fff</span><span class="alto-punctuation">;</span>
+            <span class="alto-variable">border</span><span class="alto-punctuation">:</span> <span class="alto-constant">1px</span> <span class="alto-string">solid</span> <span class="alto-constant">#ddd</span><span class="alto-punctuation">;</span>
+            <span class="alto-variable">padding</span><span class="alto-punctuation">:</span> <span class="alto-constant">20px</span><span class="alto-punctuation">;</span>
+            <span class="alto-variable">margin</span><span class="alto-punctuation">:</span> <span class="alto-constant">10px</span> <span class="alto-string">0</span><span class="alto-punctuation">;</span>
+        <span class="alto-punctuation">}</span>
+        <span class="alto-keyword">.post-title</span> <span class="alto-punctuation">{</span>
+            <span class="alto-variable">font-size</span><span class="alto-punctuation">:</span> <span class="alto-constant">24px</span><span class="alto-punctuation">;</span>
+            <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-constant">#333</span><span class="alto-punctuation">;</span>
+            <span class="alto-variable">font-weight</span><span class="alto-punctuation">:</span> <span class="alto-string">bold</span><span class="alto-punctuation">;</span>
+        <span class="alto-punctuation">}</span>
+    <span class="alto-keyword">&lt;/</span><span class="alto-keyword">style</span><span class="alto-keyword">&gt;</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">block</span> <span class="alto-variable">content</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-keyword">&lt;</span><span class="alto-keyword">div</span> <span class="alto-variable">class</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;posts&quot;</span><span class="alto-keyword">&gt;</span>
+        <span class="alto-punctuation">{%</span> <span class="alto-keyword">for</span> <span class="alto-variable">post</span> <span class="alto-keyword">in</span> <span class="alto-variable">posts</span> <span class="alto-punctuation">%}</span>
+            <span class="alto-keyword">&lt;</span><span class="alto-keyword">div</span> <span class="alto-variable">class</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;post&quot;</span><span class="alto-keyword">&gt;</span>
+                <span class="alto-keyword">&lt;</span><span class="alto-keyword">h2</span> <span class="alto-variable">class</span><span class="alto-punctuation">=</span><span class="alto-string">&quot;post-title&quot;</span><span class="alto-keyword">&gt;</span><span class="alto-punctuation">{{</span> <span class="alto-variable">post</span><span class="alto-operator">.</span><span class="alto-variable">title</span> <span class="alto-punctuation">}}</span><span class="alto-keyword">&lt;/</span><span class="alto-keyword">h2</span><span class="alto-keyword">&gt;</span>
+                <span class="alto-keyword">&lt;</span><span class="alto-keyword">p</span><span class="alto-keyword">&gt;</span><span class="alto-punctuation">{{</span> <span class="alto-variable">post</span><span class="alto-operator">.</span><span class="alto-variable">content</span> <span class="alto-punctuation">}}</span><span class="alto-keyword">&lt;/</span><span class="alto-keyword">p</span><span class="alto-keyword">&gt;</span>
+            <span class="alto-keyword">&lt;/</span><span class="alto-keyword">div</span><span class="alto-keyword">&gt;</span>
+        <span class="alto-punctuation">{%</span> <span class="alto-keyword">endfor</span> <span class="alto-punctuation">%}</span>
+    <span class="alto-keyword">&lt;/</span><span class="alto-keyword">div</span><span class="alto-keyword">&gt;</span>
+<span class="alto-punctuation">{%</span> <span class="alto-keyword">endblock</span> <span class="alto-punctuation">%}</span>
+</code></pre>

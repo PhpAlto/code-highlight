@@ -1,0 +1,175 @@
+<pre class="alto-highlight language-bash"><code class="language-bash"><span class="alto-comment">#!/bin/bash</span>
+<span class="alto-comment"># Comprehensive coverage for BashLanguage - targeting all uncovered lines</span>
+
+<span class="alto-comment"># Comments at start of line</span>
+<span class="alto-comment"># Comment after space</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;test&quot;</span> <span class="alto-comment"># inline comment</span>
+
+<span class="alto-comment"># Double-quoted strings with all edge cases</span>
+<span class="alto-string">&quot;simple string&quot;</span>
+<span class="alto-string">&quot;string with $VAR&quot;</span>
+<span class="alto-string">&quot;string with ${VAR}&quot;</span>
+<span class="alto-string">&quot;string with $(command)&quot;</span>
+<span class="alto-string">&quot;string with $((1+2))&quot;</span>
+<span class="alto-string">&quot;string with \&quot; escaped quotes&quot;</span>
+<span class="alto-string">&quot;string with \\ backslash&quot;</span>
+<span class="alto-string">&quot;multi</span>
+<span class="alto-string">line</span>
+<span class="alto-string">string&quot;</span>
+<span class="alto-string">&quot;&quot;</span>
+
+<span class="alto-comment"># Single-quoted strings</span>
+<span class="alto-string">&#039;simple&#039;</span>
+<span class="alto-string">&#039;with $VAR no expansion&#039;</span>
+<span class="alto-string">&#039;can&#039;</span><span class="alto-punctuation">\</span><span class="alto-string">&#039;&#039;</span><span class="alto-constant">t</span><span class="alto-string">&#039;</span>
+<span class="alto-string">&#039;</span><span class="alto-string">&#039;</span>
+
+<span class="alto-string"># Heredoc variants - CRITICAL for coverage</span>
+<span class="alto-string">cat &lt;&lt;EOF</span>
+<span class="alto-string">basic heredoc</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt;-EOF</span>
+<span class="alto-string">	indented heredoc with dash</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt; EOF</span>
+<span class="alto-string">heredoc with space before delimiter</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt;DELIMITER</span>
+<span class="alto-string">custom delimiter name</span>
+<span class="alto-string">DELIMITER</span>
+
+<span class="alto-string">cat &lt;&lt;&quot;EOF&quot;</span>
+<span class="alto-string">quoted delimiter</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt;&#039;</span><span class="alto-constant">EOF</span><span class="alto-string">&#039;</span>
+<span class="alto-string">single quoted delimiter</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt;`EOF`</span>
+<span class="alto-string">backtick delimiter</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string"># Heredoc with whitespace before delimiter name</span>
+<span class="alto-string">cat &lt;&lt;   SPACED</span>
+<span class="alto-string">content</span>
+<span class="alto-string">SPACED</span>
+
+<span class="alto-string"># Variables - all forms</span>
+<span class="alto-string">$var</span>
+<span class="alto-string">${var}</span>
+<span class="alto-string">${var:-default}</span>
+<span class="alto-string">${var:=default}</span>
+<span class="alto-string">${var:?error}</span>
+<span class="alto-string">${var:+alternate}</span>
+<span class="alto-string">${var#pattern}</span>
+<span class="alto-string">${var##pattern}</span>
+<span class="alto-string">${var%pattern}</span>
+<span class="alto-string">${var%%pattern}</span>
+<span class="alto-string">${var/pattern/replacement}</span>
+<span class="alto-string">${var//pattern/replacement}</span>
+<span class="alto-string">${!var}</span>
+<span class="alto-string">$1 $2 $@ $* $# $? $$ $! $_</span>
+
+<span class="alto-string"># Arithmetic expansion</span>
+<span class="alto-string">$((1 + 2))</span>
+<span class="alto-string">$(( 10 * 20 ))</span>
+<span class="alto-string">$((x++))</span>
+<span class="alto-string">$((y--))</span>
+
+<span class="alto-string"># Command substitution</span>
+<span class="alto-string">$(ls)</span>
+<span class="alto-string">$(echo &quot;nested&quot;)</span>
+<span class="alto-string">`backtick command`</span>
+<span class="alto-string">`echo test`</span>
+
+<span class="alto-string"># Keywords and builtins</span>
+<span class="alto-string">if true; then</span>
+<span class="alto-string">    echo &quot;if&quot;</span>
+<span class="alto-string">elif false; then</span>
+<span class="alto-string">    echo &quot;elif&quot;</span>
+<span class="alto-string">else</span>
+<span class="alto-string">    echo &quot;else&quot;</span>
+<span class="alto-string">fi</span>
+
+<span class="alto-string">for i in 1 2 3; do</span>
+<span class="alto-string">    echo $i</span>
+<span class="alto-string">done</span>
+
+<span class="alto-string">while true; do</span>
+<span class="alto-string">    break</span>
+<span class="alto-string">done</span>
+
+<span class="alto-string">case $var in</span>
+<span class="alto-string">    pattern1)</span>
+<span class="alto-string">        echo &quot;1&quot;</span>
+<span class="alto-string">        ;;</span>
+<span class="alto-string">    pattern2)</span>
+<span class="alto-string">        echo &quot;2&quot;</span>
+<span class="alto-string">        ;;</span>
+<span class="alto-string">esac</span>
+
+<span class="alto-string">function func_name {</span>
+<span class="alto-string">    echo &quot;function&quot;</span>
+<span class="alto-string">}</span>
+
+<span class="alto-string">export VAR=value</span>
+<span class="alto-string">local local_var=value</span>
+<span class="alto-string">declare -i int_var=5</span>
+<span class="alto-string">readonly CONST=value</span>
+<span class="alto-string">typeset var</span>
+<span class="alto-string">unset variable</span>
+<span class="alto-string">alias ll=&#039;</span><span class="alto-function">ls</span> <span class="alto-operator">-</span><span class="alto-constant">la</span><span class="alto-string">&#039;</span>
+<span class="alto-string">unalias ll</span>
+
+<span class="alto-string">echo &quot;builtin echo&quot;</span>
+<span class="alto-string">printf &quot;%s\n&quot; &quot;printf&quot;</span>
+<span class="alto-string">read input</span>
+<span class="alto-string">cd /path</span>
+<span class="alto-string">pwd</span>
+<span class="alto-string">ls</span>
+<span class="alto-string">rm file</span>
+<span class="alto-string">cp src dst</span>
+<span class="alto-string">mv old new</span>
+<span class="alto-string">mkdir dir</span>
+<span class="alto-string">rmdir dir</span>
+<span class="alto-string">touch file</span>
+<span class="alto-string">cat file</span>
+<span class="alto-string">grep pattern file</span>
+<span class="alto-string">sed &#039;</span><span class="alto-constant">s</span><span class="alto-operator">/</span><span class="alto-constant">old</span><span class="alto-operator">/</span><span class="alto-constant">new</span><span class="alto-operator">/</span><span class="alto-string">&#039; file</span>
+<span class="alto-string">awk &#039;</span><span class="alto-punctuation">{</span><span class="alto-constant">print</span><span class="alto-punctuation">}</span><span class="alto-string">&#039; file</span>
+<span class="alto-string">test -f file</span>
+<span class="alto-string">true</span>
+<span class="alto-string">false</span>
+<span class="alto-string">exit 0</span>
+<span class="alto-string">return 1</span>
+<span class="alto-string">set -e</span>
+<span class="alto-string">shopt -s nullglob</span>
+
+<span class="alto-string"># Whitespace edge cases</span>
+<span class="alto-string">   echo &quot;leading spaces&quot;</span>
+<span class="alto-string">	echo &quot;leading tab&quot;</span>
+<span class="alto-string">echo    &quot;multiple    spaces&quot;</span>
+
+<span class="alto-string"># Empty lines and newlines</span>
+
+
+<span class="alto-string"># Complex combinations</span>
+<span class="alto-string">&quot;string with $(command `nested`) and ${var}&quot;</span>
+<span class="alto-string">$(echo &quot;command with $VAR and `backtick`&quot;)</span>
+<span class="alto-string">$((1 + $(echo 2) + $var))</span>
+
+<span class="alto-string"># Special characters</span>
+<span class="alto-string">echo $&#039;</span><span class="alto-constant">special</span><span class="alto-punctuation">\</span><span class="alto-constant">nchars</span><span class="alto-punctuation">\</span><span class="alto-constant">twith</span><span class="alto-punctuation">\</span><span class="alto-constant">rescapes</span><span class="alto-string">&#039;</span>
+<span class="alto-string">echo &quot;pipe | test&quot;</span>
+<span class="alto-string">echo &quot;redirect &gt; test&quot;</span>
+<span class="alto-string">echo &quot;ampersand &amp; test&quot;</span>
+
+<span class="alto-string"># Variable at different positions</span>
+<span class="alto-string">VAR=&quot;start&quot;</span>
+<span class="alto-string">echo $VAR &quot;middle&quot; $VAR</span>
+<span class="alto-string">$VAR=&quot;end&quot;</span>
+</code></pre>

@@ -1,0 +1,27 @@
+<pre class="alto-highlight language-yaml"><code class="language-yaml"><span class="alto-comment"># Symfony services configuration</span>
+<span class="alto-constant">services</span><span class="alto-punctuation">:</span>
+    <span class="alto-constant">_defaults</span><span class="alto-punctuation">:</span>
+        <span class="alto-constant">autowire</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+        <span class="alto-constant">autoconfigure</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+
+    <span class="alto-constant">App\Service\MyService</span><span class="alto-punctuation">:</span>
+        <span class="alto-constant">arguments</span><span class="alto-punctuation">:</span>
+            <span class="alto-constant">$logger</span><span class="alto-punctuation">:</span> <span class="alto-function">@monolog.logger</span>
+            <span class="alto-constant">$cache</span><span class="alto-punctuation">:</span> <span class="alto-function">@?cache.app</span>
+            <span class="alto-constant">$projectDir</span><span class="alto-punctuation">:</span> <span class="alto-variable">%kernel.project_dir%</span>
+            <span class="alto-constant">$env</span><span class="alto-punctuation">:</span> <span class="alto-variable">%env(APP_ENV)%</span>
+
+    <span class="alto-constant">app.handler</span><span class="alto-punctuation">:</span>
+        <span class="alto-constant">class</span><span class="alto-punctuation">:</span> <span class="alto-string">App\Handler\MyHandler</span>
+        <span class="alto-constant">tags</span><span class="alto-punctuation">:</span>
+            <span class="alto-punctuation">-</span> <span class="alto-keyword">!tagged</span> <span class="alto-string">app.handlers</span>
+
+    <span class="alto-constant">app.factory</span><span class="alto-punctuation">:</span>
+        <span class="alto-constant">factory</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-function">@app.service</span><span class="alto-punctuation">,</span> <span class="alto-string">createInstance</span><span class="alto-punctuation">]</span>
+        <span class="alto-constant">arguments</span><span class="alto-punctuation">:</span>
+            <span class="alto-punctuation">-</span> <span class="alto-keyword">!php/const</span> <span class="alto-string">App\Config::DEFAULT</span>
+
+    <span class="alto-constant">app.listener</span><span class="alto-punctuation">:</span>
+        <span class="alto-constant">calls</span><span class="alto-punctuation">:</span>
+            <span class="alto-punctuation">-</span> <span class="alto-constant">setLogger</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-function">@logger</span><span class="alto-punctuation">]</span>
+</code></pre>

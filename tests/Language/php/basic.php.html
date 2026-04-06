@@ -1,0 +1,74 @@
+<pre class="alto-highlight language-php"><code class="language-php"><span class="alto-punctuation">&lt;?php</span>
+
+<span class="alto-punctuation">declare</span><span class="alto-punctuation">(</span><span class="alto-constant">strict_types</span><span class="alto-operator">=</span><span class="alto-number">1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">/*</span>
+<span class="alto-comment"> * This file is part of the ALTO library.</span>
+<span class="alto-comment"> *</span>
+<span class="alto-comment"> * © 2026–present Simon André</span>
+<span class="alto-comment"> *</span>
+<span class="alto-comment"> * For full copyright and license information, please see</span>
+<span class="alto-comment"> * the LICENSE file distributed with this source code.</span>
+<span class="alto-comment"> */</span>
+
+<span class="alto-variable">$string</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;hello&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$number</span> <span class="alto-operator">=</span> <span class="alto-number">42</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$float</span> <span class="alto-operator">=</span> <span class="alto-number">3.14</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$bool</span> <span class="alto-operator">=</span> <span class="alto-number">true</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$null</span> <span class="alto-operator">=</span> <span class="alto-number">null</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// Basic function definition</span>
+<span class="alto-keyword">function</span> <span class="alto-function">greet</span><span class="alto-punctuation">(</span><span class="alto-variable">$name</span><span class="alto-punctuation">)</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-punctuation">&quot;</span><span class="alto-string">Hello, </span><span class="alto-variable">$name</span><span class="alto-string">!</span><span class="alto-punctuation">&quot;</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Function call</span>
+<span class="alto-variable">$message</span> <span class="alto-operator">=</span> <span class="alto-function">greet</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;World&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// Basic class</span>
+<span class="alto-keyword">class</span> <span class="alto-type">User</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">public</span> <span class="alto-constant">string</span> <span class="alto-variable">$name</span><span class="alto-punctuation">;</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">__construct</span><span class="alto-punctuation">(</span><span class="alto-constant">string</span> <span class="alto-variable">$name</span><span class="alto-punctuation">)</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">name</span> <span class="alto-operator">=</span> <span class="alto-variable">$name</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">getName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">string</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">return</span> <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">name</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Class instantiation</span>
+<span class="alto-variable">$user</span> <span class="alto-operator">=</span> <span class="alto-keyword">new</span> <span class="alto-function">User</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;Alice&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$userName</span> <span class="alto-operator">=</span> <span class="alto-variable">$user</span><span class="alto-operator">-&gt;</span><span class="alto-function">getName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// Basic array</span>
+<span class="alto-variable">$array</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">,</span> <span class="alto-number">4</span><span class="alto-punctuation">,</span> <span class="alto-number">5</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$assoc</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;key&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;value&#039;</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;foo&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;bar&#039;</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// Control structures</span>
+<span class="alto-keyword">if</span> <span class="alto-punctuation">(</span><span class="alto-variable">$bool</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">echo</span> <span class="alto-string">&#039;true&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span> <span class="alto-keyword">else</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">echo</span> <span class="alto-string">&#039;false&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">foreach</span> <span class="alto-punctuation">(</span><span class="alto-variable">$array</span> <span class="alto-punctuation">as</span> <span class="alto-variable">$item</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">echo</span> <span class="alto-variable">$item</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">while</span> <span class="alto-punctuation">(</span><span class="alto-variable">$number</span> <span class="alto-operator">&gt;</span> <span class="alto-number">0</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-punctuation">--</span><span class="alto-variable">$number</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Basic operators</span>
+<span class="alto-variable">$sum</span> <span class="alto-operator">=</span> <span class="alto-number">1</span> <span class="alto-operator">+</span> <span class="alto-number">2</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$product</span> <span class="alto-operator">=</span> <span class="alto-number">3</span> <span class="alto-operator">*</span> <span class="alto-number">4</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$concat</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;hello world&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$comparison</span> <span class="alto-operator">=</span> <span class="alto-number">3</span> <span class="alto-operator">===</span> <span class="alto-variable">$sum</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$logical</span> <span class="alto-operator">=</span> <span class="alto-number">true</span> <span class="alto-operator">&amp;&amp;</span> <span class="alto-number">false</span><span class="alto-punctuation">;</span>
+</code></pre>

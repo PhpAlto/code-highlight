@@ -1,0 +1,332 @@
+<pre class="alto-highlight language-markdown"><code class="language-markdown"><span class="alto-keyword">#</span> <span class="alto-keyword">Edge Cases for Markdown Coverage</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Headings (all levels)</span>
+
+<span class="alto-keyword">#</span> <span class="alto-keyword">H1</span>
+<span class="alto-keyword">##</span> <span class="alto-keyword">H2</span>
+<span class="alto-keyword">###</span> <span class="alto-keyword">H3</span>
+<span class="alto-keyword">####</span> <span class="alto-keyword">H4</span>
+<span class="alto-keyword">#####</span> <span class="alto-keyword">H5</span>
+<span class="alto-keyword">######</span> <span class="alto-keyword">H6</span>
+
+<span class="alto-punctuation">Alternative H1</span>
+<span class="alto-punctuation">==============</span>
+
+<span class="alto-punctuation">Alternative H2</span>
+<span class="alto-punctuation">--------------</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Emphasis</span>
+
+<span class="alto-keyword">*italic*</span><span class="alto-punctuation"> </span><span class="alto-punctuation">_</span><span class="alto-punctuation">italic</span><span class="alto-punctuation">_</span>
+<span class="alto-keyword">**bold**</span><span class="alto-punctuation"> </span><span class="alto-punctuation">_</span><span class="alto-keyword">_bold_</span><span class="alto-punctuation">_</span>
+<span class="alto-keyword">***bold italic**</span><span class="alto-punctuation">*</span><span class="alto-punctuation"> </span><span class="alto-punctuation">_</span><span class="alto-keyword">__bold italic__</span><span class="alto-punctuation">_</span>
+<span class="alto-keyword">~~strikethrough~~</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Lists</span>
+
+<span class="alto-punctuation">Unordered:</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">Item 1</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">Item 2</span>
+  <span class="alto-keyword">-</span> <span class="alto-punctuation">Nested item</span>
+  <span class="alto-keyword">-</span> <span class="alto-punctuation">Another nested</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">Item 3</span>
+
+<span class="alto-keyword">*</span> <span class="alto-punctuation">Alternative</span>
+<span class="alto-keyword">*</span> <span class="alto-punctuation">Bullet</span>
+<span class="alto-keyword">*</span> <span class="alto-punctuation">Style</span>
+
+<span class="alto-keyword">+</span> <span class="alto-punctuation">Plus sign</span>
+<span class="alto-keyword">+</span> <span class="alto-punctuation">Bullets</span>
+<span class="alto-keyword">+</span> <span class="alto-punctuation">Too</span>
+
+<span class="alto-punctuation">Ordered:</span>
+<span class="alto-keyword">1.</span> <span class="alto-punctuation">First</span>
+<span class="alto-keyword">2.</span> <span class="alto-punctuation">Second</span>
+   <span class="alto-keyword">1.</span> <span class="alto-punctuation">Nested</span>
+   <span class="alto-keyword">2.</span> <span class="alto-punctuation">Items</span>
+<span class="alto-keyword">3.</span> <span class="alto-punctuation">Third</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Links</span>
+
+<span class="alto-string">[inline link](https://example.com)</span>
+<span class="alto-string">[link with title](https://example.com &quot;Title&quot;)</span>
+<span class="alto-punctuation">[</span><span class="alto-punctuation">reference link]</span><span class="alto-punctuation">[</span><span class="alto-punctuation">ref]</span>
+<span class="alto-punctuation">[</span><span class="alto-punctuation">implicit reference]</span>
+
+<span class="alto-punctuation">[</span><span class="alto-punctuation">ref]: https://example.com</span>
+<span class="alto-punctuation">[</span><span class="alto-punctuation">implicit reference]: https://example.com</span>
+
+<span class="alto-punctuation">&lt;https://autolink.com&gt;</span>
+<span class="alto-punctuation">&lt;email@example.com&gt;</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Images</span>
+
+<span class="alto-string">![alt text](image.jpg)</span>
+<span class="alto-string">![alt with title](image.jpg &quot;Title&quot;)</span>
+<span class="alto-punctuation">!</span><span class="alto-punctuation">[</span><span class="alto-punctuation">reference image]</span><span class="alto-punctuation">[</span><span class="alto-punctuation">img]</span>
+
+<span class="alto-punctuation">[</span><span class="alto-punctuation">img]: image.jpg</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Code</span>
+
+<span class="alto-punctuation">Inline </span><span class="alto-punctuation">`</span><span class="alto-punctuation">code</span><span class="alto-punctuation">`</span><span class="alto-punctuation"> with backticks</span>
+
+<span class="alto-string">```</span>
+<span class="alto-string">Fenced code block</span>
+<span class="alto-string">no language</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```javascript</span>
+<span class="alto-comment">// JavaScript code</span>
+<span class="alto-keyword">const</span> <span class="alto-variable">x</span> <span class="alto-operator">=</span> <span class="alto-number">42</span><span class="alto-punctuation">;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```python</span>
+<span class="alto-comment"># Python code</span>
+<span class="alto-keyword">def</span> <span class="alto-function">hello</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span>
+    <span class="alto-function">print</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;world&quot;</span><span class="alto-punctuation">)</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```php</span>
+<span class="alto-punctuation">&lt;?php</span>
+<span class="alto-keyword">echo</span> <span class="alto-string">&quot;PHP code&quot;</span><span class="alto-punctuation">;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-punctuation">    Indented</span>
+<span class="alto-punctuation">    code</span>
+<span class="alto-punctuation">    block</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Blockquotes</span>
+
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">Simple blockquote</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">Multiple lines</span>
+
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">Nested</span>
+<span class="alto-keyword">&gt;</span><span class="alto-punctuation">&gt; blockquotes</span>
+<span class="alto-keyword">&gt;</span><span class="alto-punctuation">&gt;&gt; go deep</span>
+
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">Blockquote with </span><span class="alto-punctuation">*</span><span class="alto-keyword">*formatting*</span><span class="alto-punctuation">*</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">and </span><span class="alto-punctuation">`</span><span class="alto-punctuation">code</span><span class="alto-punctuation">`</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Horizontal Rules</span>
+
+<span class="alto-punctuation">---</span>
+
+<span class="alto-punctuation">***</span>
+
+<span class="alto-punctuation">___</span>
+
+<span class="alto-keyword">-</span> <span class="alto-punctuation">- -</span>
+
+<span class="alto-keyword">*</span> <span class="alto-keyword">* *</span>
+
+<span class="alto-keyword">_ _</span><span class="alto-punctuation"> </span><span class="alto-punctuation">_</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Tables</span>
+
+<span class="alto-keyword">|</span><span class="alto-keyword"> Header 1 </span><span class="alto-keyword">|</span><span class="alto-keyword"> Header 2 </span><span class="alto-keyword">|</span><span class="alto-keyword"> Header 3 </span><span class="alto-keyword">|</span>
+<span class="alto-keyword">|</span><span class="alto-keyword">----------</span><span class="alto-keyword">|</span><span class="alto-keyword">----------</span><span class="alto-keyword">|</span><span class="alto-keyword">----------</span><span class="alto-keyword">|</span>
+<span class="alto-keyword">|</span><span class="alto-keyword"> Cell 1   </span><span class="alto-keyword">|</span><span class="alto-keyword"> Cell 2   </span><span class="alto-keyword">|</span><span class="alto-keyword"> Cell 3   </span><span class="alto-keyword">|</span>
+<span class="alto-keyword">|</span><span class="alto-keyword"> Data     </span><span class="alto-keyword">|</span><span class="alto-keyword"> Data     </span><span class="alto-keyword">|</span><span class="alto-keyword"> Data     </span><span class="alto-keyword">|</span>
+
+<span class="alto-keyword">|</span><span class="alto-keyword"> Left </span><span class="alto-keyword">|</span><span class="alto-keyword"> Center </span><span class="alto-keyword">|</span><span class="alto-keyword"> Right </span><span class="alto-keyword">|</span>
+<span class="alto-keyword">|</span><span class="alto-keyword">:-----</span><span class="alto-keyword">|</span><span class="alto-keyword">:------:</span><span class="alto-keyword">|</span><span class="alto-keyword">------:</span><span class="alto-keyword">|</span>
+<span class="alto-keyword">|</span><span class="alto-keyword"> L    </span><span class="alto-keyword">|</span><span class="alto-keyword"> C      </span><span class="alto-keyword">|</span><span class="alto-keyword"> R     </span><span class="alto-keyword">|</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">HTML</span>
+
+<span class="alto-punctuation">&lt;div&gt;Raw HTML&lt;/div&gt;</span>
+<span class="alto-punctuation">&lt;span&gt;Inline HTML&lt;/span&gt;</span>
+
+<span class="alto-punctuation">&lt;details&gt;</span>
+<span class="alto-punctuation">&lt;summary&gt;Collapsible&lt;/summary&gt;</span>
+<span class="alto-punctuation">Content here</span>
+<span class="alto-punctuation">&lt;/details&gt;</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Escaping</span>
+
+<span class="alto-punctuation">\</span><span class="alto-punctuation">*</span><span class="alto-punctuation">not italic\</span><span class="alto-punctuation">*</span>
+<span class="alto-punctuation">\</span><span class="alto-punctuation">[</span><span class="alto-punctuation">not a link\]</span>
+<span class="alto-punctuation">\</span><span class="alto-punctuation">`</span><span class="alto-punctuation">not code\</span><span class="alto-punctuation">`</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Complex Nesting</span>
+
+<span class="alto-keyword">1.</span> <span class="alto-punctuation">Ordered list</span>
+   <span class="alto-keyword">-</span> <span class="alto-punctuation">With unordered nested</span>
+<span class="alto-string">     ```javascript</span>
+     <span class="alto-comment">// With code block</span>
+     <span class="alto-keyword">const</span> <span class="alto-variable">x</span> <span class="alto-operator">=</span> <span class="alto-number">1</span><span class="alto-punctuation">;</span>
+<span class="alto-string">     ```</span>
+   <span class="alto-keyword">-</span> <span class="alto-punctuation">Another item</span>
+<span class="alto-punctuation">     &gt; With blockquote</span>
+<span class="alto-punctuation">     &gt; - And list inside blockquote</span>
+<span class="alto-keyword">2.</span> <span class="alto-punctuation">Continue</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Task Lists</span>
+
+<span class="alto-keyword">-</span> <span class="alto-punctuation">[</span><span class="alto-punctuation"> ] Unchecked</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">x] Checked</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">[</span><span class="alto-punctuation"> ] Another task</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Definition Lists</span>
+
+<span class="alto-punctuation">Term 1</span>
+<span class="alto-punctuation">: Definition 1</span>
+
+<span class="alto-punctuation">Term 2</span>
+<span class="alto-punctuation">: Definition 2a</span>
+<span class="alto-punctuation">: Definition 2b</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Footnotes</span>
+
+<span class="alto-punctuation">Here&#039;s a sentence with a footnote</span><span class="alto-punctuation">[</span><span class="alto-punctuation">^1].</span>
+
+<span class="alto-punctuation">[</span><span class="alto-punctuation">^1]: This is the footnote content.</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Abbreviations</span>
+
+<span class="alto-punctuation">The HTML specification is maintained by the W3C.</span>
+
+<span class="alto-punctuation">*</span><span class="alto-punctuation">[</span><span class="alto-punctuation">HTML]: Hyper Text Markup Language</span>
+<span class="alto-punctuation">*</span><span class="alto-punctuation">[</span><span class="alto-punctuation">W3C]: World Wide Web Consortium</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Math (if supported)</span>
+
+<span class="alto-punctuation">Inline math: $E = mc^2$</span>
+
+<span class="alto-punctuation">Block math:</span>
+<span class="alto-punctuation">$$</span>
+<span class="alto-punctuation">\int</span><span class="alto-punctuation">_</span><span class="alto-punctuation">{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}</span>
+<span class="alto-punctuation">$$</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Comments</span>
+
+<span class="alto-punctuation">[</span><span class="alto-punctuation">//]: # (This is a comment)</span>
+<span class="alto-punctuation">[</span><span class="alto-punctuation">comment]: &lt;&gt; (This is also a comment)</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Multiple Blank Lines</span>
+
+
+
+<span class="alto-punctuation">(Three blank lines above)</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Mixed Content</span>
+
+<span class="alto-punctuation">Here&#039;s a paragraph with </span><span class="alto-punctuation">*</span><span class="alto-keyword">*bold*</span><span class="alto-keyword">*, *</span><span class="alto-punctuation">italic</span><span class="alto-punctuation">*</span><span class="alto-punctuation">, </span><span class="alto-punctuation">`</span><span class="alto-punctuation">code</span><span class="alto-punctuation">`</span><span class="alto-punctuation">, </span><span class="alto-punctuation">[</span><span class="alto-punctuation">link](url), and </span><span class="alto-punctuation">!</span><span class="alto-string">[image](img.jpg)</span><span class="alto-punctuation">.</span>
+
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">Blockquote with:</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">- Lists</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">- </span><span class="alto-punctuation">*</span><span class="alto-keyword">*Bold text*</span><span class="alto-punctuation">*</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">- </span><span class="alto-punctuation">`</span><span class="alto-punctuation">inline code</span><span class="alto-punctuation">`</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">- </span><span class="alto-punctuation">[</span><span class="alto-punctuation">links](https://example.com)</span>
+<span class="alto-keyword">&gt;</span>
+<span class="alto-keyword">&gt; </span><span class="alto-string">``</span><span class="alto-punctuation">`</span><span class="alto-punctuation">javascript</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">// code block</span>
+<span class="alto-keyword">&gt; </span><span class="alto-punctuation">const x = 1;</span>
+<span class="alto-keyword">&gt; </span><span class="alto-string">``</span><span class="alto-punctuation">`</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Edge Case Combinations</span>
+
+<span class="alto-keyword">1.</span> <span class="alto-keyword">**Bold in list**</span>
+<span class="alto-keyword">2.</span> <span class="alto-keyword">*Italic in list*</span>
+<span class="alto-keyword">3.</span> <span class="alto-string">`Code in list`</span>
+<span class="alto-keyword">4.</span> <span class="alto-string">[Link in list](url)</span>
+
+<span class="alto-keyword">-</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">x] </span><span class="alto-punctuation">*</span><span class="alto-keyword">*Bold in task*</span><span class="alto-punctuation">*</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">[</span><span class="alto-punctuation"> ] </span><span class="alto-punctuation">*</span><span class="alto-punctuation">Italic in task</span><span class="alto-punctuation">*</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">[</span><span class="alto-punctuation"> ] </span><span class="alto-punctuation">`</span><span class="alto-punctuation">Code in task</span><span class="alto-punctuation">`</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Raw URLs</span>
+
+<span class="alto-punctuation">Visit https://example.com for more.</span>
+<span class="alto-punctuation">Email: user@example.com</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Backslash Escapes</span>
+
+<span class="alto-keyword">\! \# \$ \% \&amp; \&#039; \( \) \* \+ \, \- \. \/ \: \; \&lt; \= \&gt; \? \@ \[ \\ \] \^ \_ \` \{ \</span><span class="alto-keyword">|</span><span class="alto-keyword"> \} \~</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Emphasis Edge Cases</span>
+
+<span class="alto-keyword">**bold *italic* bold**</span>
+<span class="alto-keyword">*italic *</span><span class="alto-keyword">*bold*</span><span class="alto-keyword">* italic*</span>
+<span class="alto-keyword">***all bold italic**</span><span class="alto-punctuation">*</span>
+<span class="alto-keyword">**bold _italic_ bold**</span>
+<span class="alto-keyword">_italic _</span><span class="alto-keyword">_bold_</span><span class="alto-keyword">_ italic_</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Link Edge Cases</span>
+
+<span class="alto-string">[](empty-url)</span>
+<span class="alto-string">[empty-text]()</span>
+<span class="alto-string">[spaces in url](url with spaces)</span>
+<span class="alto-string">[url#with#hashes](url)</span>
+<span class="alto-string">[url?with?queries](url?param=value)</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">List Edge Cases</span>
+
+<span class="alto-keyword">-</span> <span class="alto-punctuation">Item with</span>
+<span class="alto-punctuation">  continuation on next line</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">Another item</span>
+
+<span class="alto-punctuation">1) Alternative</span>
+<span class="alto-punctuation">2) Numbering</span>
+<span class="alto-punctuation">3) Style</span>
+
+<span class="alto-keyword">*</span> <span class="alto-punctuation">Mixed</span>
+<span class="alto-keyword">-</span> <span class="alto-punctuation">Bullet</span>
+<span class="alto-keyword">+</span> <span class="alto-punctuation">Styles</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Code Fence Languages</span>
+
+<span class="alto-string">```bash</span>
+<span class="alto-function">echo</span> <span class="alto-string">&quot;bash&quot;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```rust</span>
+<span class="alto-keyword">fn</span> <span class="alto-function">main</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```go</span>
+<span class="alto-keyword">func</span> <span class="alto-function">main</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```ruby</span>
+<span class="alto-function">puts</span> <span class="alto-string">&quot;ruby&quot;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```java</span>
+<span class="alto-keyword">class</span> <span class="alto-type">Main</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```csharp</span>
+<span class="alto-keyword">class</span> <span class="alto-type">Program</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```typescript</span>
+<span class="alto-keyword">const</span> <span class="alto-variable">x</span><span class="alto-punctuation">:</span> <span class="alto-type">number</span> <span class="alto-operator">=</span> <span class="alto-number">42</span><span class="alto-punctuation">;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```sql</span>
+<span class="alto-keyword">SELECT</span> <span class="alto-operator">*</span> <span class="alto-keyword">FROM</span> <span class="alto-variable">users</span><span class="alto-punctuation">;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```json</span>
+<span class="alto-punctuation">{</span><span class="alto-variable">&quot;key&quot;</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;value&quot;</span><span class="alto-punctuation">}</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```yaml</span>
+<span class="alto-constant">key</span><span class="alto-punctuation">:</span> <span class="alto-string">value</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```xml</span>
+<span class="alto-keyword">&lt;</span><span class="alto-keyword">root</span><span class="alto-keyword">&gt;</span><span class="alto-keyword">&lt;/</span><span class="alto-keyword">root</span><span class="alto-keyword">&gt;</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```dockerfile</span>
+<span class="alto-keyword">FROM</span> <span class="alto-punctuation">ubuntu</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```makefile</span>
+<span class="alto-function">target</span><span class="alto-punctuation">:</span> dependency
+	<span class="alto-function">command</span>
+<span class="alto-string">```</span>
+</code></pre>

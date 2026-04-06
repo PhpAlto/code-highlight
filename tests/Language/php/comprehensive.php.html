@@ -1,0 +1,401 @@
+<pre class="alto-highlight language-php"><code class="language-php"><span class="alto-punctuation">&lt;?php</span>
+
+<span class="alto-punctuation">declare</span><span class="alto-punctuation">(</span><span class="alto-constant">strict_types</span><span class="alto-operator">=</span><span class="alto-number">1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">/*</span>
+<span class="alto-comment"> * Comprehensive PHP 8.4+ and 8.5 feature showcase</span>
+<span class="alto-comment"> * Tests semantic parsing of modern PHP features</span>
+<span class="alto-comment"> */</span>
+
+<span class="alto-keyword">namespace</span> <span class="alto-type">App\Service</span><span class="alto-punctuation">;</span>
+
+<span class="alto-punctuation">use</span> <span class="alto-constant">App\Model\User</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">use</span> <span class="alto-constant">App\Repository\UserRepository</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">use</span> <span class="alto-constant">Psr\Log\LoggerInterface</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// PHP 8.5: Pipe Operator</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$result</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;hello world&#039;</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">strtoupper</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">str_split</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_filter</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$c</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$c</span> <span class="alto-operator">!==</span> <span class="alto-string">&#039; &#039;</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">implode</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;&#039;</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-variable">$users</span> <span class="alto-operator">=</span> <span class="alto-function">getUsers</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_filter</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$u</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-constant">active</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_map</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$u</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-constant">name</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_unique</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// Pipe with custom functions</span>
+<span class="alto-keyword">function</span> <span class="alto-function">double</span><span class="alto-punctuation">(</span><span class="alto-constant">int</span> <span class="alto-variable">$x</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">int</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-variable">$x</span> <span class="alto-operator">*</span> <span class="alto-number">2</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-variable">$value</span> <span class="alto-operator">=</span> <span class="alto-number">5</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">double</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">double</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$x</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$x</span> <span class="alto-operator">+</span> <span class="alto-number">10</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// PHP 8.4: Property Hooks</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Person</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-comment">// Property hook: get</span>
+    <span class="alto-keyword">public</span> <span class="alto-constant">string</span> <span class="alto-variable">$fullName</span> <span class="alto-punctuation">{</span>
+        <span class="alto-constant">get</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">firstName</span> <span class="alto-operator">.</span> <span class="alto-string">&#039; &#039;</span> <span class="alto-operator">.</span> <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">lastName</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-comment">// Property hook: set with validation</span>
+    <span class="alto-keyword">public</span> <span class="alto-constant">int</span> <span class="alto-variable">$age</span> <span class="alto-punctuation">{</span>
+        <span class="alto-constant">set</span> <span class="alto-punctuation">{</span>
+            <span class="alto-keyword">if</span> <span class="alto-punctuation">(</span><span class="alto-variable">$value</span> <span class="alto-operator">&lt;</span> <span class="alto-number">0</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+                <span class="alto-keyword">throw</span> <span class="alto-keyword">new</span> <span class="alto-function">\InvalidArgumentException</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;Age cannot be negative&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+            <span class="alto-punctuation">}</span>
+            <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">age</span> <span class="alto-operator">=</span> <span class="alto-variable">$value</span><span class="alto-punctuation">;</span>
+        <span class="alto-punctuation">}</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-comment">// Property hook: get and set</span>
+    <span class="alto-keyword">public</span> <span class="alto-constant">string</span> <span class="alto-variable">$email</span> <span class="alto-punctuation">{</span>
+        <span class="alto-constant">get</span> <span class="alto-operator">=&gt;</span> <span class="alto-function">strtolower</span><span class="alto-punctuation">(</span><span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">email</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+        <span class="alto-constant">set</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">email</span> <span class="alto-operator">=</span> <span class="alto-function">filter_var</span><span class="alto-punctuation">(</span><span class="alto-variable">$value</span><span class="alto-punctuation">,</span> <span class="alto-constant">FILTER_VALIDATE_EMAIL</span><span class="alto-punctuation">)</span>
+            <span class="alto-punctuation">?</span> <span class="alto-variable">$value</span>
+            <span class="alto-punctuation">:</span> <span class="alto-keyword">throw</span> <span class="alto-keyword">new</span> <span class="alto-function">\InvalidArgumentException</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;Invalid email&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">__construct</span><span class="alto-punctuation">(</span>
+        <span class="alto-keyword">private</span> <span class="alto-constant">string</span> <span class="alto-variable">$firstName</span><span class="alto-punctuation">,</span>
+        <span class="alto-keyword">private</span> <span class="alto-constant">string</span> <span class="alto-variable">$lastName</span><span class="alto-punctuation">,</span>
+    <span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// PHP 8.4: Asymmetric Visibility</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Account</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">private</span><span class="alto-punctuation">(</span><span class="alto-constant">set</span><span class="alto-punctuation">)</span> <span class="alto-constant">string</span> <span class="alto-variable">$id</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">protected</span><span class="alto-punctuation">(</span><span class="alto-constant">set</span><span class="alto-punctuation">)</span> <span class="alto-constant">float</span> <span class="alto-variable">$balance</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">private</span><span class="alto-punctuation">(</span><span class="alto-constant">set</span><span class="alto-punctuation">)</span> <span class="alto-constant">\DateTimeImmutable</span> <span class="alto-variable">$createdAt</span><span class="alto-punctuation">;</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">__construct</span><span class="alto-punctuation">(</span><span class="alto-constant">string</span> <span class="alto-variable">$id</span><span class="alto-punctuation">)</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">id</span> <span class="alto-operator">=</span> <span class="alto-variable">$id</span><span class="alto-punctuation">;</span>
+        <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">balance</span> <span class="alto-operator">=</span> <span class="alto-number">0.0</span><span class="alto-punctuation">;</span>
+        <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">createdAt</span> <span class="alto-operator">=</span> <span class="alto-keyword">new</span> <span class="alto-function">\DateTimeImmutable</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">deposit</span><span class="alto-punctuation">(</span><span class="alto-constant">float</span> <span class="alto-variable">$amount</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">balance</span> <span class="alto-punctuation">+=</span> <span class="alto-variable">$amount</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Attributes (PHP 8.0+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-punctuation">#[</span><span class="alto-function">Route</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;/api/users&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">]</span>
+<span class="alto-punctuation">#[</span><span class="alto-function">Security</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;is_granted(&quot;ROLE_ADMIN&quot;)&#039;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">]</span>
+<span class="alto-keyword">class</span> <span class="alto-type">UserController</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-punctuation">#[</span><span class="alto-function">Route</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;/{id}&#039;</span><span class="alto-punctuation">,</span> <span class="alto-constant">methods</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;GET&#039;</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">]</span>
+    <span class="alto-punctuation">#[</span><span class="alto-function">Cache</span><span class="alto-punctuation">(</span><span class="alto-constant">ttl</span><span class="alto-punctuation">:</span> <span class="alto-number">3600</span><span class="alto-punctuation">)</span><span class="alto-punctuation">]</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">show</span><span class="alto-punctuation">(</span><span class="alto-constant">int</span> <span class="alto-variable">$id</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">User</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">return</span> <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">repository</span><span class="alto-operator">-&gt;</span><span class="alto-function">find</span><span class="alto-punctuation">(</span><span class="alto-variable">$id</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-punctuation">#[</span><span class="alto-function">Route</span><span class="alto-punctuation">(</span><span class="alto-string">&#039;&#039;</span><span class="alto-punctuation">,</span> <span class="alto-constant">methods</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;POST&#039;</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">]</span>
+    <span class="alto-punctuation">#[</span><span class="alto-function">Validate</span><span class="alto-punctuation">(</span><span class="alto-constant">rules</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-string">&#039;email&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;required|email&#039;</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">]</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">create</span><span class="alto-punctuation">(</span><span class="alto-punctuation">array</span> <span class="alto-variable">$data</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">User</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">return</span> <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">repository</span><span class="alto-operator">-&gt;</span><span class="alto-function">create</span><span class="alto-punctuation">(</span><span class="alto-variable">$data</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Enums (PHP 8.1+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">enum</span> <span class="alto-type">Status</span><span class="alto-punctuation">:</span> <span class="alto-constant">string</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">case</span> <span class="alto-constant">Active</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;active&#039;</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">case</span> <span class="alto-constant">Inactive</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;inactive&#039;</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">case</span> <span class="alto-constant">Pending</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;pending&#039;</span><span class="alto-punctuation">;</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">label</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">string</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">return</span> <span class="alto-keyword">match</span><span class="alto-punctuation">(</span><span class="alto-variable-special">$this</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+            <span class="alto-constant">self</span><span class="alto-operator">::</span><span class="alto-constant">Active</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;Active User&#039;</span><span class="alto-punctuation">,</span>
+            <span class="alto-constant">self</span><span class="alto-operator">::</span><span class="alto-constant">Inactive</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;Inactive User&#039;</span><span class="alto-punctuation">,</span>
+            <span class="alto-constant">self</span><span class="alto-operator">::</span><span class="alto-constant">Pending</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;Pending Approval&#039;</span><span class="alto-punctuation">,</span>
+        <span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">enum</span> <span class="alto-type">Permission</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">case</span> <span class="alto-constant">Read</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">case</span> <span class="alto-constant">Write</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">case</span> <span class="alto-constant">Delete</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Match Expression (PHP 8.0+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$status</span> <span class="alto-operator">=</span> <span class="alto-constant">Status</span><span class="alto-operator">::</span><span class="alto-constant">Active</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$color</span> <span class="alto-operator">=</span> <span class="alto-keyword">match</span><span class="alto-punctuation">(</span><span class="alto-variable">$status</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-constant">Status</span><span class="alto-operator">::</span><span class="alto-constant">Active</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;green&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-constant">Status</span><span class="alto-operator">::</span><span class="alto-constant">Inactive</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;red&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-constant">Status</span><span class="alto-operator">::</span><span class="alto-constant">Pending</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;yellow&#039;</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-variable">$result</span> <span class="alto-operator">=</span> <span class="alto-keyword">match</span><span class="alto-punctuation">(</span><span class="alto-variable">$value</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-number">0</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;zero&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;low&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-number">4</span><span class="alto-punctuation">,</span> <span class="alto-number">5</span><span class="alto-punctuation">,</span> <span class="alto-number">6</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;medium&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-punctuation">default</span> <span class="alto-operator">=&gt;</span> <span class="alto-string">&#039;high&#039;</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Arrow Functions (PHP 7.4+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$multiply</span> <span class="alto-operator">=</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$a</span><span class="alto-punctuation">,</span> <span class="alto-variable">$b</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$a</span> <span class="alto-operator">*</span> <span class="alto-variable">$b</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$square</span> <span class="alto-operator">=</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$x</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$x</span> <span class="alto-operator">**</span> <span class="alto-number">2</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$users</span> <span class="alto-operator">=</span> <span class="alto-function">array_map</span><span class="alto-punctuation">(</span><span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$u</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-constant">name</span><span class="alto-punctuation">,</span> <span class="alto-variable">$userList</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$active</span> <span class="alto-operator">=</span> <span class="alto-function">array_filter</span><span class="alto-punctuation">(</span><span class="alto-variable">$users</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$u</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-function">isActive</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Closures and Callable</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$closure</span> <span class="alto-operator">=</span> <span class="alto-keyword">function</span><span class="alto-punctuation">(</span><span class="alto-variable">$x</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">use</span> <span class="alto-punctuation">(</span><span class="alto-variable">$multiplier</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-variable">$x</span> <span class="alto-operator">*</span> <span class="alto-variable">$multiplier</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-variable">$callback</span> <span class="alto-operator">=</span> <span class="alto-keyword">function</span><span class="alto-punctuation">(</span><span class="alto-variable">$item</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-function">strtoupper</span><span class="alto-punctuation">(</span><span class="alto-variable">$item</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Named Arguments (PHP 8.0+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">createUser</span><span class="alto-punctuation">(</span><span class="alto-constant">string</span> <span class="alto-variable">$name</span><span class="alto-punctuation">,</span> <span class="alto-constant">string</span> <span class="alto-variable">$email</span><span class="alto-punctuation">,</span> <span class="alto-constant">int</span> <span class="alto-variable">$age</span> <span class="alto-operator">=</span> <span class="alto-number">18</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">User</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-keyword">new</span> <span class="alto-function">User</span><span class="alto-punctuation">(</span><span class="alto-variable">$name</span><span class="alto-punctuation">,</span> <span class="alto-variable">$email</span><span class="alto-punctuation">,</span> <span class="alto-variable">$age</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-variable">$user</span> <span class="alto-operator">=</span> <span class="alto-function">createUser</span><span class="alto-punctuation">(</span>
+    <span class="alto-constant">name</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;Alice&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-constant">email</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;alice@example.com&#039;</span><span class="alto-punctuation">,</span>
+    <span class="alto-constant">age</span><span class="alto-punctuation">:</span> <span class="alto-number">25</span><span class="alto-punctuation">,</span>
+<span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Constructor Property Promotion (PHP 8.0+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Product</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">__construct</span><span class="alto-punctuation">(</span>
+        <span class="alto-keyword">public</span> <span class="alto-keyword">readonly</span> <span class="alto-constant">string</span> <span class="alto-variable">$id</span><span class="alto-punctuation">,</span>
+        <span class="alto-keyword">public</span> <span class="alto-keyword">readonly</span> <span class="alto-constant">string</span> <span class="alto-variable">$name</span><span class="alto-punctuation">,</span>
+        <span class="alto-keyword">public</span> <span class="alto-keyword">readonly</span> <span class="alto-constant">float</span> <span class="alto-variable">$price</span><span class="alto-punctuation">,</span>
+        <span class="alto-keyword">private</span> <span class="alto-constant">int</span> <span class="alto-variable">$stock</span> <span class="alto-operator">=</span> <span class="alto-number">0</span><span class="alto-punctuation">,</span>
+    <span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Readonly Properties and Classes (PHP 8.1+, 8.2+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">readonly</span> <span class="alto-keyword">class</span> <span class="alto-type">Configuration</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">__construct</span><span class="alto-punctuation">(</span>
+        <span class="alto-keyword">public</span> <span class="alto-constant">string</span> <span class="alto-variable">$apiKey</span><span class="alto-punctuation">,</span>
+        <span class="alto-keyword">public</span> <span class="alto-constant">string</span> <span class="alto-variable">$apiSecret</span><span class="alto-punctuation">,</span>
+        <span class="alto-keyword">public</span> <span class="alto-constant">bool</span> <span class="alto-variable">$debug</span> <span class="alto-operator">=</span> <span class="alto-number">false</span><span class="alto-punctuation">,</span>
+    <span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Setting</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">readonly</span> <span class="alto-constant">string</span> <span class="alto-variable">$key</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">readonly</span> <span class="alto-constant">mixed</span> <span class="alto-variable">$value</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Union and Intersection Types (PHP 8.0+, 8.1+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">process</span><span class="alto-punctuation">(</span><span class="alto-constant">int</span><span class="alto-operator">|</span><span class="alto-constant">float</span><span class="alto-operator">|</span><span class="alto-constant">string</span> <span class="alto-variable">$value</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">int</span><span class="alto-operator">|</span><span class="alto-constant">float</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-function">is_numeric</span><span class="alto-punctuation">(</span><span class="alto-variable">$value</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">?</span> <span class="alto-punctuation">(int)</span> <span class="alto-variable">$value</span> <span class="alto-punctuation">:</span> <span class="alto-function">strlen</span><span class="alto-punctuation">(</span><span class="alto-variable">$value</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">interface</span> <span class="alto-type">Loggable</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-keyword">interface</span> <span class="alto-type">Timestampable</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">logEntity</span><span class="alto-punctuation">(</span><span class="alto-constant">Loggable</span><span class="alto-operator">&amp;</span><span class="alto-constant">Timestampable</span> <span class="alto-variable">$entity</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-comment">// Process entity</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Null Safe Operator (PHP 8.0+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$username</span> <span class="alto-operator">=</span> <span class="alto-variable">$user</span><span class="alto-punctuation">?-&gt;</span><span class="alto-constant">profile</span><span class="alto-punctuation">?-&gt;</span><span class="alto-function">getName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$email</span> <span class="alto-operator">=</span> <span class="alto-variable">$account</span><span class="alto-punctuation">?-&gt;</span><span class="alto-function">getUser</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">?-&gt;</span><span class="alto-constant">email</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// First-class Callable Syntax (PHP 8.1+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$strlen</span> <span class="alto-operator">=</span> <span class="alto-function">strlen</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$arrayMap</span> <span class="alto-operator">=</span> <span class="alto-function">array_map</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$userMethod</span> <span class="alto-operator">=</span> <span class="alto-variable">$user</span><span class="alto-operator">-&gt;</span><span class="alto-function">getName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$staticMethod</span> <span class="alto-operator">=</span> <span class="alto-constant">UserRepository</span><span class="alto-operator">::</span><span class="alto-function">findById</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// String interpolation and heredoc/nowdoc</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$name</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;World&#039;</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$simple</span> <span class="alto-operator">=</span> <span class="alto-punctuation">&quot;</span><span class="alto-string">Hello, </span><span class="alto-variable">$name</span><span class="alto-string">!</span><span class="alto-punctuation">&quot;</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$complex</span> <span class="alto-operator">=</span> <span class="alto-punctuation">&quot;</span><span class="alto-string">User: </span><span class="alto-punctuation">{</span><span class="alto-variable">$user</span><span class="alto-operator">-&gt;</span><span class="alto-function">getName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">}</span><span class="alto-punctuation">&quot;</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$expression</span> <span class="alto-operator">=</span> <span class="alto-punctuation">&quot;</span><span class="alto-string">Result: </span><span class="alto-punctuation">{</span><span class="alto-variable">$a</span> <span class="alto-operator">+</span> <span class="alto-variable">$b</span><span class="alto-punctuation">}</span><span class="alto-punctuation">&quot;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-variable">$heredoc</span> <span class="alto-operator">=</span> <span class="alto-punctuation">&lt;&lt;&lt;HTML</span>
+<span class="alto-string">&lt;div class=&quot;user&quot;&gt;</span>
+<span class="alto-string">    &lt;h1&gt;</span><span class="alto-variable">$name</span><span class="alto-string">&lt;/h1&gt;</span>
+<span class="alto-string">    &lt;p&gt;</span><span class="alto-punctuation">{</span><span class="alto-variable">$user</span><span class="alto-operator">-&gt;</span><span class="alto-function">getEmail</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">}</span><span class="alto-string">&lt;/p&gt;</span>
+<span class="alto-string">&lt;/div&gt;</span>
+<span class="alto-punctuation">HTML</span><span class="alto-punctuation">;</span>
+
+<span class="alto-variable">$nowdoc</span> <span class="alto-operator">=</span> <span class="alto-punctuation">&lt;&lt;&lt;&#039;TEXT&#039;</span>
+<span class="alto-string">This is raw text: $name {$user}</span>
+<span class="alto-string">No interpolation here!</span>
+<span class="alto-punctuation">TEXT</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Generators (PHP 5.5+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">generateNumbers</span><span class="alto-punctuation">(</span><span class="alto-constant">int</span> <span class="alto-variable">$max</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">\Generator</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">for</span> <span class="alto-punctuation">(</span><span class="alto-variable">$i</span> <span class="alto-operator">=</span> <span class="alto-number">0</span><span class="alto-punctuation">;</span> <span class="alto-variable">$i</span> <span class="alto-operator">&lt;</span> <span class="alto-variable">$max</span><span class="alto-punctuation">;</span> <span class="alto-variable">$i</span><span class="alto-punctuation">++</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">yield</span> <span class="alto-variable">$i</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">fibonacci</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">\Generator</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-variable">$a</span> <span class="alto-operator">=</span> <span class="alto-number">0</span><span class="alto-punctuation">;</span>
+    <span class="alto-variable">$b</span> <span class="alto-operator">=</span> <span class="alto-number">1</span><span class="alto-punctuation">;</span>
+    <span class="alto-keyword">while</span> <span class="alto-punctuation">(</span><span class="alto-number">true</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">yield</span> <span class="alto-variable">$a</span><span class="alto-punctuation">;</span>
+        <span class="alto-punctuation">[</span><span class="alto-variable">$a</span><span class="alto-punctuation">,</span> <span class="alto-variable">$b</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-variable">$b</span><span class="alto-punctuation">,</span> <span class="alto-variable">$a</span> <span class="alto-operator">+</span> <span class="alto-variable">$b</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Traits (PHP 5.4+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">trait</span> <span class="alto-type">Timestampable</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">protected</span> <span class="alto-punctuation">?</span><span class="alto-constant">\DateTimeImmutable</span> <span class="alto-variable">$createdAt</span> <span class="alto-operator">=</span> <span class="alto-number">null</span><span class="alto-punctuation">;</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">touch</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-variable-special">$this</span><span class="alto-operator">-&gt;</span><span class="alto-constant">createdAt</span> <span class="alto-operator">=</span> <span class="alto-keyword">new</span> <span class="alto-function">\DateTimeImmutable</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">class</span> <span class="alto-type">Post</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-punctuation">use</span> <span class="alto-constant">Timestampable</span><span class="alto-punctuation">;</span>
+
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">__construct</span><span class="alto-punctuation">(</span><span class="alto-keyword">public</span> <span class="alto-constant">string</span> <span class="alto-variable">$title</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Anonymous Classes (PHP 7.0+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$logger</span> <span class="alto-operator">=</span> <span class="alto-keyword">new</span> <span class="alto-keyword">class</span> <span class="alto-keyword">implements</span> <span class="alto-type">LoggerInterface</span> <span class="alto-punctuation">{</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">log</span><span class="alto-punctuation">(</span><span class="alto-variable">$level</span><span class="alto-punctuation">,</span> <span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span>
+    <span class="alto-punctuation">{</span>
+        <span class="alto-keyword">echo</span> <span class="alto-punctuation">&quot;</span><span class="alto-string">[</span><span class="alto-variable">$level</span><span class="alto-string">] </span><span class="alto-variable">$message</span><span class="alto-string">\n</span><span class="alto-punctuation">&quot;</span><span class="alto-punctuation">;</span>
+    <span class="alto-punctuation">}</span>
+
+    <span class="alto-comment">// Other PSR-3 methods...</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">emergency</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">alert</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">critical</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">error</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">warning</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">notice</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">info</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+    <span class="alto-keyword">public</span> <span class="alto-keyword">function</span> <span class="alto-function">debug</span><span class="alto-punctuation">(</span><span class="alto-variable">$message</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">array</span> <span class="alto-variable">$context</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">void</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Array Destructuring (PHP 7.1+)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-punctuation">[</span><span class="alto-variable">$a</span><span class="alto-punctuation">,</span> <span class="alto-variable">$b</span><span class="alto-punctuation">,</span> <span class="alto-variable">$c</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">[</span><span class="alto-string">&#039;name&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$name</span><span class="alto-punctuation">,</span> <span class="alto-string">&#039;age&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$age</span><span class="alto-punctuation">]</span> <span class="alto-operator">=</span> <span class="alto-variable">$userData</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Spread Operator (PHP 5.6+ for arguments, 7.4+ for arrays)</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-keyword">function</span> <span class="alto-function">sum</span><span class="alto-punctuation">(</span><span class="alto-constant">int</span> <span class="alto-punctuation">...</span><span class="alto-variable">$numbers</span><span class="alto-punctuation">)</span><span class="alto-punctuation">:</span> <span class="alto-constant">int</span>
+<span class="alto-punctuation">{</span>
+    <span class="alto-keyword">return</span> <span class="alto-function">array_sum</span><span class="alto-punctuation">(</span><span class="alto-variable">$numbers</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-variable">$total</span> <span class="alto-operator">=</span> <span class="alto-function">sum</span><span class="alto-punctuation">(</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">,</span> <span class="alto-number">4</span><span class="alto-punctuation">,</span> <span class="alto-number">5</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-variable">$merged</span> <span class="alto-operator">=</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">...</span><span class="alto-variable">$array1</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">...</span><span class="alto-variable">$array2</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">...</span><span class="alto-variable">$array3</span><span class="alto-punctuation">]</span><span class="alto-punctuation">;</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Comments</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-comment">// Single-line comment</span>
+<span class="alto-comment">/* Multi-line</span>
+<span class="alto-comment">   comment */</span>
+<span class="alto-comment">/** DocBlock comment */</span>
+<span class="alto-comment"># Hash-style comment</span>
+
+<span class="alto-comment">// ============================================================================</span>
+<span class="alto-comment">// Complex Expressions</span>
+<span class="alto-comment">// ============================================================================</span>
+
+<span class="alto-variable">$result</span> <span class="alto-operator">=</span> <span class="alto-variable">$users</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_filter</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$u</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-constant">active</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_map</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">fn</span><span class="alto-punctuation">(</span><span class="alto-variable">$u</span><span class="alto-punctuation">)</span> <span class="alto-operator">=&gt;</span> <span class="alto-punctuation">[</span>
+        <span class="alto-string">&#039;id&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-constant">id</span><span class="alto-punctuation">,</span>
+        <span class="alto-string">&#039;name&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-function">getName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span><span class="alto-punctuation">,</span>
+        <span class="alto-string">&#039;email&#039;</span> <span class="alto-operator">=&gt;</span> <span class="alto-variable">$u</span><span class="alto-operator">-&gt;</span><span class="alto-constant">email</span><span class="alto-punctuation">,</span>
+    <span class="alto-punctuation">]</span><span class="alto-punctuation">)</span>
+    <span class="alto-operator">|</span><span class="alto-operator">&gt;</span> <span class="alto-function">array_values</span><span class="alto-punctuation">(</span><span class="alto-punctuation">...</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-variable">$chain</span> <span class="alto-operator">=</span> <span class="alto-variable">$object</span>
+    <span class="alto-punctuation">?-&gt;</span><span class="alto-function">method1</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>
+    <span class="alto-punctuation">?-&gt;</span><span class="alto-function">method2</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>
+    <span class="alto-punctuation">?-&gt;</span><span class="alto-constant">property</span>
+    <span class="alto-operator">??</span> <span class="alto-string">&#039;default&#039;</span><span class="alto-punctuation">;</span>
+</code></pre>

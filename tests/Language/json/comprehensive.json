@@ -1,0 +1,41 @@
+{
+  "project": {
+    "name": "Alto Code Highlight",
+    "version": "1.0.0",
+    "openSource": true,
+    "tags": ["php", "syntax", "highlighting"],
+    "maintainers": [
+      {
+        "name": "Simon André",
+        "email": "smn.andre@gmail.com",
+        "active": true
+      }
+    ]
+  },
+  "configuration": {
+    "theme": "alto-dark",
+    "editor": {
+      "fontSize": 14,
+      "fontFamily": "JetBrains Mono",
+      "lineNumbers": true,
+      "minimap": {
+        "enabled": false
+      }
+    },
+    "languages": {
+      "php": { "enabled": true, "version": "8.4" },
+      "javascript": { "enabled": true, "linter": "eslint" }
+    }
+  },
+  "scripts": {
+    "build": "composer install && npm install",
+    "test": "composer test",
+    "deploy": "./bin/deploy.sh --env=production"
+  },
+  "nullValue": null,
+  "stats": {
+    "downloads": 15430,
+    "stars": 450,
+    "rating": 4.8
+  }
+}

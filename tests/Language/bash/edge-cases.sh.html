@@ -1,0 +1,309 @@
+<pre class="alto-highlight language-bash"><code class="language-bash"><span class="alto-comment">#!/bin/bash</span>
+<span class="alto-comment"># Edge cases for Bash coverage</span>
+
+<span class="alto-comment"># Shebang variations</span>
+<span class="alto-comment">#!/usr/bin/env bash</span>
+<span class="alto-comment">#!/bin/sh</span>
+
+<span class="alto-comment"># Comments</span>
+<span class="alto-comment"># Single line comment</span>
+<span class="alto-operator">:</span> <span class="alto-string">&lt;&lt; &#039;COMMENT&#039;</span>
+<span class="alto-string">Multi-line comment block</span>
+<span class="alto-string">using heredoc</span>
+<span class="alto-string">COMMENT</span>
+
+<span class="alto-string"># Variable assignments</span>
+<span class="alto-string">VAR=&quot;value&quot;</span>
+<span class="alto-string">VAR=&#039;single quotes&#039;</span>
+<span class="alto-string">VAR=`command substitution`</span>
+<span class="alto-string">VAR=$(command substitution)</span>
+<span class="alto-string">VAR=$((arithmetic))</span>
+<span class="alto-string">ARRAY=(one two three)</span>
+<span class="alto-string">ASSOC_ARRAY=([key]=value)</span>
+
+<span class="alto-string"># Variable expansions</span>
+<span class="alto-string">${VAR}</span>
+<span class="alto-string">${VAR:-default}</span>
+<span class="alto-string">${VAR:=default}</span>
+<span class="alto-string">${VAR:?error}</span>
+<span class="alto-string">${VAR:+alt}</span>
+<span class="alto-string">${VAR#pattern}</span>
+<span class="alto-string">${VAR##pattern}</span>
+<span class="alto-string">${VAR%pattern}</span>
+<span class="alto-string">${VAR%%pattern}</span>
+<span class="alto-string">${VAR/pattern/replace}</span>
+<span class="alto-string">${VAR//pattern/replace}</span>
+<span class="alto-string">${VAR^}</span>
+<span class="alto-string">${VAR^^}</span>
+<span class="alto-string">${VAR,}</span>
+<span class="alto-string">${VAR,,}</span>
+<span class="alto-string">${#VAR}</span>
+<span class="alto-string">${!VAR}</span>
+<span class="alto-string">$1 $2 $@ $* $# $? $$ $! $0 $_</span>
+
+<span class="alto-string"># String handling</span>
+<span class="alto-string">STRING=&quot;double quotes with $VAR&quot;</span>
+<span class="alto-string">STRING=&#039;single quotes no expansion&#039;</span>
+<span class="alto-string">STRING=$&#039;ansi quotes\n\t&#039;</span>
+<span class="alto-string">STRING=&quot;escaped \&quot;quotes\&quot; and \$dollar&quot;</span>
+
+<span class="alto-string"># Command substitution</span>
+<span class="alto-string">OUTPUT=$(ls -la)</span>
+<span class="alto-string">OUTPUT=`pwd`</span>
+
+<span class="alto-string"># Arithmetic</span>
+<span class="alto-string">((i++))</span>
+<span class="alto-string">((i--))</span>
+<span class="alto-string">((i += 1))</span>
+<span class="alto-string">result=$((10 + 20 * 3))</span>
+<span class="alto-string">result=$[10 + 20]</span>
+
+<span class="alto-string"># Conditionals</span>
+<span class="alto-string">if [[ -f file ]]; then</span>
+<span class="alto-string">    echo &quot;file exists&quot;</span>
+<span class="alto-string">elif [[ -d dir ]]; then</span>
+<span class="alto-string">    echo &quot;directory exists&quot;</span>
+<span class="alto-string">else</span>
+<span class="alto-string">    echo &quot;nothing&quot;</span>
+<span class="alto-string">fi</span>
+
+<span class="alto-string">[ -e file ] &amp;&amp; echo &quot;exists&quot;</span>
+<span class="alto-string">[[ $VAR == &quot;value&quot; ]] || echo &quot;not equal&quot;</span>
+<span class="alto-string">test -n &quot;$VAR&quot; &amp;&amp; echo &quot;not empty&quot;</span>
+
+<span class="alto-string"># Case statements</span>
+<span class="alto-string">case $VAR in</span>
+<span class="alto-string">    pattern1) echo &quot;match1&quot; ;;</span>
+<span class="alto-string">    pattern2|pattern3) echo &quot;match2or3&quot; ;;</span>
+<span class="alto-string">    *) echo &quot;default&quot; ;;</span>
+<span class="alto-string">esac</span>
+
+<span class="alto-string"># Loops</span>
+<span class="alto-string">for i in 1 2 3; do</span>
+<span class="alto-string">    echo $i</span>
+<span class="alto-string">done</span>
+
+<span class="alto-string">for ((i=0; i&lt;10; i++)); do</span>
+<span class="alto-string">    echo $i</span>
+<span class="alto-string">done</span>
+
+<span class="alto-string">while read line; do</span>
+<span class="alto-string">    echo &quot;$line&quot;</span>
+<span class="alto-string">done &lt; file</span>
+
+<span class="alto-string">until [ $i -eq 10 ]; do</span>
+<span class="alto-string">    ((i++))</span>
+<span class="alto-string">done</span>
+
+<span class="alto-string"># Functions</span>
+<span class="alto-string">function func_name() {</span>
+<span class="alto-string">    local var=&quot;local&quot;</span>
+<span class="alto-string">    echo &quot;$1&quot;</span>
+<span class="alto-string">    return 0</span>
+<span class="alto-string">}</span>
+
+<span class="alto-string">func_name() {</span>
+<span class="alto-string">    echo &quot;alternative syntax&quot;</span>
+<span class="alto-string">}</span>
+
+<span class="alto-string"># Redirections</span>
+<span class="alto-string">echo &quot;text&quot; &gt; file</span>
+<span class="alto-string">echo &quot;text&quot; &gt;&gt; file</span>
+<span class="alto-string">echo &quot;text&quot; 2&gt; errors</span>
+<span class="alto-string">echo &quot;text&quot; &amp;&gt; all</span>
+<span class="alto-string">command &lt; input</span>
+<span class="alto-string">command 2&gt;&amp;1</span>
+<span class="alto-string">command &amp;&gt; /dev/null</span>
+<span class="alto-string">exec 3&lt; file</span>
+<span class="alto-string">exec 4&gt; file</span>
+<span class="alto-string">echo &quot;text&quot; &gt;&amp;3</span>
+
+<span class="alto-string"># Pipes</span>
+<span class="alto-string">command1 | command2 | command3</span>
+<span class="alto-string">command1 |&amp; command2</span>
+
+<span class="alto-string"># Background and job control</span>
+<span class="alto-string">command &amp;</span>
+<span class="alto-string">command1 &amp; command2</span>
+<span class="alto-string">wait $!</span>
+
+<span class="alto-string"># Process substitution</span>
+<span class="alto-string">diff &lt;(ls dir1) &lt;(ls dir2)</span>
+<span class="alto-string">command &gt;(tee file)</span>
+
+<span class="alto-string"># Subshells and command grouping</span>
+<span class="alto-string">(cd /tmp &amp;&amp; pwd)</span>
+<span class="alto-string">{ echo &quot;group&quot;; echo &quot;commands&quot;; }</span>
+
+<span class="alto-string"># Here documents</span>
+<span class="alto-string">cat &lt;&lt; EOF</span>
+<span class="alto-string">This is a heredoc</span>
+<span class="alto-string">With $VAR expansion</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt; &#039;EOF&#039;</span>
+<span class="alto-string">This is a heredoc</span>
+<span class="alto-string">Without $VAR expansion</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string">cat &lt;&lt;-EOF</span>
+<span class="alto-string">	Indented heredoc</span>
+<span class="alto-string">	tabs removed</span>
+<span class="alto-string">EOF</span>
+
+<span class="alto-string"># Here strings</span>
+<span class="alto-string">cat &lt;&lt;&lt; &quot;here string with $VAR&quot;</span>
+
+<span class="alto-string"># Brace expansion</span>
+<span class="alto-string">echo {1..10}</span>
+<span class="alto-string">echo {a..z}</span>
+<span class="alto-string">echo {1..10..2}</span>
+<span class="alto-string">echo file{.txt,.log,.bak}</span>
+
+<span class="alto-string"># Globbing and pathname expansion</span>
+<span class="alto-string">*.txt</span>
+<span class="alto-string">**/*.sh</span>
+<span class="alto-string">[abc]*</span>
+<span class="alto-string">[!abc]*</span>
+<span class="alto-string">?(pattern)</span>
+<span class="alto-string">*(pattern)</span>
+<span class="alto-string">+(pattern)</span>
+<span class="alto-string">@(pattern)</span>
+<span class="alto-string">!(pattern)</span>
+
+<span class="alto-string"># Quoting and escaping</span>
+<span class="alto-string">&quot;double quotes&quot;</span>
+<span class="alto-string">&#039;single quotes&#039;</span>
+<span class="alto-string">`backticks`</span>
+<span class="alto-string">$(command)</span>
+<span class="alto-string">$((math))</span>
+<span class="alto-string">\$escaped</span>
+
+<span class="alto-string"># Special parameters</span>
+<span class="alto-string">$0 $1 $2 $@ $* $# $? $$ $! $- $_</span>
+
+<span class="alto-string"># Builtin commands</span>
+<span class="alto-string">echo &quot;text&quot;</span>
+<span class="alto-string">printf &quot;%s\n&quot; &quot;text&quot;</span>
+<span class="alto-string">read var</span>
+<span class="alto-string">cd /path</span>
+<span class="alto-string">pwd</span>
+<span class="alto-string">exit 0</span>
+<span class="alto-string">return 1</span>
+<span class="alto-string">source file</span>
+<span class="alto-string">. file</span>
+<span class="alto-string">eval &quot;command&quot;</span>
+<span class="alto-string">exec command</span>
+<span class="alto-string">export VAR=value</span>
+<span class="alto-string">declare -i INT=5</span>
+<span class="alto-string">local var=value</span>
+<span class="alto-string">readonly CONST=value</span>
+<span class="alto-string">unset VAR</span>
+<span class="alto-string">shift</span>
+<span class="alto-string">set -- arg1 arg2</span>
+<span class="alto-string">trap &quot;command&quot; SIGINT</span>
+<span class="alto-string">ulimit -n 1024</span>
+<span class="alto-string">umask 022</span>
+<span class="alto-string">alias ll=&#039;ls -la&#039;</span>
+<span class="alto-string">unalias ll</span>
+<span class="alto-string">type command</span>
+<span class="alto-string">command -v cmd</span>
+<span class="alto-string">builtin cd</span>
+<span class="alto-string">enable -n cd</span>
+<span class="alto-string">help command</span>
+<span class="alto-string">let &quot;i++&quot;</span>
+<span class="alto-string">mapfile -t ARRAY &lt; file</span>
+<span class="alto-string">readarray -t ARRAY &lt; file</span>
+<span class="alto-string">complete -F func cmd</span>
+
+<span class="alto-string"># Test operators</span>
+<span class="alto-string">[[ -e file ]]  # exists</span>
+<span class="alto-string">[[ -f file ]]  # regular file</span>
+<span class="alto-string">[[ -d dir ]]   # directory</span>
+<span class="alto-string">[[ -L link ]]  # symlink</span>
+<span class="alto-string">[[ -r file ]]  # readable</span>
+<span class="alto-string">[[ -w file ]]  # writable</span>
+<span class="alto-string">[[ -x file ]]  # executable</span>
+<span class="alto-string">[[ -s file ]]  # non-empty</span>
+<span class="alto-string">[[ -n str ]]   # not empty string</span>
+<span class="alto-string">[[ -z str ]]   # empty string</span>
+<span class="alto-string">[[ str1 == str2 ]]</span>
+<span class="alto-string">[[ str1 != str2 ]]</span>
+<span class="alto-string">[[ str1 &lt; str2 ]]</span>
+<span class="alto-string">[[ str1 &gt; str2 ]]</span>
+<span class="alto-string">[[ num1 -eq num2 ]]</span>
+<span class="alto-string">[[ num1 -ne num2 ]]</span>
+<span class="alto-string">[[ num1 -lt num2 ]]</span>
+<span class="alto-string">[[ num1 -le num2 ]]</span>
+<span class="alto-string">[[ num1 -gt num2 ]]</span>
+<span class="alto-string">[[ num1 -ge num2 ]]</span>
+<span class="alto-string">[[ expr1 &amp;&amp; expr2 ]]</span>
+<span class="alto-string">[[ expr1 || expr2 ]]</span>
+<span class="alto-string">[[ ! expr ]]</span>
+<span class="alto-string">[[ str =~ regex ]]</span>
+
+<span class="alto-string"># Extended patterns</span>
+<span class="alto-string">shopt -s extglob</span>
+<span class="alto-string">?(pattern)</span>
+<span class="alto-string">*(pattern)</span>
+<span class="alto-string">+(pattern)</span>
+<span class="alto-string">@(pattern)</span>
+<span class="alto-string">!(pattern)</span>
+
+<span class="alto-string"># Arrays</span>
+<span class="alto-string">ARRAY[0]=&quot;first&quot;</span>
+<span class="alto-string">ARRAY[1]=&quot;second&quot;</span>
+<span class="alto-string">echo ${ARRAY[0]}</span>
+<span class="alto-string">echo ${ARRAY[@]}</span>
+<span class="alto-string">echo ${ARRAY[*]}</span>
+<span class="alto-string">echo ${#ARRAY[@]}</span>
+<span class="alto-string">echo ${!ARRAY[@]}</span>
+<span class="alto-string">unset ARRAY[1]</span>
+
+<span class="alto-string"># Associative arrays</span>
+<span class="alto-string">declare -A ASSOC</span>
+<span class="alto-string">ASSOC[key]=&quot;value&quot;</span>
+<span class="alto-string">echo ${ASSOC[key]}</span>
+<span class="alto-string">echo ${!ASSOC[@]}</span>
+
+<span class="alto-string"># Coprocesses</span>
+<span class="alto-string">coproc COPROC { command; }</span>
+<span class="alto-string">echo &quot;input&quot; &gt;&amp;${COPROC[1]}</span>
+<span class="alto-string">read output &lt;&amp;${COPROC[0]}</span>
+
+<span class="alto-string"># Select menu</span>
+<span class="alto-string">select item in opt1 opt2 opt3; do</span>
+<span class="alto-string">    echo &quot;Selected: $item&quot;</span>
+<span class="alto-string">    break</span>
+<span class="alto-string">done</span>
+
+<span class="alto-string"># Error handling</span>
+<span class="alto-string">set -e  # exit on error</span>
+<span class="alto-string">set -u  # exit on undefined variable</span>
+<span class="alto-string">set -o pipefail  # pipe fails if any command fails</span>
+<span class="alto-string">set -x  # print commands</span>
+
+<span class="alto-string"># Parameter expansion edge cases</span>
+<span class="alto-string">${VAR:0:5}  # substring</span>
+<span class="alto-string">${VAR: -5}  # last 5 chars</span>
+<span class="alto-string">${!prefix*}  # indirect expansion</span>
+<span class="alto-string">${!prefix@}  # indirect expansion</span>
+<span class="alto-string">&quot;${ARRAY[@]:1:2}&quot;  # array slice</span>
+
+<span class="alto-string"># Complex command substitution</span>
+<span class="alto-string">result=$(</span>
+<span class="alto-string">    multi</span>
+<span class="alto-string">    line</span>
+<span class="alto-string">    command</span>
+<span class="alto-string">)</span>
+
+<span class="alto-string"># Nested quotes and escaping</span>
+<span class="alto-string">echo &quot;outer \&quot;inner\&quot; quotes&quot;</span>
+<span class="alto-string">echo &#039;can&#039;\&#039;&#039;t escape much in single quotes&#039;</span>
+<span class="alto-string">echo $&#039;ansi\nescapes\twork&#039;</span>
+
+<span class="alto-string"># Exit codes and pipelines</span>
+<span class="alto-string">command1 || echo &quot;failed&quot;</span>
+<span class="alto-string">command1 &amp;&amp; command2 || command3</span>
+<span class="alto-string">{ command1 &amp;&amp; command2; } || command3</span>
+</code></pre>

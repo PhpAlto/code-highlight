@@ -1,0 +1,42 @@
+{
+  "escaped_strings": {
+    "quote": "string with \" quote",
+    "backslash": "string with \\ backslash",
+    "newline": "string with \n newline",
+    "tab": "string with \t tab",
+    "return": "string with \r return",
+    "formfeed": "string with \f formfeed",
+    "backspace": "string with \b backspace",
+    "slash": "string with \/ slash",
+    "unicode": "string with \u0041 unicode",
+    "multiple": "\\\"\\n\\t\\\\"
+  },
+  "decimal_numbers": {
+    "simple": 1.5,
+    "zero_prefix": 0.123,
+    "negative": -3.14159,
+    "many_decimals": 123.456789
+  },
+  "scientific_notation": {
+    "lowercase_e": 1e5,
+    "uppercase_e": 1E5,
+    "positive_exp": 1e+10,
+    "negative_exp": 1e-5,
+    "decimal_with_exp": 1.5e10,
+    "negative_decimal_exp": -2.5E-3,
+    "large": 9.999999e+999
+  },
+  "whitespace_edge_cases"   :   {
+    "lots_of_spaces_before_colon"     :     "value",
+    "tabs_before_colon"		:		"value",
+    "mixed"  	  :  	  "value"
+  },
+  "complex_combinations": {
+    "nested": {
+      "array": [1, 2.5, 3e10, -4.2E-5],
+      "string": "escaped \" with \\ chars",
+      "bool": true,
+      "null": null
+    }
+  }
+}

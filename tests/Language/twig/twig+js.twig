@@ -1,0 +1,24 @@
+{% extends "layout.twig" %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.item');
+            items.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    console.log('Item clicked: ' + this.textContent);
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <ul class="items">
+        {% for item in items %}
+            <li class="item" data-id="{{ item.id }}">
+                {{ item.name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

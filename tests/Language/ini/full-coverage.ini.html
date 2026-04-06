@@ -1,0 +1,35 @@
+<pre class="alto-highlight language-ini"><code class="language-ini"><span class="alto-comment">; Full coverage INI file</span>
+<span class="alto-comment"># Both comment styles</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">section</span><span class="alto-punctuation">]</span> <span class="alto-comment">; inline comment after section</span>
+<span class="alto-punctuation">[</span><span class="alto-type">another.section</span><span class="alto-punctuation">]</span>  <span class="alto-comment"># inline comment with hash</span>
+
+<span class="alto-comment">; Escaped characters in quoted strings</span>
+<span class="alto-constant">key1</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;string with \&quot;escaped quotes\&quot;&quot;</span>
+<span class="alto-constant">key2</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;single quoted with \&#039;escaped quotes\&#039;&#039;</span>
+<span class="alto-constant">key3</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;backslash \\ and newline \n&quot;</span>
+
+<span class="alto-comment">; Inline comments after values</span>
+<span class="alto-constant">value1</span> <span class="alto-operator">=</span> <span class="alto-string">test</span> <span class="alto-comment">; this is a comment</span>
+<span class="alto-constant">value2</span> <span class="alto-operator">=</span> <span class="alto-number">123</span> <span class="alto-comment"># another comment</span>
+
+<span class="alto-comment">; Environment variables</span>
+<span class="alto-constant">unix_var</span> <span class="alto-operator">=</span> <span class="alto-variable">${HOME}</span><span class="alto-string">/path</span>
+<span class="alto-constant">windows_var</span> <span class="alto-operator">=</span> <span class="alto-variable">%USERPROFILE%</span><span class="alto-string">\path</span>
+<span class="alto-constant">mixed</span> <span class="alto-operator">=</span> <span class="alto-variable">${VAR1}</span><span class="alto-string">/and/</span><span class="alto-variable">%VAR2%</span><span class="alto-string">/path</span>
+
+<span class="alto-comment">; Null values</span>
+<span class="alto-constant">empty</span> <span class="alto-operator">=</span>
+<span class="alto-constant">null_val</span> <span class="alto-operator">=</span> <span class="alto-number">null</span>
+<span class="alto-constant">none_val</span> <span class="alto-operator">=</span> <span class="alto-number">none</span>
+
+<span class="alto-comment">; Hex numbers</span>
+<span class="alto-constant">hex1</span> <span class="alto-operator">=</span> <span class="alto-number">0xFF</span>
+<span class="alto-constant">hex2</span> <span class="alto-operator">=</span> <span class="alto-number">0x1a2b3c</span>
+
+<span class="alto-comment">; Whitespace handling</span>
+  <span class="alto-constant">indented_key</span> <span class="alto-operator">=</span> <span class="alto-string">value</span>
+<span class="alto-constant">key_with_spaces</span>   <span class="alto-operator">=</span>   <span class="alto-string">value_with_spaces</span>
+
+<span class="alto-comment">; Key without value</span>
+<span class="alto-constant">standalone_key</span></code></pre>

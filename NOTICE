@@ -1,0 +1,72 @@
+Alto Code Highlight
+Copyright (c) 2026 Simon André
+
+This product includes software and color schemes derived from or inspired by
+third-party works. The following notices apply to the bundled themes.
+
+-------------------------------------------------------------------------------
+
+Dracula Theme
+-------------
+Color palette inspired by the Dracula Theme, created by Zeno Rocha.
+
+  Original work: https://draculatheme.com
+  Copyright (c) 2013 Zeno Rocha
+  License: MIT
+
+The MIT License applies to the original Dracula color palette. The
+implementation in this file is an original work by Simon André.
+
+-------------------------------------------------------------------------------
+
+GitHub Theme (dark and light variants)
+---------------------------------------
+Color palettes based on the GitHub Primer design system, published by GitHub.
+
+  Original work: https://github.com/primer/primitives
+  Copyright (c) GitHub, Inc.
+  License: MIT
+
+The MIT License applies to the original Primer color definitions. The
+implementation in this file is an original work by Simon André.
+
+-------------------------------------------------------------------------------
+
+Noctis Theme
+------------
+Color palette inspired by the Noctis theme, created by Liviu Schera.
+
+  Original work: https://github.com/liviuschera/noctis
+  Copyright (c) Liviu Schera
+  License: MIT
+
+The MIT License applies to the original Noctis color palette. The
+implementation in this file is an original work by Simon André.
+
+-------------------------------------------------------------------------------
+
+Polar Theme
+-----------
+Color palette loosely based on Nord, created by Arctic Ice Studio.
+
+  Original work: https://www.nordtheme.com
+  Copyright (c) 2016-present Arctic Ice Studio
+  License: MIT
+
+The MIT License applies to the original Nord color palette. The
+implementation in this file is an original work by Simon André.
+
+-------------------------------------------------------------------------------
+
+Solar Theme
+-----------
+Color palette inspired by Solarized, created by Ethan Schoonover.
+
+  Original work: https://ethanschoonover.com/solarized
+  Copyright (c) 2011 Ethan Schoonover
+  License: MIT
+
+The MIT License applies to the original Solarized color palette. The
+implementation in this file is an original work by Simon André.
+
+-------------------------------------------------------------------------------

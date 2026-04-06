@@ -1,0 +1,47 @@
+<pre class="alto-highlight language-dockerfile"><code class="language-dockerfile"><span class="alto-comment"># Edge cases for Dockerfile coverage</span>
+
+<span class="alto-comment"># Shell operators in RUN commands</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">apt-get</span> <span class="alto-punctuation">update</span> <span class="alto-operator">&amp;&amp;</span> <span class="alto-punctuation">apt-get</span> <span class="alto-punctuation">install</span> <span class="alto-punctuation">-y</span> <span class="alto-punctuation">curl</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">command1</span> <span class="alto-operator">||</span> <span class="alto-punctuation">command2</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">cmd1;</span> <span class="alto-punctuation">cmd2</span> <span class="alto-operator">|</span> <span class="alto-punctuation">cmd3</span>
+
+<span class="alto-comment"># Variables - both $VAR and ${VAR} forms</span>
+<span class="alto-keyword">ENV</span> <span class="alto-punctuation">VAR1=value</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-variable">$VAR1</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-variable">${VAR1}</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-variable">$VAR_WITH_UNDERSCORE</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">path=</span><span class="alto-variable">${HOME}</span><span class="alto-punctuation">/bin</span>
+
+<span class="alto-comment"># Edge case: $ without variable name</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-string">&quot;Price: $$&quot;</span>
+
+<span class="alto-comment"># Quoted strings with escaping</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-string">&quot;Line 1\nLine 2&quot;</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-string">&#039;Single \&#039;quoted\&#039; string&#039;</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">mixed</span> <span class="alto-string">&quot;double&quot;</span> <span class="alto-punctuation">and</span> <span class="alto-string">&#039;single&#039;</span> <span class="alto-punctuation">quotes</span>
+
+<span class="alto-comment"># Bare numbers</span>
+<span class="alto-keyword">EXPOSE</span> <span class="alto-number">8080</span>
+<span class="alto-keyword">USER</span> <span class="alto-number">1000</span>
+<span class="alto-keyword">ARG</span> <span class="alto-punctuation">PORT=3000</span>
+
+<span class="alto-comment"># AS and NONE modifiers</span>
+<span class="alto-keyword">FROM</span> <span class="alto-punctuation">ubuntu</span> <span class="alto-keyword">AS</span> <span class="alto-punctuation">builder</span>
+<span class="alto-keyword">HEALTHCHECK</span> <span class="alto-keyword">NONE</span>
+
+<span class="alto-comment"># Line continuations</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">apt-get</span> <span class="alto-punctuation">install</span> <span class="alto-punctuation">-y</span> <span class="alto-operator">\</span>
+    <span class="alto-punctuation">package1</span> <span class="alto-punctuation">\</span>
+    <span class="alto-punctuation">package2</span> <span class="alto-punctuation">\</span>
+    <span class="alto-punctuation">package3</span>
+
+<span class="alto-keyword">LABEL</span> <span class="alto-punctuation">description=</span><span class="alto-string">&quot;Multi \</span>
+<span class="alto-punctuation">line</span> <span class="alto-punctuation">\</span>
+<span class="alto-punctuation">label&quot;</span>
+
+<span class="alto-comment"># Unrecognized instruction (should be plain text)</span>
+<span class="alto-punctuation">INVALID_INSTRUCTION</span> <span class="alto-punctuation">some arguments</span>
+
+<span class="alto-comment"># Edge: empty instruction</span>
+
+</code></pre>

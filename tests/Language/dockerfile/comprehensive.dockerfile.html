@@ -1,0 +1,81 @@
+<pre class="alto-highlight language-dockerfile"><code class="language-dockerfile"><span class="alto-comment"># Comment line</span>
+<span class="alto-keyword">FROM</span> <span class="alto-punctuation">ubuntu:22.04</span> <span class="alto-keyword">AS</span> <span class="alto-punctuation">builder</span>
+
+<span class="alto-comment"># ARG before FROM</span>
+<span class="alto-keyword">ARG</span> <span class="alto-punctuation">VERSION=1.0</span>
+
+<span class="alto-comment"># Labels</span>
+<span class="alto-keyword">LABEL</span> <span class="alto-punctuation">maintainer=</span><span class="alto-string">&quot;user@example.com&quot;</span>
+<span class="alto-keyword">LABEL</span> <span class="alto-punctuation">version=</span><span class="alto-string">&quot;1.0&quot;</span> <span class="alto-operator">\</span>
+      <span class="alto-punctuation">description=&quot;Multi-line</span> <span class="alto-punctuation">label&quot;</span>
+
+<span class="alto-comment"># Environment variables</span>
+<span class="alto-keyword">ENV</span> <span class="alto-punctuation">NODE_ENV=production</span>
+<span class="alto-keyword">ENV</span> <span class="alto-punctuation">PATH=/usr/local/bin:</span><span class="alto-variable">$PATH</span> <span class="alto-operator">\</span>
+    <span class="alto-punctuation">HOME=/root</span>
+
+<span class="alto-comment"># Working directory</span>
+<span class="alto-keyword">WORKDIR</span> <span class="alto-punctuation">/app</span>
+
+<span class="alto-comment"># Copy files</span>
+<span class="alto-keyword">COPY</span> <span class="alto-punctuation">package.json</span> <span class="alto-punctuation">.</span>
+<span class="alto-keyword">COPY</span> <span class="alto-punctuation">--chown=user:group</span> <span class="alto-punctuation">src/</span> <span class="alto-punctuation">/app/src/</span>
+
+<span class="alto-comment"># Add files (with URL)</span>
+<span class="alto-keyword">ADD</span> <span class="alto-punctuation">https://example.com/file.tar.gz</span> <span class="alto-punctuation">/tmp/</span>
+<span class="alto-keyword">ADD</span> <span class="alto-punctuation">archive.tar.gz</span> <span class="alto-punctuation">/extracted/</span>
+
+<span class="alto-comment"># Run commands</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">apt-get</span> <span class="alto-punctuation">update</span>
+<span class="alto-keyword">RUN</span> <span class="alto-punctuation">apt-get</span> <span class="alto-punctuation">install</span> <span class="alto-punctuation">-y</span> <span class="alto-operator">\</span>
+    <span class="alto-punctuation">curl</span> <span class="alto-punctuation">\</span>
+    <span class="alto-punctuation">git</span> <span class="alto-punctuation">\</span>
+    <span class="alto-punctuation">&amp;&amp;</span> <span class="alto-punctuation">rm -rf /var/lib/apt/lists/*</span>
+
+<span class="alto-comment"># User</span>
+<span class="alto-keyword">USER</span> <span class="alto-punctuation">node</span>
+<span class="alto-keyword">USER</span> <span class="alto-number">1000</span><span class="alto-punctuation">:1000</span>
+
+<span class="alto-comment"># Expose ports</span>
+<span class="alto-keyword">EXPOSE</span> <span class="alto-number">80</span>
+<span class="alto-keyword">EXPOSE</span> <span class="alto-number">443</span><span class="alto-punctuation">/tcp</span>
+<span class="alto-keyword">EXPOSE</span> <span class="alto-number">8080</span><span class="alto-punctuation">/udp</span>
+
+<span class="alto-comment"># Volume</span>
+<span class="alto-keyword">VOLUME</span> <span class="alto-punctuation">[</span><span class="alto-string">&quot;/data&quot;</span><span class="alto-punctuation">]</span>
+<span class="alto-keyword">VOLUME</span> <span class="alto-punctuation">/var/log</span> <span class="alto-punctuation">/var/db</span>
+
+<span class="alto-comment"># Entrypoint</span>
+<span class="alto-keyword">ENTRYPOINT</span> <span class="alto-punctuation">[</span><span class="alto-string">&quot;node&quot;</span><span class="alto-punctuation">]</span>
+<span class="alto-keyword">ENTRYPOINT</span> <span class="alto-punctuation">node</span> <span class="alto-punctuation">app.js</span>
+
+<span class="alto-comment"># Command</span>
+<span class="alto-keyword">CMD</span> <span class="alto-punctuation">[</span><span class="alto-string">&quot;start&quot;</span><span class="alto-punctuation">]</span>
+<span class="alto-keyword">CMD</span> <span class="alto-punctuation">npm</span> <span class="alto-punctuation">start</span>
+
+<span class="alto-comment"># Healthcheck</span>
+<span class="alto-keyword">HEALTHCHECK</span> <span class="alto-punctuation">--interval=30s</span> <span class="alto-punctuation">--timeout=3s</span> <span class="alto-operator">\</span>
+  <span class="alto-keyword">CMD</span> <span class="alto-punctuation">curl</span> <span class="alto-punctuation">-f</span> <span class="alto-punctuation">http://localhost/</span> <span class="alto-operator">||</span> <span class="alto-punctuation">exit</span> <span class="alto-number">1</span>
+
+<span class="alto-comment"># Shell</span>
+<span class="alto-keyword">SHELL</span> <span class="alto-punctuation">[</span><span class="alto-string">&quot;/bin/bash&quot;</span><span class="alto-punctuation">,</span> <span class="alto-string">&quot;-c&quot;</span><span class="alto-punctuation">]</span>
+
+<span class="alto-comment"># Stopsignal</span>
+<span class="alto-keyword">STOPSIGNAL</span> <span class="alto-punctuation">SIGTERM</span>
+
+<span class="alto-comment"># Onbuild</span>
+<span class="alto-keyword">ONBUILD</span> <span class="alto-punctuation">RUN</span> <span class="alto-punctuation">echo</span> <span class="alto-string">&quot;Building child image&quot;</span>
+<span class="alto-keyword">ONBUILD</span> <span class="alto-punctuation">COPY</span> <span class="alto-punctuation">.</span> <span class="alto-punctuation">/app</span>
+
+<span class="alto-comment"># Arg with default</span>
+<span class="alto-keyword">ARG</span> <span class="alto-punctuation">BUILD_DATE</span>
+<span class="alto-keyword">ARG</span> <span class="alto-punctuation">VCS_REF=master</span>
+
+<span class="alto-comment"># Multi-stage</span>
+<span class="alto-keyword">FROM</span> <span class="alto-punctuation">alpine:latest</span>
+<span class="alto-keyword">COPY</span> <span class="alto-punctuation">--from=builder</span> <span class="alto-punctuation">/app/dist</span> <span class="alto-punctuation">/app/</span>
+
+<span class="alto-comment"># Maintainer (deprecated but still valid)</span>
+<span class="alto-punctuation">MAINTAINER</span> <span class="alto-punctuation">Old Style &lt;old@example.com&gt;</span>
+
+</code></pre>

@@ -1,0 +1,15 @@
+   
+  # comment
+- item
+-  item2
+anchor: &anc   
+alias: *anc
+merge:
+  << : *anc
+bools: [yes, no, on, off]
+nulls: [~, null]
+nums: [1, 1.5]
+quotes: ['s', "d"]
+key : value
+empty_val:
+simple val

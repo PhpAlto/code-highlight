@@ -1,0 +1,51 @@
+<pre class="alto-highlight language-css"><code class="language-css"><span class="alto-comment">/* Edge cases for CSS coverage */</span>
+
+<span class="alto-comment">/* Selectors - all types */</span>
+<span class="alto-keyword">*</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* universal */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">element</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* type */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">.class</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* class */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">#id</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* id */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute=&quot;value&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute with value */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute</span><span class="alto-punctuation">~</span><span class="alto-keyword">=&quot;value&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute contains word */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute|=&quot;value&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute starts with */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute^=&quot;value&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute begins with */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute$=&quot;value&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute ends with */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[attribute*=&quot;value&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* attribute contains */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:hover</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:first-child</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:last-child</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:nth-child(2n)</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class with function */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:nth-child(odd)</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class odd */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:nth-child(even)</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class even */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:nth-of-type(2n</span><span class="alto-punctuation">+</span><span class="alto-keyword">1)</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-class formula */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:not(.class)</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* negation pseudo-class */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::before</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-element */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::after</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-element */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::first-line</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-element */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::first-letter</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-element */</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::selection</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* pseudo-element */</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Combinators */</span>
+<span class="alto-keyword">div</span> <span class="alto-keyword">p</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* descendant */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div</span> <span class="alto-punctuation">&gt;</span> <span class="alto-keyword">p</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* child */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div</span> <span class="alto-punctuation">+</span> <span class="alto-keyword">p</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* adjacent sibling */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div</span> <span class="alto-punctuation">~</span> <span class="alto-keyword">p</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* general sibling */</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Multiple selectors */</span>
+<span class="alto-keyword">h1</span><span class="alto-punctuation">,</span> <span class="alto-keyword">h2</span><span class="alto-punctuation">,</span> <span class="alto-keyword">h3</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* grouped */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div.class</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* compound */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div#id.class[attr]</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* multiple compound */</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div</span> <span class="alto-punctuation">&gt;</span> <span class="alto-keyword">p.class</span> <span class="alto-punctuation">+</span> <span class="alto-keyword">span</span> <span class="alto-punctuation">{</span> <span class="alto-comment">/* complex */</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* @rules */</span>
+<span class="alto-keyword">@import</span> <span class="alto-keyword">url(&quot;style.css&quot;)</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">@import</span> <span class="alto-keyword">&quot;style.css&quot;</span> <span class="alto-keyword">screen</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">@import</span> <span class="alto-keyword">&quot;style.css&quot;</span> <span class="alto-keyword">print</span> <span class="alto-keyword">and</span> <span class="alto-variable">(orientation:</span> <span class="alto-keyword">landscape)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">@charset</span> <span class="alto-keyword">&quot;UTF-8&quot;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">@namespace</span> <span class="alto-variable">url(http://www.w3.org/1999/xhtml)</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">@namespace</span> <span class="alto-keyword">svg</span> <span class="alto-variable">url(http://www.w3.org/2000/svg)</span><span class="alto-punctuation">;</span>
+
+</code></pre>

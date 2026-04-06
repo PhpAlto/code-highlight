@@ -1,0 +1,39 @@
+# Edge cases for YAML coverage
+
+# Symfony parameters
+env: '%env(APP_ENV)%'
+parameter_ref: '%kernel.project_dir%'
+nested: '%inner.%outer%%'
+
+# Symfony services
+service1: @logger
+optional_service: @?cache.pool
+expression_service: @=service('router').generate('home')
+
+# YAML tags
+tagged: !custom some_value
+php_const: !php/const PHP_VERSION
+binary_data: !!binary dGVzdA==
+
+# Quoted strings with escaping
+escaped_double: "Line 1\nLine 2\tTab"
+escaped_single: 'Can''t escape much'
+
+# Arrays and objects with inline notation
+inline_array: [1, 2, 3, 4]
+inline_object: {key1: value1, key2: value2, key3: value3}
+mixed: [{a: 1}, {b: 2}]
+
+# Edge whitespace handling
+  leading_spaces: value
+	tabs_before: content
+
+# List items followed by values
+- item1
+- item2: with_value
+- item3
+
+# Multiple anchors and aliases on same line
+&anchor1 key1: &anchor2 value
+alias1: *anchor1
+alias2: *anchor2

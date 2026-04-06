@@ -1,0 +1,26 @@
+<pre class="alto-highlight language-ini"><code class="language-ini"><span class="alto-comment">; Configuration file for application</span>
+<span class="alto-comment"># Also supports hash-style comments</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">server</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">host</span> <span class="alto-operator">=</span> <span class="alto-string">127.0.0.1</span>
+<span class="alto-constant">port</span> <span class="alto-operator">=</span> <span class="alto-number">8080</span>
+<span class="alto-constant">debug</span> <span class="alto-operator">=</span> <span class="alto-number">false</span>
+<span class="alto-constant">verbose</span> <span class="alto-operator">=</span> <span class="alto-number">yes</span>
+<span class="alto-constant">timeout</span> <span class="alto-operator">=</span> <span class="alto-number">none</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">database</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">driver</span> <span class="alto-operator">=</span> <span class="alto-string">&quot;mysql&quot;</span>
+<span class="alto-constant">host</span> <span class="alto-operator">=</span> <span class="alto-variable">${DB_HOST}</span>
+<span class="alto-constant">name</span> <span class="alto-operator">=</span> <span class="alto-string">&#039;production_db&#039;</span>
+<span class="alto-constant">port</span> <span class="alto-operator">=</span> <span class="alto-number">3306</span>
+<span class="alto-constant">enabled</span> <span class="alto-operator">=</span> <span class="alto-number">on</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">paths</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">cache</span> <span class="alto-operator">=</span> <span class="alto-string">/var/cache</span>
+<span class="alto-constant">logs</span> <span class="alto-operator">=</span> <span class="alto-variable">%APPDATA%</span><span class="alto-string">/logs</span>
+
+<span class="alto-punctuation">[</span><span class="alto-type">features</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">rate_limit</span> <span class="alto-operator">=</span> <span class="alto-number">1000.5</span>
+<span class="alto-constant">hex_value</span> <span class="alto-operator">=</span> <span class="alto-number">0xFF00</span>
+<span class="alto-constant">empty_value</span> <span class="alto-operator">=</span>
+</code></pre>

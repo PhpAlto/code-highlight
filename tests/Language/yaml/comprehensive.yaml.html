@@ -1,0 +1,75 @@
+<pre class="alto-highlight language-yaml"><code class="language-yaml"><span class="alto-comment"># Alto Code Highlight - YAML Example</span>
+<span class="alto-constant">name</span><span class="alto-punctuation">:</span> <span class="alto-string">Alto</span> <span class="alto-string">Code</span> <span class="alto-string">Highlight</span>
+<span class="alto-constant">version</span><span class="alto-punctuation">:</span> <span class="alto-string">1.0.0</span>
+<span class="alto-constant">description</span><span class="alto-punctuation">:</span> <span class="alto-string">&gt;</span>
+  <span class="alto-string">A</span> <span class="alto-string">state-of-the-art</span><span class="alto-punctuation">,</span> <span class="alto-string">semantic</span> <span class="alto-string">syntax</span> <span class="alto-string">highlighter</span>
+  <span class="alto-string">built</span> <span class="alto-string">specifically</span> <span class="alto-string">for</span> <span class="alto-string">PHP</span> <span class="alto-string">8.4+.</span>
+
+<span class="alto-constant">keywords</span><span class="alto-punctuation">:</span>
+  <span class="alto-punctuation">-</span> <span class="alto-string">php</span>
+  <span class="alto-punctuation">-</span> <span class="alto-string">syntax</span>
+  <span class="alto-punctuation">-</span> <span class="alto-string">highlighting</span>
+
+<span class="alto-constant">authors</span><span class="alto-punctuation">:</span>
+  <span class="alto-punctuation">-</span> <span class="alto-constant">name</span><span class="alto-punctuation">:</span> <span class="alto-string">Simon</span> <span class="alto-string">André</span>
+    <span class="alto-constant">email</span><span class="alto-punctuation">:</span> <span class="alto-string">smn.andre</span><span class="alto-function">@gmail.com</span>
+    <span class="alto-constant">role</span><span class="alto-punctuation">:</span> <span class="alto-string">Creator</span>
+
+<span class="alto-constant">dependencies</span><span class="alto-punctuation">:</span>
+  <span class="alto-constant">php</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;^8.4&quot;</span>
+  <span class="alto-constant">ext-mbstring</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;*&quot;</span>
+
+<span class="alto-comment"># Configuration</span>
+<span class="alto-constant">config</span><span class="alto-punctuation">:</span>
+  <span class="alto-constant">enabled</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+  <span class="alto-constant">theme</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;alto-dark&quot;</span>
+  <span class="alto-constant">languages</span><span class="alto-punctuation">:</span>
+    <span class="alto-punctuation">-</span> <span class="alto-string">php</span>
+    <span class="alto-punctuation">-</span> <span class="alto-string">html</span>
+    <span class="alto-punctuation">-</span> <span class="alto-string">css</span>
+    <span class="alto-punctuation">-</span> <span class="alto-string">javascript</span>
+    <span class="alto-punctuation">-</span> <span class="alto-string">yaml</span>
+
+<span class="alto-comment"># Advanced Features</span>
+<span class="alto-constant">features</span><span class="alto-punctuation">:</span>
+  <span class="alto-constant">semantic_parsing</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+  <span class="alto-constant">embedded_languages</span><span class="alto-punctuation">:</span>
+    <span class="alto-constant">html</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-string">css</span><span class="alto-punctuation">,</span> <span class="alto-string">javascript</span><span class="alto-punctuation">,</span> <span class="alto-string">php</span><span class="alto-punctuation">]</span>
+    <span class="alto-constant">markdown</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-string">php</span><span class="alto-punctuation">,</span> <span class="alto-string">json</span><span class="alto-punctuation">,</span> <span class="alto-string">yaml</span><span class="alto-punctuation">]</span>
+  
+  <span class="alto-constant">performance</span><span class="alto-punctuation">:</span>
+    <span class="alto-constant">caching</span><span class="alto-punctuation">:</span> <span class="alto-number">false</span>
+    <span class="alto-constant">memory_limit</span><span class="alto-punctuation">:</span> <span class="alto-string">128M</span>
+
+<span class="alto-comment"># Anchors and Aliases</span>
+<span class="alto-constant">defaults</span><span class="alto-punctuation">:</span> <span class="alto-variable">&amp;defaults</span>
+  <span class="alto-constant">adapter</span><span class="alto-punctuation">:</span> <span class="alto-string">local</span>
+  <span class="alto-constant">timeout</span><span class="alto-punctuation">:</span> <span class="alto-number">30</span>
+
+<span class="alto-constant">development</span><span class="alto-punctuation">:</span>
+  <span class="alto-punctuation">&lt;&lt;</span><span class="alto-punctuation">:</span> <span class="alto-variable">*defaults</span>
+  <span class="alto-constant">debug</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+
+<span class="alto-constant">production</span><span class="alto-punctuation">:</span>
+  <span class="alto-punctuation">&lt;&lt;</span><span class="alto-punctuation">:</span> <span class="alto-variable">*defaults</span>
+  <span class="alto-constant">debug</span><span class="alto-punctuation">:</span> <span class="alto-number">false</span>
+
+<span class="alto-comment"># Data Types</span>
+<span class="alto-constant">types</span><span class="alto-punctuation">:</span>
+  <span class="alto-constant">integer</span><span class="alto-punctuation">:</span> <span class="alto-number">42</span>
+  <span class="alto-constant">float</span><span class="alto-punctuation">:</span> <span class="alto-number">3.14159</span>
+  <span class="alto-constant">boolean</span><span class="alto-punctuation">:</span> <span class="alto-number">true</span>
+  <span class="alto-constant">null_value</span><span class="alto-punctuation">:</span> <span class="alto-number">null</span>
+  <span class="alto-constant">date</span><span class="alto-punctuation">:</span> <span class="alto-string">2023-12-25</span>
+  <span class="alto-constant">iso_time</span><span class="alto-punctuation">:</span> <span class="alto-string">2023-12-25T14:30:00Z</span>
+
+<span class="alto-comment"># Block Styles</span>
+<span class="alto-constant">scripts</span><span class="alto-punctuation">:</span> <span class="alto-string">|</span>
+  <span class="alto-string">echo</span> <span class="alto-string">&quot;Hello World&quot;</span><span class="alto-string">;</span>
+  <span class="alto-string">ls</span> <span class="alto-string">-la;</span>
+
+<span class="alto-constant">messages</span><span class="alto-punctuation">:</span> <span class="alto-string">&gt;</span>
+  <span class="alto-string">This</span> <span class="alto-string">is</span> <span class="alto-string">a</span> <span class="alto-string">folded</span> <span class="alto-string">style</span>
+  <span class="alto-string">where</span> <span class="alto-string">newlines</span> <span class="alto-string">are</span> <span class="alto-string">replaced</span>
+  <span class="alto-string">by</span> <span class="alto-string">spaces.</span>
+</code></pre>

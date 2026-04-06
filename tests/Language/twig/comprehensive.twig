@@ -1,0 +1,43 @@
+{# Base Layout #}
+{% extends "base.html.twig" %}
+
+{% block title %}Alto Code Highlight{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ page_title|title }}</h1>
+        
+        {# User Greeting with Filter #}
+        <p>Welcome back, {{ user.name|default('Guest')|upper }}!</p>
+
+        {# Date Formatting #}
+        <p>Today is {{ "now"|date("m/d/Y") }}</p>
+
+        {# Loop with Loop Variable #}
+        <ul class="feature-list">
+            {% for feature in features %}
+                <li class="{{ loop.first ? 'first-item' : '' }}">
+                    {{ feature.name }} - {{ feature.status|capitalize }}
+                </li>
+            {% else %}
+                <li>No features found.</li>
+            {% endfor %}
+        </ul>
+
+        {# Conditional Logic #}
+        {% if user.isAdmin %}
+            <button class="btn btn-danger">Admin Settings</button>
+        {% elseif user.isModerator %}
+            <button class="btn btn-warning">Mod Tools</button>
+        {% endif %}
+
+        {# Function Call #}
+        <div class="footer">
+            &copy; {{ date()|date('Y') }} {{ config('app.name') }}
+        </div>
+        
+        {# Macro Usage #}
+        {% import "forms.html.twig" as forms %}
+        {{ forms.input('email', 'user_email', user.email) }}
+    </div>
+{% endblock %}

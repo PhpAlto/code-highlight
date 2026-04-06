@@ -1,0 +1,191 @@
+<pre class="alto-highlight language-css"><code class="language-css"><span class="alto-comment">/* Comprehensive CSS Test - All Features */</span>
+
+<span class="alto-comment">/* Basic Selectors */</span>
+<span class="alto-keyword">body</span> <span class="alto-punctuation">{</span> <span class="alto-variable">margin</span><span class="alto-punctuation">:</span> <span class="alto-string">0</span><span class="alto-punctuation">;</span> <span class="alto-variable">padding</span><span class="alto-punctuation">:</span> <span class="alto-string">0</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">.container</span> <span class="alto-punctuation">{</span> <span class="alto-variable">width</span><span class="alto-punctuation">:</span> <span class="alto-constant">100%</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">#main</span> <span class="alto-punctuation">{</span> <span class="alto-variable">display</span><span class="alto-punctuation">:</span> <span class="alto-string">block</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">div</span> <span class="alto-punctuation">{</span> <span class="alto-variable">box-sizing</span><span class="alto-punctuation">:</span> <span class="alto-string">border-box</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Combinators */</span>
+<span class="alto-keyword">.parent</span> <span class="alto-punctuation">&gt;</span> <span class="alto-keyword">.child</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">blue</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">.sibling</span> <span class="alto-punctuation">+</span> <span class="alto-keyword">.next</span> <span class="alto-punctuation">{</span> <span class="alto-variable">margin-top</span><span class="alto-punctuation">:</span> <span class="alto-constant">1rem</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">.general</span> <span class="alto-punctuation">~</span> <span class="alto-keyword">.sibling</span> <span class="alto-punctuation">{</span> <span class="alto-variable">opacity</span><span class="alto-punctuation">:</span> <span class="alto-string">0.8</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">.ancestor</span> <span class="alto-keyword">.descendant</span> <span class="alto-punctuation">{</span> <span class="alto-variable">font-size</span><span class="alto-punctuation">:</span> <span class="alto-constant">14px</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Attribute Selectors */</span>
+<span class="alto-keyword">[data-theme]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-string">white</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[data-theme=&quot;dark&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-string">black</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[data-theme</span><span class="alto-punctuation">~</span><span class="alto-keyword">=&quot;responsive&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">width</span><span class="alto-punctuation">:</span> <span class="alto-string">auto</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[href^=&quot;https&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">green</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[href$=&quot;.pdf&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">red</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[href*=&quot;example&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">text-decoration</span><span class="alto-punctuation">:</span> <span class="alto-string">underline</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-keyword">[lang|=&quot;en&quot;]</span> <span class="alto-punctuation">{</span> <span class="alto-variable">font-family</span><span class="alto-punctuation">:</span> <span class="alto-string">Arial</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Pseudo-classes */</span>
+<span class="alto-variable">a:link</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">blue</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">a:visited</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">purple</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">a:hover</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">red</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">a:active</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">orange</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">a:focus</span> <span class="alto-punctuation">{</span> <span class="alto-variable">outline</span><span class="alto-punctuation">:</span> <span class="alto-constant">2px</span> <span class="alto-string">solid</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">input:checked</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-string">green</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">input:disabled</span> <span class="alto-punctuation">{</span> <span class="alto-variable">opacity</span><span class="alto-punctuation">:</span> <span class="alto-string">0.5</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">input:enabled</span> <span class="alto-punctuation">{</span> <span class="alto-variable">cursor</span><span class="alto-punctuation">:</span> <span class="alto-string">pointer</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">li:first-child</span> <span class="alto-punctuation">{</span> <span class="alto-variable">font-weight</span><span class="alto-punctuation">:</span> <span class="alto-string">bold</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">li:last-child</span> <span class="alto-punctuation">{</span> <span class="alto-variable">margin-bottom</span><span class="alto-punctuation">:</span> <span class="alto-string">0</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">li:nth-child(2n)</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-constant">#f0f0f0</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">li:nth-child(odd)</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-string">white</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">li:nth-of-type(3)</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">red</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">p:not(.special)</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">gray</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">:root</span> <span class="alto-punctuation">{</span> <span class="alto-variable">--primary</span><span class="alto-punctuation">:</span> <span class="alto-constant">#007bff</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::selection</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-string">yellow</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Pseudo-elements */</span>
+<span class="alto-variable">p::before</span> <span class="alto-punctuation">{</span> <span class="alto-variable">content</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;→ &quot;</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">p::after</span> <span class="alto-punctuation">{</span> <span class="alto-variable">content</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot; ←&quot;</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::first-line</span> <span class="alto-punctuation">{</span> <span class="alto-variable">font-weight</span><span class="alto-punctuation">:</span> <span class="alto-string">bold</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::first-letter</span> <span class="alto-punctuation">{</span> <span class="alto-variable">font-size</span><span class="alto-punctuation">:</span> <span class="alto-constant">2em</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::placeholder</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-constant">#999</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-variable">::marker</span> <span class="alto-punctuation">{</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">red</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* At-rules */</span>
+<span class="alto-keyword">@charset</span> <span class="alto-keyword">&quot;UTF-8&quot;</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">@import</span> <span class="alto-keyword">url(&quot;reset.css&quot;)</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">@import</span> <span class="alto-keyword">&quot;theme.css&quot;</span> <span class="alto-keyword">screen</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">@namespace</span> <span class="alto-variable">url(http://www.w3.org/1999/xhtml)</span><span class="alto-punctuation">;</span>
+<span class="alto-keyword">@namespace</span> <span class="alto-keyword">svg</span> <span class="alto-variable">url(http://www.w3.org/2000/svg)</span><span class="alto-punctuation">;</span>
+
+<span class="alto-keyword">@media</span> <span class="alto-keyword">screen</span> <span class="alto-keyword">and</span> <span class="alto-variable">(min-width:</span> <span class="alto-keyword">768px)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-string">.responsive</span> <span class="alto-punctuation">{</span> <span class="alto-variable">width</span><span class="alto-punctuation">:</span> <span class="alto-constant">50%</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">@media</span> <span class="alto-variable">(prefers-color-scheme:</span> <span class="alto-keyword">dark)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-string">body</span> <span class="alto-punctuation">{</span> <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-constant">#1a1a1a</span><span class="alto-punctuation">;</span> <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">white</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">@supports</span> <span class="alto-variable">(display:</span> <span class="alto-keyword">grid)</span> <span class="alto-punctuation">{</span>
+  <span class="alto-string">.grid</span> <span class="alto-punctuation">{</span> <span class="alto-variable">display</span><span class="alto-punctuation">:</span> <span class="alto-string">grid</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">@keyframes</span> <span class="alto-keyword">slideIn</span> <span class="alto-punctuation">{</span>
+  <span class="alto-constant">0%</span> <span class="alto-punctuation">{</span> <span class="alto-variable">transform</span><span class="alto-punctuation">:</span> <span class="alto-function">translateX(</span><span class="alto-constant">-100%</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+  <span class="alto-keyword">100%</span> <span class="alto-punctuation">{</span> <span class="alto-variable">transform</span><span class="alto-punctuation">:</span> <span class="alto-function">translateX(</span><span class="alto-string">0</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span> <span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">@font-face</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">font-family</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;Custom Font&quot;</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">src</span><span class="alto-punctuation">:</span> <span class="alto-function">url(</span><span class="alto-string">&quot;font.woff2&quot;</span><span class="alto-punctuation">)</span> <span class="alto-function">format(</span><span class="alto-string">&quot;woff2&quot;</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">@page</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">margin</span><span class="alto-punctuation">:</span> <span class="alto-constant">1cm</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* CSS Functions */</span>
+<span class="alto-keyword">.functions</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-function">rgb(</span><span class="alto-string">255</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-function">rgba(</span><span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">0.5</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">width</span><span class="alto-punctuation">:</span> <span class="alto-function">calc(</span><span class="alto-constant">100%</span> <span class="alto-string">-</span> <span class="alto-constant">20px</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">transform</span><span class="alto-punctuation">:</span> <span class="alto-function">rotate(</span><span class="alto-string">45deg</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">clip-path</span><span class="alto-punctuation">:</span> <span class="alto-function">polygon(</span><span class="alto-string">0</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-constant">100%</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-constant">100%</span> <span class="alto-constant">100%</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-function">linear-gradient(</span><span class="alto-string">to</span> <span class="alto-string">right</span><span class="alto-punctuation">,</span> <span class="alto-string">red</span><span class="alto-punctuation">,</span> <span class="alto-string">blue</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">filter</span><span class="alto-punctuation">:</span> <span class="alto-function">blur(</span><span class="alto-constant">5px</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">font-size</span><span class="alto-punctuation">:</span> <span class="alto-function">clamp(</span><span class="alto-constant">1rem</span><span class="alto-punctuation">,</span> <span class="alto-constant">2vw</span><span class="alto-punctuation">,</span> <span class="alto-constant">2rem</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">aspect-ratio</span><span class="alto-punctuation">:</span> <span class="alto-string">16</span> <span class="alto-string">/</span> <span class="alto-string">9</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* CSS Variables */</span>
+<span class="alto-variable">:root</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">--primary-color</span><span class="alto-punctuation">:</span> <span class="alto-constant">#007bff</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">--secondary-color</span><span class="alto-punctuation">:</span> <span class="alto-constant">#6c757d</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">--spacing</span><span class="alto-punctuation">:</span> <span class="alto-constant">1rem</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">--border-radius</span><span class="alto-punctuation">:</span> <span class="alto-constant">4px</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">.themed</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-function">var(</span><span class="alto-string">--primary-color</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">padding</span><span class="alto-punctuation">:</span> <span class="alto-function">var(</span><span class="alto-string">--spacing</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-function">var(</span><span class="alto-string">--secondary-color</span><span class="alto-punctuation">,</span> <span class="alto-string">gray</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Units */</span>
+<span class="alto-keyword">.units</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">width</span><span class="alto-punctuation">:</span> <span class="alto-constant">100px</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">height</span><span class="alto-punctuation">:</span> <span class="alto-constant">50%</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">margin</span><span class="alto-punctuation">:</span> <span class="alto-constant">1em</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">padding</span><span class="alto-punctuation">:</span> <span class="alto-constant">2rem</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">font-size</span><span class="alto-punctuation">:</span> <span class="alto-constant">16pt</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">line-height</span><span class="alto-punctuation">:</span> <span class="alto-string">1.5</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">max-width</span><span class="alto-punctuation">:</span> <span class="alto-constant">80vw</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">min-height</span><span class="alto-punctuation">:</span> <span class="alto-constant">100vh</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">border-width</span><span class="alto-punctuation">:</span> <span class="alto-constant">2mm</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">letter-spacing</span><span class="alto-punctuation">:</span> <span class="alto-string">0.1ch</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Colors */</span>
+<span class="alto-keyword">.colors</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-constant">#fff</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">background</span><span class="alto-punctuation">:</span> <span class="alto-constant">#000000</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">border-color</span><span class="alto-punctuation">:</span> <span class="alto-function">rgb(</span><span class="alto-string">255</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">outline-color</span><span class="alto-punctuation">:</span> <span class="alto-function">rgba(</span><span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">255</span><span class="alto-punctuation">,</span> <span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-string">0.5</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">box-shadow</span><span class="alto-punctuation">:</span> <span class="alto-string">0</span> <span class="alto-string">0</span> <span class="alto-constant">10px</span> <span class="alto-function">hsl(</span><span class="alto-string">200</span><span class="alto-punctuation">,</span> <span class="alto-constant">100%</span><span class="alto-punctuation">,</span> <span class="alto-constant">50%</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">text-shadow</span><span class="alto-punctuation">:</span> <span class="alto-constant">2px</span> <span class="alto-constant">2px</span> <span class="alto-function">hsla(</span><span class="alto-string">0</span><span class="alto-punctuation">,</span> <span class="alto-constant">0%</span><span class="alto-punctuation">,</span> <span class="alto-constant">0%</span><span class="alto-punctuation">,</span> <span class="alto-string">0.3</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">caret-color</span><span class="alto-punctuation">:</span> <span class="alto-string">currentColor</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Important */</span>
+<span class="alto-keyword">.override</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">color</span><span class="alto-punctuation">:</span> <span class="alto-string">red</span> <span class="alto-keyword">!important</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">font-size</span><span class="alto-punctuation">:</span> <span class="alto-constant">20px</span> <span class="alto-keyword">!important</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Vendor Prefixes */</span>
+<span class="alto-keyword">.vendor</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">-webkit-transform</span><span class="alto-punctuation">:</span> <span class="alto-function">scale(</span><span class="alto-string">1.1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">-moz-transform</span><span class="alto-punctuation">:</span> <span class="alto-function">scale(</span><span class="alto-string">1.1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">-ms-transform</span><span class="alto-punctuation">:</span> <span class="alto-function">scale(</span><span class="alto-string">1.1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">-o-transform</span><span class="alto-punctuation">:</span> <span class="alto-function">scale(</span><span class="alto-string">1.1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">transform</span><span class="alto-punctuation">:</span> <span class="alto-function">scale(</span><span class="alto-string">1.1</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+
+  <span class="alto-variable">-webkit-user-select</span><span class="alto-punctuation">:</span> <span class="alto-string">none</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">-moz-user-select</span><span class="alto-punctuation">:</span> <span class="alto-string">none</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">-ms-user-select</span><span class="alto-punctuation">:</span> <span class="alto-string">none</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">user-select</span><span class="alto-punctuation">:</span> <span class="alto-string">none</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Grid &amp; Flexbox */</span>
+<span class="alto-keyword">.grid</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">display</span><span class="alto-punctuation">:</span> <span class="alto-string">grid</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">grid-template-columns</span><span class="alto-punctuation">:</span> <span class="alto-function">repeat(</span><span class="alto-string">3</span><span class="alto-punctuation">,</span> <span class="alto-string">1fr</span><span class="alto-punctuation">)</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">grid-gap</span><span class="alto-punctuation">:</span> <span class="alto-constant">1rem</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">grid-auto-flow</span><span class="alto-punctuation">:</span> <span class="alto-string">dense</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-keyword">.flex</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">display</span><span class="alto-punctuation">:</span> <span class="alto-string">flex</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">justify-content</span><span class="alto-punctuation">:</span> <span class="alto-string">space-between</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">align-items</span><span class="alto-punctuation">:</span> <span class="alto-string">center</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">flex-wrap</span><span class="alto-punctuation">:</span> <span class="alto-string">wrap</span><span class="alto-punctuation">;</span>
+  <span class="alto-variable">gap</span><span class="alto-punctuation">:</span> <span class="alto-constant">1rem</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Multi-line values */</span>
+<span class="alto-keyword">.fonts</span> <span class="alto-punctuation">{</span>
+  <span class="alto-variable">font-family</span><span class="alto-punctuation">:</span> <span class="alto-string">-apple-system,</span> <span class="alto-string">BlinkMacSystemFont,</span> <span class="alto-string">&quot;Segoe UI&quot;</span><span class="alto-string">,</span> <span class="alto-string">Roboto,</span>
+    <span class="alto-string">&quot;Helvetica Neue&quot;</span><span class="alto-string">,</span> <span class="alto-string">Arial,</span> <span class="alto-string">sans-serif</span><span class="alto-punctuation">;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Empty rules */</span>
+<span class="alto-keyword">.empty</span> <span class="alto-punctuation">{</span> <span class="alto-punctuation">}</span>
+
+<span class="alto-comment">/* Comments */</span>
+<span class="alto-comment">/* Single line comment */</span>
+
+<span class="alto-comment">/*</span>
+<span class="alto-comment"> * Multi-line comment</span>
+<span class="alto-comment"> * with multiple lines</span>
+<span class="alto-comment"> */</span>
+
+<span class="alto-comment">/** Documentation style comment */</span>
+</code></pre>

@@ -1,0 +1,196 @@
+{
+  "string": "simple string",
+  "escaped_string": "Line 1\\nLine 2\\tTab",
+  "unicode": "Unicode \\u00A9 \\u2665",
+  "quotes": "Quote: \\" and backslash: \\\\",
+  "empty_string": "",
+
+  "number_integer": 42,
+  "number_negative": -123,
+  "number_zero": 0,
+  "number_float": 3.14,
+  "number_negative_float": -2.71,
+  "number_exponent": 1.5e10,
+  "number_exponent_negative": 2.3e-5,
+  "number_exponent_positive": 4.5e+3,
+
+  "boolean_true": true,
+  "boolean_false": false,
+
+  "null_value": null,
+
+  "empty_array": [],
+  "array_simple": [1, 2, 3],
+  "array_mixed": [
+    "string",
+    42,
+    true,
+    false,
+    null,
+    [],
+    {}
+  ],
+  "array_nested": [
+    [1, 2, 3],
+    [4, 5, 6],
+    [
+      [7, 8],
+      [9, 10]
+    ]
+  ],
+
+  "empty_object": {},
+  "object_nested": {
+    "level1": {
+      "level2": {
+        "level3": {
+          "deep": "value"
+        }
+      }
+    }
+  },
+
+  "mixed_structure": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Alice",
+        "active": true,
+        "balance": 123.45,
+        "tags": ["admin", "user"]
+      },
+      {
+        "id": 2,
+        "name": "Bob",
+        "active": false,
+        "balance": -10.5,
+        "tags": []
+      }
+    ],
+    "metadata": {
+      "count": 2,
+      "page": 1,
+      "hasMore": false
+    }
+  },
+
+  "whitespace_variations": {
+    "compact":{"no":"spaces"},
+    "spaced": { "with" : "spaces" },
+    "mixed"  :  {  "lots"  :  "of"  ,  "spaces"  :  true  }
+  },
+
+  "key_variations": {
+    "simple": 1,
+    "with spaces": 2,
+    "with-dashes": 3,
+    "with_underscores": 4,
+    "with.dots": 5,
+    "with$pecial": 6,
+    "UPPERCASE": 7,
+    "camelCase": 8,
+    "snake_case": 9,
+    "kebab-case": 10,
+    "123numeric": 11,
+    "_underscore": 12,
+    "$dollar": 13
+  },
+
+  "edge_numbers": {
+    "leading_zero": 0.123,
+    "trailing_zeros": 1.000,
+    "very_small": 0.0001,
+    "very_large": 999999999999,
+    "scientific_upper": 1.5E10,
+    "scientific_lower": 1.5e10,
+    "scientific_plus": 1.5e+10,
+    "scientific_minus": 1.5e-10
+  },
+
+  "edge_strings": {
+    "forward_slash": "path\\/to\\/file",
+    "backspace": "before\\bafter",
+    "form_feed": "before\\fafter",
+    "carriage_return": "before\\rafter",
+    "all_escapes": "\\\" \\\\ \\/ \\b \\f \\n \\r \\t",
+    "unicode_escape": "\\u0041\\u0042\\u0043",
+    "emoji": "😀 🎉 🚀",
+    "long_string": "This is a very long string that contains many characters and words to test how the parser handles longer text content that might span multiple lines in the source but is represented as a single JSON string value"
+  },
+
+  "arrays_edge_cases": {
+    "single_element": [42],
+    "trailing_comma_not_allowed": [1, 2, 3],
+    "multi_type": [1, "two", 3.0, true, null, [], {}],
+    "deeply_nested": [[[[[[[[["deep"]]]]]]]]]
+  },
+
+  "objects_edge_cases": {
+    "single_property": {
+      "only": "one"
+    },
+    "many_properties": {
+      "prop1": 1,
+      "prop2": 2,
+      "prop3": 3,
+      "prop4": 4,
+      "prop5": 5,
+      "prop6": 6,
+      "prop7": 7,
+      "prop8": 8,
+      "prop9": 9,
+      "prop10": 10
+    }
+  },
+
+  "real_world_examples": {
+    "api_response": {
+      "status": 200,
+      "success": true,
+      "data": {
+        "items": [
+          {
+            "id": "abc123",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-02T12:34:56Z",
+            "tags": ["important", "urgent"],
+            "metadata": {
+              "source": "api",
+              "version": "1.2.3"
+            }
+          }
+        ],
+        "pagination": {
+          "total": 100,
+          "offset": 0,
+          "limit": 10
+        }
+      },
+      "errors": null
+    },
+
+    "config": {
+      "app": {
+        "name": "MyApp",
+        "version": "1.0.0",
+        "debug": false,
+        "url": "https://example.com",
+        "timezone": "UTC"
+      },
+      "database": {
+        "host": "localhost",
+        "port": 5432,
+        "username": "admin",
+        "password": "secret",
+        "database": "mydb"
+      },
+      "features": {
+        "authentication": true,
+        "caching": true,
+        "logging": true
+      }
+    }
+  },
+
+  "final_property": "last value"
+}

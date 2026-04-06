@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- Edge cases for HTML coverage -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Cases</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .class { color: red; }
+        #id { background: blue; }
+        [data-attr] { display: flex; }
+        @media (min-width: 768px) {
+            .responsive { width: 100%; }
+        }
+    </style>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        const x = 42;
+        function hello() {
+            console.log("Hello");
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            hello();
+        });
+    </script>
+
+    <script src="external.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- All HTML elements -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h1>Main Heading</h1>
+            <h2>Subheading</h2>
+            <h3>Level 3</h3>
+            <h4>Level 4</h4>
+            <h5>Level 5</h5>
+            <h6>Level 6</h6>
+
+            <p>Paragraph with <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <s>strikethrough</s>.</p>
+
+            <p>More formatting: <b>bold</b>, <i>italic</i>, <mark>highlighted</mark>, <small>small</small>, <del>deleted</del>, <ins>inserted</ins>, <sub>subscript</sub>, <sup>superscript</sup>.</p>
+
+            <blockquote cite="https://example.com">
+                <p>Quoted text</p>
+                <footer>— Citation</footer>
+            </blockquote>
+
+            <pre><code>Preformatted code block</code></pre>
+
+            <code>inline code</code>
+            <kbd>Ctrl</kbd>+<kbd>C</kbd>
+            <samp>Sample output</samp>
+            <var>variable</var>
+
+            <abbr title="HyperText Markup Language">HTML</abbr>
+            <dfn>Definition</dfn>
+            <cite>Citation</cite>
+            <q>Inline quote</q>
+            <time datetime="2024-01-01">January 1, 2024</time>
+
+            <a href="https://example.com">External link</a>
+            <a href="/page">Internal link</a>
+            <a href="#anchor">Anchor link</a>
+            <a href="mailto:email@example.com">Email</a>
+            <a href="tel:+1234567890">Phone</a>
+
+            <figure>
+                <img src="image.jpg" alt="Description" width="300" height="200">
+                <figcaption>Image caption</figcaption>
+            </figure>
+
+            <picture>
+                <source srcset="image.webp" type="image/webp">
+                <source srcset="image.jpg" type="image/jpeg">
+                <img src="fallback.jpg" alt="Responsive image">
+            </picture>
+
+            <ul>
+                <li>Unordered item 1</li>
+                <li>Unordered item 2
+                    <ul>
+                        <li>Nested item</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ol>
+                <li>Ordered item 1</li>
+                <li>Ordered item 2</li>
+            </ol>
+
+            <dl>
+                <dt>Term</dt>
+                <dd>Definition</dd>
+                <dt>Another term</dt>
+                <dd>Another definition</dd>
+            </dl>
+
+            <table>
+                <caption>Table caption</caption>
+                <thead>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data 1</td>
+                        <td>Data 2</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Footer</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <form action="/submit" method="post">
+                <fieldset>
+                    <legend>Form Legend</legend>
+
+                    <label for="text">Text input:</label>
+                    <input type="text" id="text" name="text" value="default" placeholder="Enter text" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+
+                    <label for="number">Number:</label>
+                    <input type="number" id="number" name="number" min="0" max="100" step="5">
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time">
+
+                    <label for="color">Color:</label>
+                    <input type="color" id="color" name="color">
+
+                    <label for="range">Range:</label>
+                    <input type="range" id="range" name="range" min="0" max="100">
+
+                    <label for="file">File:</label>
+                    <input type="file" id="file" name="file" multiple>
+
+                    <label for="search">Search:</label>
+                    <input type="search" id="search" name="search">
+
+                    <label for="tel">Tel:</label>
+                    <input type="tel" id="tel" name="tel">
+
+                    <label for="url">URL:</label>
+                    <input type="url" id="url" name="url">
+
+                    <input type="checkbox" id="checkbox" name="checkbox">
+                    <label for="checkbox">Checkbox</label>
+
+                    <input type="radio" id="radio1" name="radio" value="1">
+                    <label for="radio1">Radio 1</label>
+                    <input type="radio" id="radio2" name="radio" value="2">
+                    <label for="radio2">Radio 2</label>
+
+                    <label for="select">Select:</label>
+                    <select id="select" name="select">
+                        <option value="">Choose</option>
+                        <option value="1">Option 1</option>
+                        <option value="2" selected>Option 2</option>
+                        <optgroup label="Group">
+                            <option value="3">Option 3</option>
+                        </optgroup>
+                    </select>
+
+                    <label for="textarea">Textarea:</label>
+                    <textarea id="textarea" name="textarea" rows="5" cols="30">Default text</textarea>
+
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                    <button type="button" onclick="alert('Clicked')">Button</button>
+
+                    <input type="submit" value="Submit Input">
+                    <input type="reset" value="Reset Input">
+                    <input type="button" value="Button Input">
+                </fieldset>
+            </form>
+
+            <details>
+                <summary>Click to expand</summary>
+                <p>Hidden content</p>
+            </details>
+
+            <dialog open>
+                <p>Dialog content</p>
+            </dialog>
+
+            <meter value="0.6">60%</meter>
+            <progress value="70" max="100">70%</progress>
+
+            <audio controls>
+                <source src="audio.mp3" type="audio/mpeg">
+                <source src="audio.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <video controls width="300" height="200">
+                <source src="video.mp4" type="video/mp4">
+                <source src="video.webm" type="video/webm">
+                <track src="subtitles.vtt" kind="subtitles" srclang="en" label="English">
+                Your browser does not support the video element.
+            </video>
+
+            <canvas id="canvas" width="300" height="200"></canvas>
+
+            <svg width="100" height="100">
+                <circle cx="50" cy="50" r="40" fill="red" />
+            </svg>
+
+            <iframe src="https://example.com" width="300" height="200"></iframe>
+
+            <embed src="document.pdf" type="application/pdf" width="300" height="200">
+            <object data="document.pdf" type="application/pdf" width="300" height="200"></object>
+
+            <br>
+            <hr>
+            <wbr>
+
+            <span>Inline span</span>
+            <div>Block div</div>
+
+            <template id="template">
+                <div>Template content</div>
+            </template>
+
+            <slot name="slot"></slot>
+
+            <map name="imagemap">
+                <area shape="rect" coords="0,0,50,50" href="link.html" alt="Area">
+            </map>
+        </article>
+
+        <aside>
+            <section>
+                <h3>Aside section</h3>
+            </section>
+        </aside>
+    </main>
+
+    <footer>
+        <address>
+            <a href="mailto:email@example.com">Contact us</a>
+        </address>
+        <small>&copy; 2024</small>
+    </footer>
+
+    <!-- HTML entities -->
+    <p>&lt; &gt; &amp; &quot; &apos; &nbsp; &copy; &reg; &trade;</p>
+
+    <!-- Data attributes -->
+    <div data-id="123" data-name="value" data-toggle="modal">Data attributes</div>
+
+    <!-- ARIA attributes -->
+    <button aria-label="Close" aria-expanded="false" role="button">ARIA</button>
+
+    <!-- Custom elements -->
+    <custom-element attribute="value"></custom-element>
+
+    <!-- Self-closing tags -->
+    <input type="text" />
+    <br />
+    <img src="image.jpg" alt="Alt" />
+
+    <!-- Void elements -->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <img src="image.jpg" alt="Alt">
+    <br>
+    <hr>
+    <input type="text">
+
+    <!-- Inline event handlers -->
+    <button onclick="alert('Click')">Click me</button>
+    <div onmouseover="console.log('hover')">Hover</div>
+
+    <!-- Script types -->
+    <script type="text/javascript">
+        console.log("JavaScript");
+    </script>
+
+    <script type="module">
+        import { func } from './module.js';
+    </script>
+
+    <script type="application/json">
+        {"key": "value"}
+    </script>
+
+    <!-- Style scoped -->
+    <style scoped>
+        p { color: green; }
+    </style>
+
+    <!-- Noscript -->
+    <noscript>
+        <p>JavaScript is required.</p>
+    </noscript>
+
+    <!-- Base -->
+    <base href="https://example.com/" target="_blank">
+
+    <!-- Comments edge cases -->
+    <!-- Simple comment -->
+    <!--
+        Multi-line
+        comment
+    -->
+    <!-- Comment with -- dashes -- inside -->
+
+    <!-- Conditional comments (IE) -->
+    <!--[if IE]>
+        <p>IE only</p>
+    <![endif]-->
+
+    <!-- Document structure -->
+    <html>
+        <head></head>
+        <body></body>
+    </html>
+</body>
+</html>

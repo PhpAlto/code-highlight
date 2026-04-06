@@ -1,0 +1,153 @@
+<pre class="alto-highlight language-go"><code class="language-go"><span class="alto-comment">// Edge cases for Go coverage</span>
+<span class="alto-keyword">package</span> <span class="alto-variable">main</span>
+
+<span class="alto-comment">// Built-in constants</span>
+<span class="alto-keyword">const</span> <span class="alto-punctuation">(</span>
+	<span class="alto-variable">First</span> <span class="alto-operator">=</span> <span class="alto-constant">iota</span>
+	<span class="alto-variable">Second</span>
+	<span class="alto-variable">Third</span>
+<span class="alto-punctuation">)</span>
+
+<span class="alto-comment">// Method with receiver - simple</span>
+<span class="alto-keyword">type</span> <span class="alto-type">Greeter</span> <span class="alto-keyword">struct</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">g</span> <span class="alto-type">Greeter</span><span class="alto-punctuation">)</span> <span class="alto-function">Greet</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-type">string</span> <span class="alto-punctuation">{</span>
+	<span class="alto-keyword">return</span> <span class="alto-string">&quot;Hello&quot;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Method with pointer receiver</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">g</span> <span class="alto-operator">*</span><span class="alto-type">Greeter</span><span class="alto-punctuation">)</span> <span class="alto-function">GreetPtr</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-type">string</span> <span class="alto-punctuation">{</span>
+	<span class="alto-keyword">return</span> <span class="alto-string">&quot;Hi&quot;</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Method with nested parentheses in receiver type (edge case)</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">g</span> <span class="alto-operator">*</span><span class="alto-punctuation">(</span><span class="alto-punctuation">(</span><span class="alto-operator">*</span><span class="alto-type">Greeter</span><span class="alto-punctuation">)</span><span class="alto-punctuation">)</span><span class="alto-punctuation">)</span> <span class="alto-function">NestedPtr</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Function after keyword</span>
+<span class="alto-keyword">type</span> <span class="alto-type">MyType</span> <span class="alto-type">int</span>
+<span class="alto-keyword">func</span> <span class="alto-function">TypeFunc</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Built-in functions</span>
+<span class="alto-keyword">func</span> <span class="alto-function">test</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">append</span><span class="alto-punctuation">(</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">,</span> <span class="alto-number">1</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">len</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;test&quot;</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">cap</span><span class="alto-punctuation">(</span><span class="alto-function">make</span><span class="alto-punctuation">(</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">,</span> <span class="alto-number">0</span><span class="alto-punctuation">,</span> <span class="alto-number">10</span><span class="alto-punctuation">)</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">make</span><span class="alto-punctuation">(</span><span class="alto-keyword">map</span><span class="alto-punctuation">[</span><span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">new</span><span class="alto-punctuation">(</span><span class="alto-type">int</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">panic</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;error&quot;</span><span class="alto-punctuation">)</span>
+	<span class="alto-keyword">defer</span> <span class="alto-function">recover</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">print</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;msg&quot;</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">println</span><span class="alto-punctuation">(</span><span class="alto-string">&quot;msg&quot;</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">complex</span><span class="alto-punctuation">(</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">real</span><span class="alto-punctuation">(</span><span class="alto-number">1</span><span class="alto-operator">+</span><span class="alto-number">2i</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">imag</span><span class="alto-punctuation">(</span><span class="alto-number">3</span><span class="alto-operator">+</span><span class="alto-number">4i</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">copy</span><span class="alto-punctuation">(</span><span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">close</span><span class="alto-punctuation">(</span><span class="alto-function">make</span><span class="alto-punctuation">(</span><span class="alto-keyword">chan</span> <span class="alto-type">int</span><span class="alto-punctuation">)</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">delete</span><span class="alto-punctuation">(</span><span class="alto-keyword">map</span><span class="alto-punctuation">[</span><span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">,</span> <span class="alto-string">&quot;key&quot;</span><span class="alto-punctuation">)</span>
+	<span class="alto-function">clear</span><span class="alto-punctuation">(</span><span class="alto-keyword">map</span><span class="alto-punctuation">[</span><span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">max</span><span class="alto-punctuation">(</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">)</span>
+	<span class="alto-variable">_</span> <span class="alto-operator">=</span> <span class="alto-function">min</span><span class="alto-punctuation">(</span><span class="alto-number">4</span><span class="alto-punctuation">,</span> <span class="alto-number">5</span><span class="alto-punctuation">,</span> <span class="alto-number">6</span><span class="alto-punctuation">)</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Built-in types</span>
+<span class="alto-keyword">var</span> <span class="alto-punctuation">(</span>
+	<span class="alto-variable">b</span> <span class="alto-type">bool</span>
+	<span class="alto-variable">bt</span> <span class="alto-type">byte</span>
+	<span class="alto-variable">r</span> <span class="alto-type">rune</span>
+	<span class="alto-variable">i</span> <span class="alto-type">int</span>
+	<span class="alto-variable">i8</span> <span class="alto-type">int8</span>
+	<span class="alto-variable">i16</span> <span class="alto-type">int16</span>
+	<span class="alto-variable">i32</span> <span class="alto-type">int32</span>
+	<span class="alto-variable">i64</span> <span class="alto-type">int64</span>
+	<span class="alto-variable">u</span> <span class="alto-type">uint</span>
+	<span class="alto-variable">u8</span> <span class="alto-type">uint8</span>
+	<span class="alto-variable">u16</span> <span class="alto-type">uint16</span>
+	<span class="alto-variable">u32</span> <span class="alto-type">uint32</span>
+	<span class="alto-variable">u64</span> <span class="alto-type">uint64</span>
+	<span class="alto-variable">up</span> <span class="alto-type">uintptr</span>
+	<span class="alto-variable">f32</span> <span class="alto-type">float32</span>
+	<span class="alto-variable">f64</span> <span class="alto-type">float64</span>
+	<span class="alto-variable">c64</span> <span class="alto-type">complex64</span>
+	<span class="alto-variable">c128</span> <span class="alto-type">complex128</span>
+	<span class="alto-variable">s</span> <span class="alto-type">string</span>
+	<span class="alto-variable">e</span> <span class="alto-type">error</span>
+	<span class="alto-variable">a</span> <span class="alto-type">any</span>
+	<span class="alto-variable">comp</span> <span class="alto-type">comparable</span>
+<span class="alto-punctuation">)</span>
+
+<span class="alto-comment">// State transitions</span>
+<span class="alto-keyword">func</span> <span class="alto-function">StateTest</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-comment">// Keywords that reset state</span>
+	<span class="alto-keyword">if</span> <span class="alto-number">true</span> <span class="alto-punctuation">{</span>
+		<span class="alto-keyword">var</span> <span class="alto-variable">x</span> <span class="alto-type">int</span>
+		<span class="alto-keyword">const</span> <span class="alto-variable">y</span> <span class="alto-operator">=</span> <span class="alto-number">1</span>
+		<span class="alto-keyword">for</span> <span class="alto-keyword">range</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">]</span><span class="alto-type">int</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+		<span class="alto-keyword">switch</span> <span class="alto-number">1</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+		<span class="alto-keyword">go</span> <span class="alto-keyword">func</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>
+		<span class="alto-keyword">defer</span> <span class="alto-keyword">func</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>
+		<span class="alto-keyword">return</span>
+	<span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Nested receivers (edge case)</span>
+<span class="alto-keyword">func</span> <span class="alto-function">NestedReceiverTest</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Type keyword</span>
+<span class="alto-keyword">type</span> <span class="alto-type">NewType</span> <span class="alto-operator">=</span> <span class="alto-variable">OldType</span>
+<span class="alto-keyword">type</span> <span class="alto-type">AliasType</span> <span class="alto-variable">OtherType</span>
+
+<span class="alto-comment">// Interface and struct keywords</span>
+<span class="alto-keyword">type</span> <span class="alto-type">MyInterface</span> <span class="alto-keyword">interface</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-keyword">type</span> <span class="alto-type">MyStruct</span> <span class="alto-keyword">struct</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Method receiver edge cases - multiple scenarios</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">r</span> <span class="alto-type">MyStruct</span><span class="alto-punctuation">)</span> <span class="alto-function">Method1</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">r</span> <span class="alto-operator">*</span><span class="alto-type">MyStruct</span><span class="alto-punctuation">)</span> <span class="alto-function">Method2</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">r</span> <span class="alto-operator">*</span><span class="alto-operator">*</span><span class="alto-type">MyStruct</span><span class="alto-punctuation">)</span> <span class="alto-function">Method3</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Receiver with first identifier tracking</span>
+<span class="alto-keyword">func</span> <span class="alto-punctuation">(</span><span class="alto-variable">receiver</span> <span class="alto-type">ReceiverType</span><span class="alto-punctuation">)</span> <span class="alto-function">MethodName</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-comment">// receiver is VariableParameter</span>
+	<span class="alto-comment">// ReceiverType is TypeReference</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Function definition vs call distinction</span>
+<span class="alto-keyword">func</span> <span class="alto-function">definedFunc</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-keyword">func</span> <span class="alto-function">caller</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-function">definedFunc</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>  <span class="alto-comment">// Call</span>
+	<span class="alto-function">caller</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span>       <span class="alto-comment">// Call (self-call)</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Type definition vs reference</span>
+<span class="alto-keyword">type</span> <span class="alto-type">DefinedType</span> <span class="alto-type">int</span>
+<span class="alto-keyword">func</span> <span class="alto-function">useType</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-keyword">var</span> <span class="alto-variable">x</span> <span class="alto-variable">DefinedType</span>  <span class="alto-comment">// Reference</span>
+	<span class="alto-keyword">var</span> <span class="alto-variable">y</span> <span class="alto-type">int</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// State transitions after non-func/type keywords</span>
+<span class="alto-keyword">func</span> <span class="alto-function">keywordTest</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-keyword">import</span> <span class="alto-string">&quot;fmt&quot;</span>  <span class="alto-comment">// Reset state</span>
+	<span class="alto-keyword">package</span> <span class="alto-variable">main</span>  <span class="alto-comment">// Reset state</span>
+	<span class="alto-keyword">var</span> <span class="alto-variable">x</span> <span class="alto-type">int</span>     <span class="alto-comment">// Reset state</span>
+	<span class="alto-keyword">const</span> <span class="alto-variable">c</span> <span class="alto-operator">=</span> <span class="alto-number">1</span>   <span class="alto-comment">// Reset state</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Edge: function in ExpectingFunctionOrReceiver without (</span>
+<span class="alto-keyword">func</span> <span class="alto-function">standalone</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Edge: type after &#039;type&#039; keyword</span>
+<span class="alto-keyword">type</span> <span class="alto-type">TypeAfterType</span> <span class="alto-operator">=</span> <span class="alto-type">int</span>
+
+<span class="alto-comment">// Edge: identifier that&#039;s not a function call (no parentheses)</span>
+<span class="alto-keyword">func</span> <span class="alto-function">varTest</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-variable">myVar</span> <span class="alto-operator">:=</span> <span class="alto-number">10</span>
+	<span class="alto-variable">otherVar</span> <span class="alto-operator">:=</span> <span class="alto-variable">myVar</span>  <span class="alto-comment">// Not a call</span>
+<span class="alto-punctuation">}</span>
+
+<span class="alto-comment">// Channel and map types</span>
+<span class="alto-keyword">func</span> <span class="alto-function">typeTest</span><span class="alto-punctuation">(</span><span class="alto-punctuation">)</span> <span class="alto-punctuation">{</span>
+	<span class="alto-keyword">var</span> <span class="alto-variable">ch</span> <span class="alto-keyword">chan</span> <span class="alto-type">int</span>
+	<span class="alto-keyword">var</span> <span class="alto-variable">m</span> <span class="alto-keyword">map</span><span class="alto-punctuation">[</span><span class="alto-type">string</span><span class="alto-punctuation">]</span><span class="alto-type">int</span>
+	<span class="alto-keyword">var</span> <span class="alto-variable">i</span> <span class="alto-keyword">interface</span><span class="alto-punctuation">{</span><span class="alto-punctuation">}</span>
+<span class="alto-punctuation">}</span>
+</code></pre>

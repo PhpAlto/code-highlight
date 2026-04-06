@@ -1,0 +1,435 @@
+<pre class="alto-highlight language-makefile"><code class="language-makefile"><span class="alto-comment"># Comprehensive Makefile Test - All Features</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Comments</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-comment"># Single-line comment</span>
+<span class="alto-comment"># Another comment</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Variables - Simple Assignment</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">VAR </span><span class="alto-operator">=</span> value
+<span class="alto-variable">CC </span><span class="alto-operator">=</span> gcc
+<span class="alto-variable">CXX </span><span class="alto-operator">=</span> g++
+<span class="alto-variable">CFLAGS </span><span class="alto-operator">=</span> -Wall -Wextra -O2
+<span class="alto-variable">LDFLAGS </span><span class="alto-operator">=</span> -lm
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Variables - Immediate Assignment</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">NOW </span><span class="alto-punctuation">:</span><span class="alto-operator">=</span> <span class="alto-variable">$(shell date)</span>
+<span class="alto-function">SOURCES </span><span class="alto-punctuation">:</span><span class="alto-operator">=</span> <span class="alto-variable">$(wildcard *.c)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Variables - Conditional Assignment</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">PREFIX ?</span><span class="alto-operator">=</span> /usr/local
+<span class="alto-variable">DESTDIR ?</span><span class="alto-operator">=</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Variables - Append Assignment</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">CFLAGS +</span><span class="alto-operator">=</span> -g
+<span class="alto-variable">LDFLAGS +</span><span class="alto-operator">=</span> -lpthread
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Variable References</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">OUTPUT </span><span class="alto-operator">=</span> <span class="alto-variable">$(PREFIX)</span>/bin
+<span class="alto-variable">INCLUDE </span><span class="alto-operator">=</span> <span class="alto-variable">${PREFIX}</span>/<span class="alto-keyword">include</span>
+<span class="alto-variable">LIB_DIR </span><span class="alto-operator">=</span> <span class="alto-variable">$(PREFIX)</span>/lib
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Automatic Variables</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-comment"># $@  - target name</span>
+<span class="alto-comment"># $&lt;  - first prerequisite</span>
+<span class="alto-comment"># $^  - all prerequisites</span>
+<span class="alto-comment"># $?  - prerequisites newer than target</span>
+<span class="alto-comment"># $*  - stem in pattern rule</span>
+<span class="alto-comment"># $+  - all prerequisites (with duplicates)</span>
+<span class="alto-comment"># $%  - archive member specification</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># .PHONY Targets</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-constant">.PHONY</span>: all clean install uninstall test help
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Default Target</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">all</span><span class="alto-punctuation">:</span> build test
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Pattern Rules</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">%.o</span><span class="alto-punctuation">:</span> %.c
+	<span class="alto-variable">$(CC)</span> <span class="alto-variable">$(CFLAGS)</span> -<span class="alto-function">c</span> <span class="alto-variable">$&lt;</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span>
+
+<span class="alto-function">%.o</span><span class="alto-punctuation">:</span> %.cpp
+	<span class="alto-variable">$(CXX)</span> <span class="alto-variable">$(CXXFLAGS)</span> -<span class="alto-function">c</span> <span class="alto-variable">$&lt;</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Explicit Rules</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">build</span><span class="alto-punctuation">:</span><span class="alto-function"> $(SOURCES</span><span class="alto-punctuation">:</span><span class="alto-variable">.c</span><span class="alto-operator">=</span>.o)
+	<span class="alto-variable">$(CC)</span> <span class="alto-variable">$(CFLAGS)</span> <span class="alto-variable">$^</span> -<span class="alto-function">o</span> <span class="alto-function">app</span> <span class="alto-variable">$(LDFLAGS)</span>
+
+<span class="alto-function">program</span><span class="alto-punctuation">:</span> main.o utils.o
+	<span class="alto-variable">$(CC)</span> <span class="alto-variable">$^</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span> <span class="alto-variable">$(LDFLAGS)</span>
+
+<span class="alto-function">main.o</span><span class="alto-punctuation">:</span> main.c header.h
+	<span class="alto-variable">$(CC)</span> <span class="alto-variable">$(CFLAGS)</span> -<span class="alto-function">c</span> <span class="alto-variable">$&lt;</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span>
+
+<span class="alto-function">utils.o</span><span class="alto-punctuation">:</span> utils.c utils.h
+	<span class="alto-variable">$(CC)</span> <span class="alto-variable">$(CFLAGS)</span> -<span class="alto-function">c</span> <span class="alto-variable">$&lt;</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Multiple Targets</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">lib.a</span><span class="alto-punctuation">:</span> <span class="alto-variable">$(OBJECTS)</span>
+	<span class="alto-function">ar</span> <span class="alto-function">rcs</span> <span class="alto-variable">$@</span> <span class="alto-variable">$^</span>
+	<span class="alto-function">ranlib</span> <span class="alto-variable">$@</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Commands with Multiple Lines</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">install</span><span class="alto-punctuation">:</span>
+	<span class="alto-function">mkdir</span> -<span class="alto-function">p</span> <span class="alto-variable">$(DESTDIR)</span><span class="alto-variable">$(PREFIX)</span>/<span class="alto-function">bin</span>
+	<span class="alto-function">cp</span> <span class="alto-function">app</span> <span class="alto-variable">$(DESTDIR)</span><span class="alto-variable">$(PREFIX)</span>/<span class="alto-function">bin</span>/
+	<span class="alto-function">chmod</span> 755 <span class="alto-variable">$(DESTDIR)</span><span class="alto-variable">$(PREFIX)</span>/<span class="alto-function">bin</span>/<span class="alto-function">app</span>
+
+<span class="alto-function">uninstall</span><span class="alto-punctuation">:</span>
+	<span class="alto-function">rm</span> -<span class="alto-function">f</span> <span class="alto-variable">$(DESTDIR)</span><span class="alto-variable">$(PREFIX)</span>/<span class="alto-function">bin</span>/<span class="alto-function">app</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Conditional Directives</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-keyword">ifdef</span> DEBUG
+<span class="alto-variable">CFLAGS +</span><span class="alto-operator">=</span> -DDEBUG -g
+<span class="alto-keyword">else</span>
+<span class="alto-variable">CFLAGS +</span><span class="alto-operator">=</span> -DNDEBUG
+<span class="alto-keyword">endif</span>
+
+<span class="alto-keyword">ifndef</span> VERBOSE
+<span class="alto-function">.SILENT</span><span class="alto-punctuation">:</span>
+<span class="alto-keyword">endif</span>
+
+<span class="alto-keyword">ifeq</span> (<span class="alto-variable">$(OS)</span>,Windows_NT)
+<span class="alto-variable">EXE </span><span class="alto-operator">=</span> .exe
+<span class="alto-variable">RM </span><span class="alto-operator">=</span> del
+<span class="alto-keyword">else</span>
+<span class="alto-variable">EXE </span><span class="alto-operator">=</span>
+<span class="alto-variable">RM </span><span class="alto-operator">=</span> rm -f
+<span class="alto-keyword">endif</span>
+
+<span class="alto-keyword">ifneq</span> (<span class="alto-variable">$(MAKECMDGOALS)</span>,clean)
+-<span class="alto-keyword">include</span> <span class="alto-variable">$(DEPS)</span>
+<span class="alto-keyword">endif</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Include Directives</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-keyword">include</span> config.mk
+-<span class="alto-keyword">include</span> local.mk
+<span class="alto-keyword">sinclude</span> optional.mk
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Text Manipulation</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">SOURCES_C </span><span class="alto-operator">=</span> <span class="alto-variable">$(wildcard src/*.c)</span>
+<span class="alto-variable">SOURCES_CPP </span><span class="alto-operator">=</span> <span class="alto-variable">$(wildcard src/*.cpp)</span>
+<span class="alto-variable">ALL_SOURCES </span><span class="alto-operator">=</span> <span class="alto-variable">$(SOURCES_C)</span> <span class="alto-variable">$(SOURCES_CPP)</span>
+
+<span class="alto-variable">OBJECTS </span><span class="alto-operator">=</span> <span class="alto-variable">$(patsubst %.c,%.o,$(SOURCES_C))</span>
+<span class="alto-variable">OBJECTS +</span><span class="alto-operator">=</span> <span class="alto-variable">$(patsubst %.cpp,%.o,$(SOURCES_CPP))</span>
+
+<span class="alto-variable">DIRS </span><span class="alto-operator">=</span> <span class="alto-variable">$(sort $(dir $(SOURCES)))</span>
+
+<span class="alto-variable">BASENAMES </span><span class="alto-operator">=</span> <span class="alto-variable">$(basename $(SOURCES))</span>
+<span class="alto-variable">SUFFIXES </span><span class="alto-operator">=</span> <span class="alto-variable">$(suffix $(SOURCES))</span>
+
+<span class="alto-variable">DEPS </span><span class="alto-operator">=</span><span class="alto-function"> $(SOURCES</span><span class="alto-punctuation">:</span><span class="alto-variable">.c</span><span class="alto-operator">=</span>.d)
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - File Names</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">SRC_DIR </span><span class="alto-operator">=</span> <span class="alto-variable">$(dir src/main.c)</span>
+<span class="alto-variable">SRC_NAME </span><span class="alto-operator">=</span> <span class="alto-variable">$(notdir src/main.c)</span>
+<span class="alto-variable">SRC_BASE </span><span class="alto-operator">=</span> <span class="alto-variable">$(basename src/main.c)</span>
+<span class="alto-variable">SRC_SUFFIX </span><span class="alto-operator">=</span> <span class="alto-variable">$(suffix src/main.c)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Substitution</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">FILES </span><span class="alto-operator">=</span> <span class="alto-variable">$(subst .c,.o,$(SOURCES))</span>
+<span class="alto-variable">FILES2 </span><span class="alto-operator">=</span> <span class="alto-variable">$(patsubst src/%,build/%,$(SOURCES))</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Filter</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">C_FILES </span><span class="alto-operator">=</span> <span class="alto-variable">$(filter %.c,$(ALL_SOURCES))</span>
+<span class="alto-variable">CPP_FILES </span><span class="alto-operator">=</span> <span class="alto-variable">$(filter %.cpp,$(ALL_SOURCES))</span>
+<span class="alto-variable">NO_TEST </span><span class="alto-operator">=</span> <span class="alto-variable">$(filter-out %_test.c,$(SOURCES))</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - String</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">STRIPPED </span><span class="alto-operator">=</span> <span class="alto-variable">$(strip   foo   bar   )</span>
+<span class="alto-variable">FIRST_WORD </span><span class="alto-operator">=</span> <span class="alto-variable">$(firstword $(SOURCES))</span>
+<span class="alto-variable">LAST_WORD </span><span class="alto-operator">=</span> <span class="alto-variable">$(lastword $(SOURCES))</span>
+<span class="alto-variable">WORD_COUNT </span><span class="alto-operator">=</span> <span class="alto-variable">$(words $(SOURCES))</span>
+<span class="alto-variable">THIRD_WORD </span><span class="alto-operator">=</span> <span class="alto-variable">$(word 3,$(SOURCES))</span>
+<span class="alto-variable">RANGE </span><span class="alto-operator">=</span> <span class="alto-variable">$(wordlist 2,5,$(SOURCES))</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - File Operations</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">ABS_PATH </span><span class="alto-operator">=</span> <span class="alto-variable">$(abspath src/main.c)</span>
+<span class="alto-variable">REAL_PATH </span><span class="alto-operator">=</span> <span class="alto-variable">$(realpath src/main.c)</span>
+<span class="alto-variable">WILDCARDS </span><span class="alto-operator">=</span> <span class="alto-variable">$(wildcard *.c *.h)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Shell</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">GIT_HASH </span><span class="alto-operator">=</span> <span class="alto-variable">$(shell git rev-parse --short HEAD)</span>
+<span class="alto-variable">DATE </span><span class="alto-operator">=</span> <span class="alto-variable">$(shell date +%Y-%m-%d)</span>
+<span class="alto-variable">UNAME </span><span class="alto-operator">=</span> <span class="alto-variable">$(shell uname -s)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Control</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">CHECK </span><span class="alto-operator">=</span> <span class="alto-variable">$(if $(DEBUG),debug,release)</span>
+<span class="alto-variable">RESULT </span><span class="alto-operator">=</span> <span class="alto-variable">$(or $(VAR1),$(VAR2),default)</span>
+<span class="alto-variable">BOTH </span><span class="alto-operator">=</span> <span class="alto-variable">$(and $(VAR1),$(VAR2))</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Foreach</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">DIRS </span><span class="alto-operator">=</span> src lib bin
+<span class="alto-variable">CREATE_DIRS </span><span class="alto-operator">=</span> <span class="alto-variable">$(foreach dir,$(DIRS),$(shell mkdir -p $(dir)))</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Functions - Call</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-keyword">define</span> compile-c
+<span class="alto-variable">$(1)</span><span class="alto-function">.o</span><span class="alto-punctuation">:</span> <span class="alto-variable">$(1)</span>.c
+	<span class="alto-variable">$(CC)</span> <span class="alto-variable">$(CFLAGS)</span> -<span class="alto-function">c</span> $<span class="alto-variable">$&lt;</span> -<span class="alto-function">o</span> $<span class="alto-variable">$@</span>
+<span class="alto-keyword">endef</span>
+
+<span class="alto-variable">$(foreach src,$(BASENAMES),$(eval $(call compile-c,$(src))))</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Multi-Line Variables (define)</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-keyword">define</span> HELP_TEXT
+<span class="alto-function">Usage</span><span class="alto-punctuation">:</span> make [target]
+
+<span class="alto-function">Targets</span><span class="alto-punctuation">:</span>
+  all      - Build everything
+  build    - Build the program
+  clean    - Remove build artifacts
+  install  - Install the program
+  test     - Run tests
+  help     - Show this help
+<span class="alto-keyword">endef</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Export Variables</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-keyword">export</span> CC
+<span class="alto-keyword">export</span> CFLAGS
+<span class="alto-keyword">unexport</span> INTERNAL_VAR
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Override Directive</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">override CFLAGS +</span><span class="alto-operator">=</span> -DOVERRIDE
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Private Variables (GNU Make 3.82+)</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">private INTERNAL </span><span class="alto-operator">=</span> secret
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># VPATH</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">VPATH </span><span class="alto-operator">=</span><span class="alto-function"> src</span><span class="alto-punctuation">:</span><span class="alto-function">lib</span><span class="alto-punctuation">:</span><span class="alto-keyword">include</span>
+<span class="alto-keyword">vpath</span> %.c src
+<span class="alto-keyword">vpath</span> %.h <span class="alto-keyword">include</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Special Targets</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">.SUFFIXES</span><span class="alto-punctuation">:</span>
+<span class="alto-function">.SUFFIXES</span><span class="alto-punctuation">:</span> .c .o .h
+
+<span class="alto-function">.DEFAULT_GOAL </span><span class="alto-punctuation">:</span><span class="alto-operator">=</span> all
+
+<span class="alto-function">.DELETE_ON_ERROR</span><span class="alto-punctuation">:</span>
+
+<span class="alto-function">.SECONDARY</span><span class="alto-punctuation">:</span> <span class="alto-variable">$(OBJECTS)</span>
+
+<span class="alto-function">.PRECIOUS</span><span class="alto-punctuation">:</span> %.o
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Complex Targets</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">clean</span><span class="alto-punctuation">:</span>
+	<span class="alto-variable">$(RM)</span> *.<span class="alto-function">o</span>
+	<span class="alto-variable">$(RM)</span> *.<span class="alto-function">d</span>
+	<span class="alto-variable">$(RM)</span> <span class="alto-function">app</span><span class="alto-variable">$(EXE)</span>
+	<span class="alto-variable">$(RM)</span> -<span class="alto-function">r</span> <span class="alto-function">build</span>/
+
+<span class="alto-function">distclean</span><span class="alto-punctuation">:</span> clean
+	<span class="alto-variable">$(RM)</span> <span class="alto-function">config</span>.<span class="alto-function">mk</span>
+
+<span class="alto-function">test</span><span class="alto-punctuation">:</span> build
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;Running tests...&quot;</span>
+	./<span class="alto-function">app</span> --<span class="alto-function">test</span>
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;Tests completed&quot;</span>
+
+<span class="alto-function">help</span><span class="alto-punctuation">:</span>
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;$(HELP_TEXT)&quot;</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Quiet Output</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">quiet_CC </span><span class="alto-operator">=</span> @echo <span class="alto-string">&quot;  CC    $@&quot;</span>; <span class="alto-variable">$(CC)</span>
+<span class="alto-variable">quiet_LD </span><span class="alto-operator">=</span> @echo <span class="alto-string">&quot;  LD    $@&quot;</span>; <span class="alto-variable">$(CC)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Dependency Generation</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">%.d</span><span class="alto-punctuation">:</span> %.c
+	@<span class="alto-function">set</span> -<span class="alto-function">e</span>; <span class="alto-function">rm</span> -<span class="alto-function">f</span> <span class="alto-variable">$@</span>; \
+	<span class="alto-variable">$(CC)</span> -<span class="alto-function">MM</span> <span class="alto-variable">$(CFLAGS)</span> <span class="alto-variable">$&lt;</span> &gt; <span class="alto-variable">$@</span>.$$$$; \
+	<span class="alto-function">sed</span> <span class="alto-string">&#039;s,\($*\)\.o[ :]*,\1.o $@ : ,g&#039;</span> &lt; <span class="alto-variable">$@</span>.$$$$ &gt; <span class="alto-variable">$@</span>; \
+	<span class="alto-function">rm</span> -<span class="alto-function">f</span> <span class="alto-variable">$@</span>.$$$$
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Archive Creation</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">libmylib.a</span><span class="alto-punctuation">:</span> <span class="alto-variable">$(LIB_OBJECTS)</span>
+	<span class="alto-variable">$(AR)</span> <span class="alto-function">rcs</span> <span class="alto-variable">$@</span> <span class="alto-variable">$^</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Shared Library</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">libmylib.so</span><span class="alto-punctuation">:</span> <span class="alto-variable">$(LIB_OBJECTS)</span>
+	<span class="alto-variable">$(CC)</span> -<span class="alto-function">shared</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span> <span class="alto-variable">$^</span> <span class="alto-variable">$(LDFLAGS)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Static Pattern Rules</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">OBJECTS </span><span class="alto-operator">=</span> foo.o bar.o baz.o
+<span class="alto-variable">$(OBJECTS)</span>:<span class="alto-function"> %.o</span><span class="alto-punctuation">:</span> %.c
+	<span class="alto-variable">$(CC)</span> -<span class="alto-function">c</span> <span class="alto-variable">$(CFLAGS)</span> <span class="alto-variable">$&lt;</span> -<span class="alto-function">o</span> <span class="alto-variable">$@</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Double-Colon Rules</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">all</span><span class="alto-punctuation">:</span>: build
+<span class="alto-function">all</span><span class="alto-punctuation">:</span>: test
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Order-Only Prerequisites</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-variable">$(OBJECTS)</span>: | build
+
+<span class="alto-function">build</span><span class="alto-punctuation">:</span>
+	<span class="alto-function">mkdir</span> -<span class="alto-function">p</span> <span class="alto-function">build</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Grouped Targets (GNU Make 4.3+)</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">lib.so lib.h &amp;</span><span class="alto-punctuation">:</span> source.c
+	./<span class="alto-function">generate-lib</span>.<span class="alto-function">sh</span> <span class="alto-variable">$&lt;</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Complex Recipe</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">release</span><span class="alto-punctuation">:</span> clean
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;Building release version...&quot;</span>
+	<span class="alto-variable">$(MAKE)</span> <span class="alto-function">CFLAGS</span>=<span class="alto-string">&quot;-O3 -DNDEBUG&quot;</span>
+	<span class="alto-function">strip</span> <span class="alto-function">app</span>
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;Release build complete&quot;</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Conditional Commands</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">check</span><span class="alto-punctuation">:</span>
+<span class="alto-keyword">ifeq</span> (<span class="alto-variable">$(shell test -f app &amp;&amp; echo yes)</span>,yes)
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;App exists&quot;</span>
+<span class="alto-keyword">else</span>
+	@<span class="alto-function">echo</span> <span class="alto-string">&quot;App not found&quot;</span>
+	<span class="alto-variable">$(MAKE)</span> <span class="alto-function">build</span>
+<span class="alto-keyword">endif</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Recursive Make</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">subdirs</span><span class="alto-punctuation">:</span>
+	<span class="alto-function">for</span> <span class="alto-function">dir</span> <span class="alto-function">in</span> <span class="alto-variable">$(SUBDIRS)</span>; <span class="alto-function">do</span> \
+		<span class="alto-variable">$(MAKE)</span> -<span class="alto-function">C</span> $$<span class="alto-function">dir</span>; \
+	<span class="alto-function">done</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># Error Messages</span>
+<span class="alto-comment"># ==============================================================================</span>
+
+<span class="alto-function">check-env</span><span class="alto-punctuation">:</span>
+<span class="alto-keyword">ifndef</span> PREFIX
+	<span class="alto-variable">$(error PREFIX is not set)</span>
+<span class="alto-keyword">endif</span>
+	<span class="alto-variable">$(warning This is a warning)</span>
+	<span class="alto-variable">$(info This is info)</span>
+
+<span class="alto-comment"># ==============================================================================</span>
+<span class="alto-comment"># End</span>
+<span class="alto-comment"># ==============================================================================</span>
+</code></pre>

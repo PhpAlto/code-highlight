@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simple XML document -->
+<root>
+    <book id="1" category="fiction">
+        <title lang="en">The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <year>1925</year>
+    </book>
+    <empty-element />
+</root>

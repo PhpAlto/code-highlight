@@ -1,0 +1,190 @@
+/* Comprehensive CSS Test - All Features */
+
+/* Basic Selectors */
+body { margin: 0; padding: 0; }
+.container { width: 100%; }
+#main { display: block; }
+div { box-sizing: border-box; }
+
+/* Combinators */
+.parent > .child { color: blue; }
+.sibling + .next { margin-top: 1rem; }
+.general ~ .sibling { opacity: 0.8; }
+.ancestor .descendant { font-size: 14px; }
+
+/* Attribute Selectors */
+[data-theme] { background: white; }
+[data-theme="dark"] { background: black; }
+[data-theme~="responsive"] { width: auto; }
+[href^="https"] { color: green; }
+[href$=".pdf"] { color: red; }
+[href*="example"] { text-decoration: underline; }
+[lang|="en"] { font-family: Arial; }
+
+/* Pseudo-classes */
+a:link { color: blue; }
+a:visited { color: purple; }
+a:hover { color: red; }
+a:active { color: orange; }
+a:focus { outline: 2px solid; }
+input:checked { background: green; }
+input:disabled { opacity: 0.5; }
+input:enabled { cursor: pointer; }
+li:first-child { font-weight: bold; }
+li:last-child { margin-bottom: 0; }
+li:nth-child(2n) { background: #f0f0f0; }
+li:nth-child(odd) { background: white; }
+li:nth-of-type(3) { color: red; }
+p:not(.special) { color: gray; }
+:root { --primary: #007bff; }
+::selection { background: yellow; }
+
+/* Pseudo-elements */
+p::before { content: "→ "; }
+p::after { content: " ←"; }
+::first-line { font-weight: bold; }
+::first-letter { font-size: 2em; }
+::placeholder { color: #999; }
+::marker { color: red; }
+
+/* At-rules */
+@charset "UTF-8";
+
+@import url("reset.css");
+@import "theme.css" screen;
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@media screen and (min-width: 768px) {
+  .responsive { width: 50%; }
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background: #1a1a1a; color: white; }
+}
+
+@supports (display: grid) {
+  .grid { display: grid; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@font-face {
+  font-family: "Custom Font";
+  src: url("font.woff2") format("woff2");
+}
+
+@page {
+  margin: 1cm;
+}
+
+/* CSS Functions */
+.functions {
+  color: rgb(255, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  width: calc(100% - 20px);
+  transform: rotate(45deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  background: linear-gradient(to right, red, blue);
+  filter: blur(5px);
+  font-size: clamp(1rem, 2vw, 2rem);
+  aspect-ratio: 16 / 9;
+}
+
+/* CSS Variables */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --spacing: 1rem;
+  --border-radius: 4px;
+}
+
+.themed {
+  color: var(--primary-color);
+  padding: var(--spacing);
+  background: var(--secondary-color, gray);
+}
+
+/* Units */
+.units {
+  width: 100px;
+  height: 50%;
+  margin: 1em;
+  padding: 2rem;
+  font-size: 16pt;
+  line-height: 1.5;
+  max-width: 80vw;
+  min-height: 100vh;
+  border-width: 2mm;
+  letter-spacing: 0.1ch;
+}
+
+/* Colors */
+.colors {
+  color: #fff;
+  background: #000000;
+  border-color: rgb(255, 0, 0);
+  outline-color: rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 10px hsl(200, 100%, 50%);
+  text-shadow: 2px 2px hsla(0, 0%, 0%, 0.3);
+  caret-color: currentColor;
+}
+
+/* Important */
+.override {
+  color: red !important;
+  font-size: 20px !important;
+}
+
+/* Vendor Prefixes */
+.vendor {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Grid & Flexbox */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Multi-line values */
+.fonts {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Empty rules */
+.empty { }
+
+/* Comments */
+/* Single line comment */
+
+/*
+ * Multi-line comment
+ * with multiple lines
+ */
+
+/** Documentation style comment */

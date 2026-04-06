@@ -1,0 +1,55 @@
+<pre class="alto-highlight language-markdown"><code class="language-markdown"><span class="alto-keyword">#</span> <span class="alto-keyword">Full Coverage Test</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Horizontal rules with leading whitespace</span>
+
+   <span class="alto-punctuation">---</span>
+  <span class="alto-punctuation">***</span>
+ <span class="alto-punctuation">___</span>
+
+<span class="alto-keyword">##</span> <span class="alto-keyword">Code blocks</span>
+
+<span class="alto-punctuation">Empty code block:</span>
+<span class="alto-string">```</span>
+
+<span class="alto-string">```</span>
+
+<span class="alto-punctuation">Unclosed code block (should consume to end):</span>
+<span class="alto-string">```javascript</span>
+<span class="alto-keyword">const</span> <span class="alto-variable">x</span> <span class="alto-operator">=</span> <span class="alto-number">1</span><span class="alto-punctuation">;</span>
+<span class="alto-comment">// No closing fence</span>
+
+ <span class="alto-variable">Inline</span> <span class="alto-variable">formatting</span> <span class="alto-variable">edge</span> <span class="alto-variable">cases</span>
+
+<span class="alto-operator">**</span><span class="alto-variable">bold</span> <span class="alto-variable">text</span><span class="alto-operator">**</span> <span class="alto-variable">and</span> <span class="alto-variable">__also</span> <span class="alto-variable">bold__</span>
+<span class="alto-operator">*</span><span class="alto-variable">italic</span> <span class="alto-variable">text</span><span class="alto-operator">*</span> <span class="alto-variable">and</span> <span class="alto-variable">_also</span> <span class="alto-variable">italic_</span>
+<span class="alto-operator">~</span><span class="alto-operator">~</span><span class="alto-variable">strikethrough</span><span class="alto-operator">~</span><span class="alto-operator">~</span>
+<span class="alto-string">`inline code`</span>
+
+<span class="alto-variable">Unclosed</span> <span class="alto-variable">special</span> <span class="alto-variable">characters</span> <span class="alto-variable">that</span> <span class="alto-variable">become</span> <span class="alto-variable">plain</span> <span class="alto-variable">text</span><span class="alto-operator">:</span>
+<span class="alto-variable">This</span> <span class="alto-variable">has</span> <span class="alto-variable">a</span> <span class="alto-variable">lone</span> <span class="alto-operator">*</span> <span class="alto-variable">asterisk</span>
+<span class="alto-variable">And</span> <span class="alto-variable">a</span> <span class="alto-variable">lone</span> <span class="alto-variable">_</span> <span class="alto-variable">underscore</span>
+<span class="alto-variable">A</span> <span class="alto-variable">single</span> <span class="alto-operator">~</span> <span class="alto-variable">tilde</span>
+<span class="alto-variable">A</span> <span class="alto-variable">lone</span> <span class="alto-string">` backtick</span>
+
+<span class="alto-string">## Links and images edge cases</span>
+
+<span class="alto-string">Normal link: [text](https://example.com)</span>
+<span class="alto-string">Unclosed link [text](incomplete</span>
+
+<span class="alto-string">Normal image: ![alt text](image.png)</span>
+<span class="alto-string">Unclosed image ![alt](incomplete</span>
+
+<span class="alto-string">## Tables</span>
+
+<span class="alto-string">| Column 1 | Column 2 | Column 3 |</span>
+<span class="alto-string">|----------|----------|----------|</span>
+<span class="alto-string">| data | | empty cell |</span>
+<span class="alto-string">||also empty||</span>
+
+<span class="alto-string">## Lists with varied markers</span>
+
+<span class="alto-string">- Dash list</span>
+<span class="alto-string">* Asterisk list</span>
+<span class="alto-string">+ Plus list</span>
+<span class="alto-string">1. Numbered</span>
+<span class="alto-string">2. List</span></code></pre>

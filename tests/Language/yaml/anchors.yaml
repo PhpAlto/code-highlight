@@ -1,0 +1,15 @@
+# YAML Anchors and Aliases
+default_settings: &defaults
+  debug: true
+  logging:
+    level: info
+    file: /var/log/app.log
+
+web_server:
+  <<: *defaults
+  port: 80
+  host: example.com
+
+worker:
+  <<: *defaults
+  concurrency: 10

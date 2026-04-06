@@ -1,0 +1,40 @@
+<pre class="alto-highlight language-yaml"><code class="language-yaml"><span class="alto-comment"># Edge cases for YAML coverage</span>
+
+<span class="alto-comment"># Symfony parameters</span>
+<span class="alto-constant">env</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;%env(APP_ENV)%&#039;</span>
+<span class="alto-constant">parameter_ref</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;%kernel.project_dir%&#039;</span>
+<span class="alto-constant">nested</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;%inner.%outer%%&#039;</span>
+
+<span class="alto-comment"># Symfony services</span>
+<span class="alto-constant">service1</span><span class="alto-punctuation">:</span> <span class="alto-function">@logger</span>
+<span class="alto-constant">optional_service</span><span class="alto-punctuation">:</span> <span class="alto-function">@?cache.pool</span>
+<span class="alto-constant">expression_service</span><span class="alto-punctuation">:</span> <span class="alto-function">@=service</span><span class="alto-string">(</span><span class="alto-string">&#039;router&#039;</span><span class="alto-string">).generate(</span><span class="alto-string">&#039;home&#039;</span><span class="alto-string">)</span>
+
+<span class="alto-comment"># YAML tags</span>
+<span class="alto-constant">tagged</span><span class="alto-punctuation">:</span> <span class="alto-keyword">!custom</span> <span class="alto-string">some_value</span>
+<span class="alto-constant">php_const</span><span class="alto-punctuation">:</span> <span class="alto-keyword">!php/const</span> <span class="alto-string">PHP_VERSION</span>
+<span class="alto-constant">binary_data</span><span class="alto-punctuation">:</span> <span class="alto-keyword">!</span><span class="alto-keyword">!binary</span> <span class="alto-string">dGVzdA==</span>
+
+<span class="alto-comment"># Quoted strings with escaping</span>
+<span class="alto-constant">escaped_double</span><span class="alto-punctuation">:</span> <span class="alto-string">&quot;Line 1\nLine 2\tTab&quot;</span>
+<span class="alto-constant">escaped_single</span><span class="alto-punctuation">:</span> <span class="alto-string">&#039;Can&#039;</span><span class="alto-string">&#039;t escape much&#039;</span>
+
+<span class="alto-comment"># Arrays and objects with inline notation</span>
+<span class="alto-constant">inline_array</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-number">1</span><span class="alto-punctuation">,</span> <span class="alto-number">2</span><span class="alto-punctuation">,</span> <span class="alto-number">3</span><span class="alto-punctuation">,</span> <span class="alto-number">4</span><span class="alto-punctuation">]</span>
+<span class="alto-constant">inline_object</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">{</span><span class="alto-string">key1:</span> <span class="alto-string">value1</span><span class="alto-punctuation">,</span> <span class="alto-string">key2:</span> <span class="alto-string">value2</span><span class="alto-punctuation">,</span> <span class="alto-string">key3:</span> <span class="alto-string">value3</span><span class="alto-punctuation">}</span>
+<span class="alto-constant">mixed</span><span class="alto-punctuation">:</span> <span class="alto-punctuation">[</span><span class="alto-punctuation">{</span><span class="alto-string">a:</span> <span class="alto-number">1</span><span class="alto-punctuation">}</span><span class="alto-punctuation">,</span> <span class="alto-punctuation">{</span><span class="alto-string">b:</span> <span class="alto-number">2</span><span class="alto-punctuation">}</span><span class="alto-punctuation">]</span>
+
+<span class="alto-comment"># Edge whitespace handling</span>
+  <span class="alto-constant">leading_spaces</span><span class="alto-punctuation">:</span> <span class="alto-string">value</span>
+	<span class="alto-constant">tabs_before</span><span class="alto-punctuation">:</span> <span class="alto-string">content</span>
+
+<span class="alto-comment"># List items followed by values</span>
+<span class="alto-punctuation">-</span> <span class="alto-string">item1</span>
+<span class="alto-punctuation">-</span> <span class="alto-constant">item2</span><span class="alto-punctuation">:</span> <span class="alto-string">with_value</span>
+<span class="alto-punctuation">-</span> <span class="alto-string">item3</span>
+
+<span class="alto-comment"># Multiple anchors and aliases on same line</span>
+<span class="alto-punctuation">&amp;</span><span class="alto-variable">anchor1</span> <span class="alto-constant">key1</span><span class="alto-punctuation">:</span> <span class="alto-variable">&amp;anchor2</span> <span class="alto-string">value</span>
+<span class="alto-constant">alias1</span><span class="alto-punctuation">:</span> <span class="alto-variable">*anchor1</span>
+<span class="alto-constant">alias2</span><span class="alto-punctuation">:</span> <span class="alto-variable">*anchor2</span>
+</code></pre>
