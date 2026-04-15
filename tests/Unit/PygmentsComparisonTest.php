@@ -37,12 +37,10 @@ final class PygmentsComparisonTest extends TestCase
 {
     private static string $pygmentsScript;
 
+    private static ?string $pythonCommand = null;
+
     /**
      * Map of Alto Scope → simplified category for comparison.
-     *
-     * The categories are intentionally coarse to account for legitimate
-     * differences between highlighters (e.g., one may call `echo` a keyword,
-     * another a builtin function).
      */
     private const array SCOPE_TO_CATEGORY = [
         // Comments
@@ -123,41 +121,26 @@ final class PygmentsComparisonTest extends TestCase
 
     /**
      * Tokens that may legitimately differ between highlighters.
-     *
-     * For example, `echo` in PHP could be classified as a keyword or a builtin function,
-     * and `true` could be a keyword or a boolean literal. These mappings define which
-     * category combinations are considered equivalent.
      */
     private const array EQUIVALENT_CATEGORIES = [
-        // Boolean literals may be classified as keywords or constants
         ['constant', 'keyword'],
-        // Some identifiers may be classified as functions or variables
         ['function', 'variable'],
-        // Builtin types/functions might be constants or keywords
         ['type', 'constant'],
         ['type', 'keyword'],
         ['function', 'keyword'],
-        // Some things may be classified as attributes or properties
         ['attribute', 'property'],
         ['attribute', 'constant'],
         ['attribute', 'variable'],
         ['attribute', 'keyword'],
-        // Tags
         ['tag', 'keyword'],
-        // Punctuation vs operators (common disagreement between tokenizers)
         ['punctuation', 'operator'],
-        // Punctuation vs comments (e.g. <?php open tag)
         ['punctuation', 'comment'],
-        // Operators like & in Rust or and/or in Python may be classified as keywords
         ['operator', 'keyword'],
-        // Some unstructured text tokens may be treated as strings by other highlighters
         ['other', 'string'],
     ];
 
     /**
      * Code samples for each language, designed to exercise common constructs.
-     *
-     * @return array<string, string>
      */
     private static function getLanguageSamples(): array
     {
@@ -268,22 +251,43 @@ const x: number = 42;',
 
     private static function isPygmentsAvailable(): bool
     {
-        $output = [];
-        $returnCode = 0;
-        exec('python3 -c "import pygments" 2>&1', $output, $returnCode);
+        if (null !== self::$pythonCommand) {
+            return true;
+        }
 
-        return 0 === $returnCode;
+        if (!function_exists('proc_open')) {
+            return false;
+        }
+
+        foreach (['python3', 'python'] as $cmd) {
+            $process = @proc_open(
+                [$cmd, '-c', 'import pygments'],
+                [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+                $pipes
+            );
+
+            if (is_resource($process)) {
+                fclose($pipes[1]);
+                fclose($pipes[2]);
+                if (0 === proc_close($process)) {
+                    self::$pythonCommand = $cmd;
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
-    /**
-     * Get Pygments tokens for a code sample.
-     *
-     * @return list<array{text: string, category: string}>
-     */
     private static function getPygmentsTokens(string $language, string $code): array
     {
+        if (!self::isPygmentsAvailable()) {
+            self::fail('Pygments is not available');
+        }
+
         $process = proc_open(
-            ['python3', self::$pygmentsScript, $language],
+            [self::$pythonCommand, self::$pygmentsScript, $language],
             [
                 0 => ['pipe', 'r'],
                 1 => ['pipe', 'w'],
@@ -300,24 +304,32 @@ const x: number = 42;',
         fclose($pipes[0]);
 
         $output = stream_get_contents($pipes[1]);
+        $errorOutput = stream_get_contents($pipes[2]);
         fclose($pipes[1]);
         fclose($pipes[2]);
 
-        proc_close($process);
+        $exitCode = proc_close($process);
 
-        $result = json_decode($output, true);
+        $result = json_decode((string) $output, true);
         if (!is_array($result) || isset($result['error'])) {
-            self::fail('Pygments error: '.($result['error'] ?? 'unknown'));
+            $message = $result['error'] ?? 'unknown error (no JSON output)';
+            if (!is_array($result)) {
+                $message .= sprintf(
+                    "\nOutput: %s\nStderr: %s\nExit Code: %d\nCommand: %s %s %s",
+                    $output ?: '(empty)',
+                    $errorOutput ?: '(empty)',
+                    $exitCode,
+                    self::$pythonCommand,
+                    self::$pygmentsScript,
+                    $language
+                );
+            }
+            self::fail('Pygments error: '.$message);
         }
 
         return $result['tokens'];
     }
 
-    /**
-     * Get Alto tokens for a code sample.
-     *
-     * @return list<array{text: string, scope: string, category: string}>
-     */
     private static function getAltoTokens(string $language, string $code): array
     {
         $languages = Languages::getDefaultLanguages();
@@ -355,9 +367,6 @@ const x: number = 42;',
         return $tokens;
     }
 
-    /**
-     * Check if two categories are considered equivalent.
-     */
     private static function areCategoriesEquivalent(string $a, string $b): bool
     {
         if ($a === $b) {
@@ -373,9 +382,6 @@ const x: number = 42;',
         return false;
     }
 
-    /**
-     * @return array<string, array{string}>
-     */
     public static function languageProvider(): array
     {
         $samples = self::getLanguageSamples();
@@ -386,13 +392,6 @@ const x: number = 42;',
         );
     }
 
-    /**
-     * Compare token-level output with Pygments for each language.
-     *
-     * This test doesn't require exact token-by-token match (tokenizers may split
-     * text differently), but verifies that both highlighters agree on the semantic
-     * category of significant tokens (keywords, strings, comments, numbers).
-     */
     #[DataProvider('languageProvider')]
     public function testKeyTokensMatchPygments(string $language): void
     {
@@ -406,7 +405,6 @@ const x: number = 42;',
         $altoTokens = self::getAltoTokens($language, $code);
         $pygmentsTokens = self::getPygmentsTokens($language, $code);
 
-        // Build a map of text → category for Pygments (significant tokens only)
         $pygmentsMap = [];
         $significantCategories = ['keyword', 'string', 'comment', 'number', 'operator'];
         foreach ($pygmentsTokens as $token) {
@@ -418,7 +416,6 @@ const x: number = 42;',
             }
         }
 
-        // Check that Alto agrees with Pygments on significant tokens
         $mismatches = [];
         foreach ($altoTokens as $token) {
             $text = trim($token['text']);
@@ -440,11 +437,6 @@ const x: number = 42;',
             }
         }
 
-        // Also check that Alto doesn't miss significant tokens that Pygments found.
-        // Note: tokenizers may split text differently (e.g., Pygments may emit `"`
-        // and `Hello` as separate string tokens, while Alto emits `"Hello"` as one).
-        // We check whether the Pygments token text is *contained* in any Alto token
-        // of a compatible category.
         $altoTexts = array_map(fn ($t) => trim($t['text']), $altoTokens);
         $missingFromAlto = [];
         foreach ($pygmentsMap as $text => $category) {
@@ -453,7 +445,6 @@ const x: number = 42;',
                 continue;
             }
 
-            // Check if any Alto token contains this text in a compatible category
             $foundInSubstring = false;
             foreach ($altoTokens as $altoToken) {
                 if (str_contains($altoToken['text'], $text)
@@ -478,8 +469,6 @@ const x: number = 42;',
         }
 
         if (!empty($errorMessages)) {
-            // Append missing-token info as additional context (tokenizers may
-            // legitimately split text differently, so these are informational).
             if (!empty($missingFromAlto)) {
                 $errorMessages[] = "Note: tokens from Pygments not matched in Alto output:\n".implode("\n", $missingFromAlto);
             }
@@ -490,9 +479,6 @@ const x: number = 42;',
         self::assertEmpty($mismatches, "No mismatches for '{$language}'");
     }
 
-    /**
-     * Verify that all languages produce non-empty token streams.
-     */
     #[DataProvider('languageProvider')]
     public function testLanguageProducesTokens(string $language): void
     {
@@ -504,11 +490,6 @@ const x: number = 42;',
         self::assertNotEmpty($tokens, "Language '{$language}' produced no tokens for sample code");
     }
 
-    /**
-     * Verify that all tokens emitted by each language concatenate back to the original code.
-     *
-     * This catches bugs where tokens are dropped or duplicated during parsing.
-     */
     #[DataProvider('languageProvider')]
     public function testTokensCoverEntireInput(string $language): void
     {
@@ -535,8 +516,7 @@ const x: number = 42;',
         self::assertSame(
             $code,
             $reconstructed,
-            "Token stream for '{$language}' does not reconstruct the original input. ".
-            'Some tokens may be dropped or duplicated during parsing.',
+            "Token stream for '{$language}' does not reconstruct the original input.",
         );
     }
 }
