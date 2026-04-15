@@ -1,0 +1,178 @@
+#!/usr/bin/env python3
+"""
+Tokenize source code using Pygments and output JSON.
+
+Usage:
+    pygments-tokenize <language> < input.code
+    pygments-tokenize <language> <file>
+
+Output: JSON array of [token_type, token_text] pairs.
+
+This script is used by the test suite to compare the library's output
+against Pygments, the de-facto standard for syntax highlighting.
+
+Requirements:
+    pip install pygments
+"""
+
+import json
+import sys
+
+try:
+    from pygments.lexers import get_lexer_by_name
+    from pygments.token import Token
+except ImportError:
+    print(json.dumps({"error": "pygments is not installed. Install it with: pip install pygments"}))
+    sys.exit(1)
+
+# Map alto language identifiers to Pygments lexer names
+LANGUAGE_MAP = {
+    "php": ("php", {"startinline": False}),
+    "html": ("html", {}),
+    "svg": ("html", {}),
+    "xml": ("xml", {}),
+    "yaml": ("yaml", {}),
+    "sql": ("sql", {}),
+    "json": ("json", {}),
+    "css": ("css", {}),
+    "scss": ("scss", {}),
+    "markdown": ("markdown", {}),
+    "javascript": ("javascript", {}),
+    "typescript": ("typescript", {}),
+    "twig": ("twig", {}),
+    "makefile": ("makefile", {}),
+    "bash": ("bash", {}),
+    "ini": ("ini", {}),
+    "http": ("http", {}),
+    "go": ("go", {}),
+    "rust": ("rust", {}),
+    "ruby": ("ruby", {}),
+    "swift": ("swift", {}),
+    "python": ("python3", {}),
+    "java": ("java", {}),
+    "csharp": ("csharp", {}),
+    "dockerfile": ("docker", {}),
+    "diff": ("diff", {}),
+    "dotenv": ("bash", {}),
+}
+
+# Map Pygments token types to alto scope categories
+SCOPE_CATEGORY_MAP = {
+    Token.Comment: "comment",
+    Token.Comment.Single: "comment",
+    Token.Comment.Multiline: "comment",
+    Token.Comment.Preproc: "comment",
+    Token.Comment.PreprocFile: "comment",
+    Token.Comment.Special: "comment",
+    Token.Comment.Hashbang: "comment",
+    Token.Keyword: "keyword",
+    Token.Keyword.Declaration: "keyword",
+    Token.Keyword.Namespace: "keyword",
+    Token.Keyword.Pseudo: "keyword",
+    Token.Keyword.Reserved: "keyword",
+    Token.Keyword.Type: "keyword",
+    Token.Keyword.Constant: "keyword",
+    Token.Name.Function: "function",
+    Token.Name.Function.Magic: "function",
+    Token.Name.Class: "type",
+    Token.Name.Decorator: "attribute",
+    Token.Name.Variable: "variable",
+    Token.Name.Variable.Class: "variable",
+    Token.Name.Variable.Global: "variable",
+    Token.Name.Variable.Instance: "variable",
+    Token.Name.Variable.Magic: "variable",
+    Token.Name.Attribute: "property",
+    Token.Name.Builtin: "builtin",
+    Token.Name.Builtin.Pseudo: "builtin",
+    Token.Name.Tag: "tag",
+    Token.Name.Namespace: "namespace",
+    Token.Name.Constant: "constant",
+    Token.Literal.String: "string",
+    Token.Literal.String.Single: "string",
+    Token.Literal.String.Double: "string",
+    Token.Literal.String.Backtick: "string",
+    Token.Literal.String.Doc: "string",
+    Token.Literal.String.Escape: "string",
+    Token.Literal.String.Heredoc: "string",
+    Token.Literal.String.Interpol: "string",
+    Token.Literal.String.Other: "string",
+    Token.Literal.String.Regex: "regexp",
+    Token.Literal.String.Symbol: "string",
+    Token.Literal.String.Affix: "string",
+    Token.Literal.Number: "number",
+    Token.Literal.Number.Bin: "number",
+    Token.Literal.Number.Float: "number",
+    Token.Literal.Number.Hex: "number",
+    Token.Literal.Number.Integer: "number",
+    Token.Literal.Number.Integer.Long: "number",
+    Token.Literal.Number.Oct: "number",
+    Token.Operator: "operator",
+    Token.Operator.Word: "operator",
+    Token.Punctuation: "punctuation",
+    Token.Punctuation.Marker: "punctuation",
+    Token.Generic.Inserted: "diff.added",
+    Token.Generic.Deleted: "diff.removed",
+    Token.Generic.Heading: "section",
+    Token.Generic.Subheading: "section",
+    Token.Name.Label: "label",
+    Token.Name.Entity: "entity",
+}
+
+
+def get_scope_category(token_type):
+    """Map a Pygments token type to a simplified scope category."""
+    # Try exact match first, then walk up the token hierarchy
+    current = token_type
+    while current:
+        if current in SCOPE_CATEGORY_MAP:
+            return SCOPE_CATEGORY_MAP[current]
+        if current.parent:
+            current = current.parent
+        else:
+            break
+    return "other"
+
+
+def tokenize(language, code):
+    """Tokenize code with Pygments and return categorized tokens."""
+    if language not in LANGUAGE_MAP:
+        return {"error": f"Unsupported language: {language}"}
+
+    lexer_name, options = LANGUAGE_MAP[language]
+    lexer = get_lexer_by_name(lexer_name, **options)
+
+    tokens = []
+    for tok_type, tok_value in lexer.get_tokens(code):
+        # Skip pure whitespace
+        if tok_type in Token.Text or not tok_value.strip():
+            continue
+
+        category = get_scope_category(tok_type)
+        tokens.append({
+            "text": tok_value,
+            "pygments_type": str(tok_type),
+            "category": category,
+        })
+
+    return {"tokens": tokens, "language": language}
+
+
+def main():
+    if len(sys.argv) < 2:
+        print(json.dumps({"error": "Usage: pygments-tokenize <language> [file]"}))
+        sys.exit(1)
+
+    language = sys.argv[1].lower()
+
+    if len(sys.argv) >= 3:
+        with open(sys.argv[2], "r") as f:
+            code = f.read()
+    else:
+        code = sys.stdin.read()
+
+    result = tokenize(language, code)
+    print(json.dumps(result, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
