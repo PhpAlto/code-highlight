@@ -10,8 +10,8 @@ and [490+ compatible themes](#compatibility). Works
 in [Twig templates](#integrations), Laravel Blade, Symfony controllers—anywhere
 PHP runs.
 
-[![Tests](https://img.shields.io/badge/tests-463%20passed-success)](https://github.com/phpalto/code-highlight)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](https://github.com/phpalto/code-highlight)
+[![Tests](https://img.shields.io/badge/tests-463%20passed-success)](https://github.com/altophp/code-highlight)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](https://github.com/altophp/code-highlight)
 [![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?logo=php&logoColor=white)](https://www.php.net)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -134,17 +134,17 @@ $highlighter = new Highlighter($theme);
 
 ### Twig Extension
 
-**[Twig Extension](https://github.com/phpalto/twig-code-highlight)** — Highlight
+**[Twig Extension](https://github.com/altophp/twig-code-highlight)**: highlight
 code directly in Twig templates using blocks or filters.
 
 ## Contributing
 
 Contributions are welcome! Please feel free
-to [submit issues](https://github.com/phpalto/code-highlight/issues)
-or [pull requests](https://github.com/phpalto/code-highlight/pulls).
+to [submit issues](https://github.com/altophp/code-highlight/issues)
+or [pull requests](https://github.com/altophp/code-highlight/pulls).
 
 ## License
 
-Released by the [Alto project](https://github.com/phpalto) under the MIT
+Released by the [Alto project](https://github.com/altophp) under the MIT
 License.
 See the [LICENSE](LICENSE) file for details.

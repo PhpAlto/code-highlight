@@ -21,10 +21,10 @@
             "email": "smn.andre@gmail.com"
         }
     ],
-    "homepage": "https://github.com/phpalto/code-highlight",
+    "homepage": "https://github.com/altophp/code-highlight",
     "support": {
-        "issues": "https://github.com/phpalto/code-highlight/issues",
-        "docs": "https://github.com/phpalto/code-highlight#readme"
+        "issues": "https://github.com/altophp/code-highlight/issues",
+        "docs": "https://github.com/altophp/code-highlight#readme"
     },
     "funding": [
         {
