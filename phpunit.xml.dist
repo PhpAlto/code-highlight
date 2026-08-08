@@ -6,6 +6,8 @@
          executionOrder="depends,defects"
          requireCoverageMetadata="true"
          beStrictAboutOutputDuringTests="true"
+         failOnDeprecation="true"
+         failOnNotice="true"
          failOnRisky="true"
          failOnWarning="true">
 

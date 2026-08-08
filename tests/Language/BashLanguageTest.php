@@ -63,7 +63,6 @@ class BashLanguageTest extends LanguageTestCase
 
         // parseDoubleQuotedString
         $method = $reflection->getMethod('parseDoubleQuotedString');
-        $method->setAccessible(true);
         $code = '"test"';
         $pos = 0;
         $result = $method->invokeArgs($language, [$code, &$pos]);
@@ -76,7 +75,6 @@ class BashLanguageTest extends LanguageTestCase
 
         // parseSingleQuotedString
         $method = $reflection->getMethod('parseSingleQuotedString');
-        $method->setAccessible(true);
         $code = "'test'";
         $pos = 0;
         $result = $method->invokeArgs($language, [$code, &$pos]);
@@ -84,7 +82,6 @@ class BashLanguageTest extends LanguageTestCase
 
         // parseVariable
         $method = $reflection->getMethod('parseVariable');
-        $method->setAccessible(true);
         $code = '$var';
         $pos = 0;
         $result = $method->invokeArgs($language, [$code, &$pos]);
@@ -97,7 +94,6 @@ class BashLanguageTest extends LanguageTestCase
 
         // parseArithmetic
         $method = $reflection->getMethod('parseArithmetic');
-        $method->setAccessible(true);
         $code = '$((1+1))';
         $pos = 0;
         $result = $method->invokeArgs($language, [$code, &$pos]);
@@ -105,7 +101,6 @@ class BashLanguageTest extends LanguageTestCase
 
         // parseHereDoc
         $method = $reflection->getMethod('parseHereDoc');
-        $method->setAccessible(true);
         $code = "<<EOF\ncontent\nEOF";
         $pos = 0;
         $result = $method->invokeArgs($language, [$code, &$pos]);
@@ -123,7 +118,6 @@ class BashLanguageTest extends LanguageTestCase
 
         // parseCommandSubstitution
         $method = $reflection->getMethod('parseCommandSubstitution');
-        $method->setAccessible(true);
         $code = '`ls`';
         $pos = 0;
         $result = $method->invokeArgs($language, [$code, &$pos]);
