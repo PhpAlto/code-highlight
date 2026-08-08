@@ -1,6 +1,6 @@
 {
     "name": "alto/code-highlight",
-    "description": "A high-performance, semantic syntax highlighter for PHP 8.4+ with zero dependencies. Features context-aware parsing, language embedding, and compatibility with Highlight.js and Prism themes.",
+    "description": "Syntax highlighter for PHP: 27 languages, embedded-language detection, zero dependencies, Highlight.js and Prism theme support",
     "license": "MIT",
     "type": "library",
     "keywords": [
