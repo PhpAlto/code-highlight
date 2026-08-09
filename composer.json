@@ -1,6 +1,6 @@
 {
     "name": "alto/code-highlight",
-    "description": "Syntax highlighter for PHP: 27 languages, embedded-language detection, zero dependencies, Highlight.js and Prism theme support",
+    "description": "Server-side syntax highlighting for PHP with 27 languages, semantic scopes, embedded languages, and adaptable themes",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -8,7 +8,7 @@
         "syntax-highlighter",
         "code-highlighting",
         "semantic-parser",
-        "zero-dependencies",
+        "server-side",
         "highlight-js",
         "prism",
         "themes",
@@ -24,7 +24,7 @@
     "homepage": "https://github.com/altophp/code-highlight",
     "support": {
         "issues": "https://github.com/altophp/code-highlight/issues",
-        "docs": "https://github.com/altophp/code-highlight#readme"
+        "docs": "https://github.com/altophp/code-highlight/blob/main/docs/index.md"
     },
     "funding": [
         {
@@ -36,6 +36,9 @@
         "php": "^8.4",
         "ext-mbstring": "*",
         "ext-tokenizer": "*"
+    },
+    "suggest": {
+        "ext-simplexml": "Required by the optional TextMate theme adapter"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.68",
@@ -59,6 +62,14 @@
     },
     "scripts": {
         "cs": "vendor/bin/php-cs-fixer fix --diff",
+        "docs:capture": "npm --prefix tools/docs-showcase run capture",
+        "docs:generate": "composer --working-dir=tools/docs-showcase generate",
+        "docs:refresh": [
+            "@docs:generate",
+            "@docs:capture",
+            "@docs:verify"
+        ],
+        "docs:verify": "npm --prefix tools/docs-showcase run verify",
         "qa": [
             "@cs",
             "@sa",

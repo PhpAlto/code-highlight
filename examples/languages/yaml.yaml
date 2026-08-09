@@ -1,0 +1,8 @@
+app:
+  name: Alto
+  debug: false
+  languages:
+    - php
+    - twig
+  cache: {driver: redis, ttl: 3600}
+  greeting: "Hello, syntax!"

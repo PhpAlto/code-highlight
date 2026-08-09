@@ -1,0 +1,27 @@
+{
+    "name": "alto/code-highlight-docs-showcase",
+    "description": "Local documentation card generator for Alto Code Highlight.",
+    "type": "project",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../..",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "alto/code-highlight": "dev-main"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "generate": "php bin/generate.php"
+    }
+}

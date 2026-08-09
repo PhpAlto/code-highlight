@@ -7,8 +7,14 @@
 /phpstan.neon.dist          export-ignore
 /phpunit.xml.dist           export-ignore
 /bin/                       export-ignore
+/docs/                      export-ignore
+/examples/                  export-ignore
 /tests/                     export-ignore
+/tools/                     export-ignore
 
 /bin/**                     linguist-vendored
+/docs/**                    linguist-documentation
+/examples/**                linguist-documentation
 /tests/**                   linguist-vendored
 /tests/Language/**/*.html   linguist-generated
+/tools/**                   linguist-vendored

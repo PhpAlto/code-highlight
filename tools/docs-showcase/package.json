@@ -1,0 +1,16 @@
+{
+  "name": "@alto/code-highlight-docs-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "php bin/generate.php",
+    "capture": "node bin/capture.mjs",
+    "verify": "node bin/verify.mjs",
+    "refresh": "npm run generate && npm run capture && npm run verify"
+  },
+  "devDependencies": {
+    "@fontsource/jetbrains-mono": "5.2.8",
+    "playwright": "1.61.1"
+  }
+}

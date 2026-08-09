@@ -1,0 +1,8 @@
+{
+  "name": "alto/code-highlight",
+  "private": false,
+  "languages": ["php", "twig", "javascript"],
+  "theme": {
+    "name": "Alto Dark"
+  }
+}

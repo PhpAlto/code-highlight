@@ -1,0 +1,8 @@
+<svg viewBox="0 0 120 80" role="img">
+  <title>Code highlight</title>
+  <defs>
+    <linearGradient id="glow">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs></svg>

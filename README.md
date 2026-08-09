@@ -1,35 +1,18 @@
 # ALTO \ Code Highlight
 
-**Syntax highlighting for PHP projects**
+Server-side syntax highlighting for PHP applications, with semantic scopes,
+embedded languages, and no third-party PHP package dependencies at runtime.
 
-Server-side highlighting for the full PHP stack: [27 languages](#languages)
-covering PHP, HTML, Twig, JavaScript, CSS, YAML, and
-more. [Zero dependencies](#install), [semantic PHP syntax](#features)
-understanding definitions vs. calls, [embedded language support](#embeddings),
-and [490+ compatible themes](#compatibility). Works
-in [Twig templates](#integrations), Laravel Blade, Symfony controllers—anywhere
-PHP runs.
-
-[![Tests](https://img.shields.io/badge/tests-463%20passed-success)](https://github.com/altophp/code-highlight)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](https://github.com/altophp/code-highlight)
-[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?logo=php&logoColor=white)](https://www.php.net)
+[![CI](https://github.com/altophp/code-highlight/actions/workflows/CI.yml/badge.svg)](https://github.com/altophp/code-highlight/actions/workflows/CI.yml)
+[![PHP](https://img.shields.io/badge/PHP-8.4%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## Features
+![PHP highlighted with the Alto Dark theme](docs/assets/examples/alto-dark/php.png)
 
-- **Built for PHP ecosystems:** Highlight the full stack—PHP, HTML, Twig,
-  JavaScript, CSS, SQL, YAML, and 20+ more languages in a single library.
-- **Zero dependencies:** No Node.js, Python, or external processes. Just
-  Composer. Works in any PHP 8.4+ environment.
-- **Full PHP syntax:** Semantic parser that understands context—distinguishes
-  `class User` (definition) from `new User()` (usage), `function greet()` (
-  definition) from `greet()` (call).
-- **Embedded languages:** Automatically switches parsers for `<style>` and
-  `<script>` tags in HTML, fenced code blocks in Markdown, and `{% block css %}`
-  in Twig.
-- **Dark mode support:** Multiple dark themes included out of the box (
-  CupertinoDark, Dracula, Noctis) plus compatibility with 490+ Highlight.js and
-  Prism themes.
+Core highlighting runs entirely in PHP. It needs no browser runtime, Node.js
+process, or external service. Its parsers assign semantic scopes, so themes can
+distinguish a function definition from a call or a type definition from a
+reference.
 
 ## Install
 
@@ -37,114 +20,125 @@ PHP runs.
 composer require alto/code-highlight
 ```
 
-## Usage
+Requirements:
+
+- PHP 8.4 or later;
+- `ext-mbstring`;
+- `ext-tokenizer`.
+
+See the [installation guide](docs/installation.md) for verification and
+troubleshooting.
+
+## Quick start
 
 ```php
+<?php
+
 use Alto\Code\Highlight\Highlighter;
-use Alto\Code\Highlight\Theme\GitHubTheme;
+use Alto\Code\Highlight\Theme\AltoTheme;
 
-// 1. Initialize with a theme
-$highlighter = new Highlighter(new GitHubTheme());
+$theme = new AltoTheme();
+$highlighter = new Highlighter($theme);
+$code = '<?php echo "Hello, Alto!";';
 
-// 2. Output the theme's CSS (typically in your <head>)
-echo "<style>" . $highlighter->getTheme()->getStylesheet() . "</style>";
-
-// 3. Highlight your code
+echo '<style>'.$theme->getStylesheet().'</style>';
 echo $highlighter->highlight($code, 'php');
 ```
 
+`highlight()` returns escaped HTML inside
+`<pre class="alto-highlight"><code>…</code></pre>`. Emit a theme stylesheet
+once per page, then reuse the highlighter for every code block.
+
+## What it covers
+
+- **27 languages:** the PHP web stack plus common programming, markup, data,
+  configuration, and query languages.
+- **Semantic highlighting:** context-aware scopes for definitions, calls,
+  types, variables, constants, and other language concepts.
+- **Embedded languages:** CSS and JavaScript in HTML/SVG, fenced code in
+  Markdown, and language blocks in Twig.
+- **Line controls:** optional line numbers and selected-line emphasis.
+- **12 built-in variants:** seven theme families, including Alto, GitHub,
+  Dracula, Polar, Cupertino, Noctis, and Solar.
+- **Theme compatibility:** adapters for Highlight.js CSS, Prism CSS, and
+  TextMate `.tmTheme` files.
+
+## Documentation
+
+| Guide | Contents |
+|---|---|
+| [Documentation index](docs/index.md) | Choose the right guide |
+| [Getting started](docs/getting-started.md) | Complete rendering, line numbers, and errors |
+| [Languages](docs/languages.md) | Exact identifiers and language capabilities |
+| [Themes](docs/themes.md) | Built-in variants and visual examples |
+| [Create a theme](docs/creating-a-theme.md) | Implement `ThemeInterface` |
+| [Embedded languages](docs/embedded-languages.md) | HTML, SVG, Markdown, and Twig |
+| [Theme adapters](docs/theme-adapters.md) | Highlight.js, Prism, and TextMate |
+| [Public API](docs/public-api.md) | Supported entry points and extension contracts |
+| [Examples](docs/examples.md) | Compact examples and generated previews |
+
+The complete source examples are available in [`examples/languages/`](examples/languages/).
+
 ## Languages
 
-### PHP
+Use the lowercase identifier in the second argument to `highlight()`:
 
-Alto uses a semantic parser for PHP that goes beyond pattern matching to
-understand code context. It correctly distinguishes between:
-
-- **Definitions vs. usage:** `class User` vs. `new User()`, `function greet()`
-  vs. `greet()`
-- **Context-aware scoping:** Variables, function calls, class instantiation,
-  method calls
-
-### Embeddings
-
-Four languages support automatic embedded language detection:
-
-- **HTML** — CSS in `<style>` tags, JavaScript in `<script>` tags
-- **SVG** — CSS in `<style>` tags, JavaScript in `<script>` tags
-- **Markdown** — Any language in fenced code blocks (` ```language `)
-- **Twig** — Languages via block names (`{% block css %}`,
-  `{% block javascript %}`)
-
-### Full list
-
-| Category        | Languages                                                                  |
-|-----------------|----------------------------------------------------------------------------|
-| **Programming** | Bash, C#, Go, Java, JavaScript, PHP, Python, Ruby, Rust, Swift, TypeScript |
-| **Markup**      | HTML, SVG, XML                                                             |
-| **Data**        | Diff, DotEnv, HTTP, JSON, YAML                                             |
-| **Prose**       | Markdown                                                                   |
-| **Query**       | SQL                                                                        |
-| **Stylesheet**  | CSS, SCSS                                                                  |
-| **Template**    | Twig                                                                       |
-| **Config**      | Dockerfile, INI, Makefile                                                  |
-
-## Themes
-
-### Built-in themes
-
-Alto includes 7 built-in themes ready to use:
-
-- **Light themes:** `Alto`, `GitHub`, `Polar`, `Solar`
-- **Dark themes:** `CupertinoDark`, `Dracula`, `Noctis`
-
-```php
-use Alto\Code\Highlight\Theme\DraculaTheme;
-
-$highlighter = new Highlighter(new DraculaTheme());
+```text
+bash        csharp       css          diff         dockerfile
+dotenv      go           html         http         ini
+java        javascript   json         makefile     markdown
+php         python       ruby         rust         scss
+sql         svg          swift        twig         typescript
+xml         yaml
 ```
 
-### Dark mode
+The special `php-snippet` identifier accepts PHP without an opening `<?php`
+tag. The [language reference](docs/languages.md) documents exact behavior and
+embedded-language support.
 
-Three dark themes are included out of the box:
-
-- **CupertinoDark** — macOS-inspired dark theme
-- **Dracula** — Popular dark theme with vibrant colors
-- **Noctis** — Low-contrast dark theme for extended coding sessions
-
-### Compatibility
-
-Use existing CSS from the **Highlight.js** (240+ themes), **Prism** (250+
-themes), or **TextMate** (.tmTheme) ecosystems:
+## Line numbers and highlighted lines
 
 ```php
-use Alto\Code\Highlight\Adapter\HighlightJsThemeAdapter;
-
-$theme = HighlightJsThemeAdapter::fromFile('/path/to/github-dark.css');
-$highlighter = new Highlighter($theme);
+$html = $highlighter->highlight(
+    code: $code,
+    language: 'php',
+    lineNumbers: true,
+    highlightLines: [2, 3],
+);
 ```
+
+## Choose a theme
 
 ```php
-use Alto\Code\Highlight\Adapter\TextMateThemeAdapter;
+use Alto\Code\Highlight\Theme\GitHubTheme;
 
-$theme = TextMateThemeAdapter::fromFile('/path/to/monokai.tmTheme', isDark: true);
-$highlighter = new Highlighter($theme);
+$light = new GitHubTheme(dark: false);
+$dark = new GitHubTheme();
 ```
+
+Browse the [built-in theme matrix](docs/themes.md), learn how to
+[create a theme](docs/creating-a-theme.md), or reuse an existing stylesheet
+through a [theme adapter](docs/theme-adapters.md).
 
 ## Integrations
 
-### Twig Extension
-
-**[Twig Extension](https://github.com/altophp/twig-code-highlight)**: highlight
-code directly in Twig templates using blocks or filters.
+[alto/twig-code-highlight](https://github.com/altophp/twig-code-highlight)
+adds blocks and filters for Twig applications. The core package remains
+framework-independent and can be used in Symfony controllers, Laravel views,
+static generators, or any PHP rendering pipeline.
 
 ## Contributing
 
-Contributions are welcome! Please feel free
-to [submit issues](https://github.com/altophp/code-highlight/issues)
-or [pull requests](https://github.com/altophp/code-highlight/pulls).
+Issues and pull requests are welcome. Before proposing a change, run:
+
+```bash
+composer qa
+```
+
+Language parsers use fixtures under `tests/Language/`. Public showcase examples
+live separately under `examples/languages/`; they are short documentation
+samples rather than exhaustive parser tests.
 
 ## License
 
-Released by the [Alto project](https://github.com/altophp) under the MIT
-License.
-See the [LICENSE](LICENSE) file for details.
+ALTO Code Highlight is released under the [MIT License](LICENSE).
