@@ -1,0 +1,126 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "1951e82257ebed075fd049805ff7c640",
+    "packages": [
+        {
+            "name": "alto/code-highlight",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../..",
+                "reference": "426ed1ccef0e6c7cfa5f72a8683bd17c3a648e97"
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-tokenizer": "*",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.68",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^12.0"
+            },
+            "suggest": {
+                "ext-simplexml": "Required by the optional TextMate theme adapter"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Alto\\Code\\Highlight\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Alto\\Code\\Highlight\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "cs": [
+                    "vendor/bin/php-cs-fixer fix --diff"
+                ],
+                "docs:capture": [
+                    "npm --prefix tools/docs-showcase run capture"
+                ],
+                "docs:generate": [
+                    "composer --working-dir=tools/docs-showcase generate"
+                ],
+                "docs:refresh": [
+                    "@docs:generate",
+                    "@docs:capture",
+                    "@docs:verify"
+                ],
+                "docs:verify": [
+                    "npm --prefix tools/docs-showcase run verify"
+                ],
+                "qa": [
+                    "@cs",
+                    "@sa",
+                    "@test"
+                ],
+                "sa": [
+                    "vendor/bin/phpstan analyse --memory-limit=-1"
+                ],
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "coverage": [
+                    "vendor/bin/phpunit --coverage-text"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon André",
+                    "email": "smn.andre@gmail.com"
+                }
+            ],
+            "description": "Server-side syntax highlighting for PHP with 27 languages, semantic scopes, embedded languages, and adaptable themes",
+            "homepage": "https://github.com/altophp/code-highlight",
+            "keywords": [
+                "code-highlighting",
+                "highlight-js",
+                "php",
+                "php84",
+                "prism",
+                "semantic-parser",
+                "server-side",
+                "syntax-highlighter",
+                "themes",
+                "tokenizer"
+            ],
+            "support": {
+                "issues": "https://github.com/altophp/code-highlight/issues",
+                "docs": "https://github.com/altophp/code-highlight/blob/main/docs/index.md"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/sponsors/smnandre"
+                }
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "alto/code-highlight": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^8.4"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}

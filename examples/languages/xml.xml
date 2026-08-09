@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="https://example.test/books">
+  <book id="alto">
+    <title>Code Highlight</title>
+    <author>Alto Team</author>
+    <tag featured="true">PHP</tag>
+  </book>
+</library>
