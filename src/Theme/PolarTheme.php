@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -28,6 +28,8 @@ use Alto\Code\Highlight\ThemeInterface;
  * Original Nord color scheme © Arctic Ice Studio — MIT License
  *
  * @see https://www.nordtheme.com
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class PolarTheme implements ThemeInterface
 {
@@ -105,7 +107,7 @@ final class PolarTheme implements ThemeInterface
     {
         $classes = [];
         foreach ($map as [$scope, $suffix]) {
-            $classes[$scope->value] = '' === $suffix ? '' : 'polar-'.$suffix;
+            $classes[$scope->value] = '' === $suffix ? '' : 'polar-' . $suffix;
         }
 
         return $classes;

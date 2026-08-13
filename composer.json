@@ -1,6 +1,6 @@
 {
     "name": "alto/code-highlight",
-    "description": "Server-side syntax highlighting for PHP with 27 languages, semantic scopes, embedded languages, and adaptable themes",
+    "description": "Server-side syntax highlighting for PHP with semantic scopes, embedded languages, and adaptable themes.",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -21,10 +21,11 @@
             "email": "smn.andre@gmail.com"
         }
     ],
-    "homepage": "https://github.com/altophp/code-highlight",
+    "homepage": "https://altophp.com/code-highlight",
     "support": {
         "issues": "https://github.com/altophp/code-highlight/issues",
-        "docs": "https://github.com/altophp/code-highlight/blob/main/docs/index.md"
+        "source": "https://github.com/altophp/code-highlight",
+        "docs": "https://altophp.com/code-highlight"
     },
     "funding": [
         {
@@ -41,12 +42,10 @@
         "ext-simplexml": "Required by the optional TextMate theme adapter"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.68",
-        "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^12.0"
+        "friendsofphp/php-cs-fixer": "^3.94",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.5"
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Alto\\Code\\Highlight\\": "src/"
@@ -61,7 +60,8 @@
         "sort-packages": true
     },
     "scripts": {
-        "cs": "vendor/bin/php-cs-fixer fix --diff",
+        "cs": "vendor/bin/php-cs-fixer fix --dry-run --diff --sequential",
+        "cs:fix": "vendor/bin/php-cs-fixer fix --sequential",
         "docs:capture": "npm --prefix tools/docs-showcase run capture",
         "docs:generate": "composer --working-dir=tools/docs-showcase generate",
         "docs:refresh": [
@@ -76,7 +76,7 @@
             "@test"
         ],
         "sa": "vendor/bin/phpstan analyse --memory-limit=-1",
-        "test": "vendor/bin/phpunit",
+        "test": "phpunit",
         "coverage": "vendor/bin/phpunit --coverage-text"
     }
 }

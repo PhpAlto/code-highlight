@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -50,7 +50,7 @@ PHP);
 
     public function testReturnsNullWhenConfigurationFileMissing(): void
     {
-        $registry = new EmbeddedLanguageRegistry(__DIR__.'/does-not-exist.php');
+        $registry = new EmbeddedLanguageRegistry(__DIR__ . '/does-not-exist.php');
 
         self::assertNull($registry->getPlan('html'));
     }

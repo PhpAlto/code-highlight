@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -54,7 +54,7 @@ abstract class ThemeTestCase extends TestCase
         self::assertStringContainsString('.alto-highlight', $stylesheet);
 
         foreach (array_unique(array_values($expectedCssClasses)) as $className) {
-            self::assertStringContainsString('.'.$className, $stylesheet);
+            self::assertStringContainsString('.' . $className, $stylesheet);
         }
     }
 
@@ -126,7 +126,7 @@ abstract class ThemeTestCase extends TestCase
         $classes = [];
         foreach (self::canonicalScopeTokens() as [$scope, $key, $default]) {
             $suffix = $overrides[$key] ?? $default;
-            $classes[$scope->value] = '' === $suffix ? '' : $prefix.$suffix;
+            $classes[$scope->value] = '' === $suffix ? '' : $prefix . $suffix;
         }
 
         return $classes;

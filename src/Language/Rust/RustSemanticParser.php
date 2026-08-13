@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -25,6 +25,8 @@ use Alto\Code\Highlight\Scope;
  * @internal
  *
  * @final Not declared final to allow test doubles, but treat as final in production code
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 class RustSemanticParser
 {
@@ -48,7 +50,9 @@ class RustSemanticParser
 
     private RustState $state = RustState::TopLevel;
 
-    /** @var list<RustState> */
+    /**
+     * @var list<RustState>
+     */
     private array $stateStack = [];
 
     private int $attributeDepth = 0;
@@ -299,10 +303,6 @@ class RustSemanticParser
 
     private function popState(): void
     {
-        if (!empty($this->stateStack)) {
-            $this->state = array_pop($this->stateStack);
-        } else {
-            $this->state = RustState::TopLevel;
-        }
+        $this->state = array_pop($this->stateStack) ?? RustState::TopLevel;
     }
 }

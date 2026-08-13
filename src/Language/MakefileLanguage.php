@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -22,6 +22,8 @@ use Alto\Code\Highlight\Scope;
  *
  * Handles Makefile syntax including targets, dependencies, variables,
  * commands, directives, and functions.
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class MakefileLanguage implements LanguageInterface
 {
@@ -77,7 +79,7 @@ final class MakefileLanguage implements LanguageInterface
 
                 // Automatic variables
                 if ('$' === $char && $position + 1 < $length && preg_match('/[@%<^+?*]/', $line[$position + 1])) {
-                    $tokens[] = new ParsedToken($char.$line[$position + 1], Scope::Variable);
+                    $tokens[] = new ParsedToken($char . $line[$position + 1], Scope::Variable);
                     $position += 2;
 
                     continue;
@@ -196,7 +198,7 @@ final class MakefileLanguage implements LanguageInterface
     {
         $openChar = $line[$position + 1];
         $closeChar = '(' === $openChar ? ')' : '}';
-        $varRef = '$'.$openChar;
+        $varRef = '$' . $openChar;
         $position += 2;
         $length = strlen($line);
         $depth = 1;

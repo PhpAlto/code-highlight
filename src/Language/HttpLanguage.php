@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -27,6 +27,8 @@ use Alto\Code\Highlight\Scope;
  * - Response line: HTTP/1.1 200 OK
  * - Headers: Header-Name: value
  * - Body content (as plain text)
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class HttpLanguage implements LanguageInterface
 {
@@ -176,7 +178,7 @@ final class HttpLanguage implements LanguageInterface
         // Check for full URL with scheme
         if (preg_match('/^(https?):\/\/([^\/:]+)(:\d+)?(\/[^?\#]*)?(\?[^\#]*)?(\#.*)?$/', $url, $matches)) {
             // Scheme
-            $tokens[] = new ParsedToken($matches[1].'://', Scope::Keyword);
+            $tokens[] = new ParsedToken($matches[1] . '://', Scope::Keyword);
 
             // Host
             $tokens[] = new ParsedToken($matches[2], Scope::FunctionCall);
@@ -336,7 +338,7 @@ final class HttpLanguage implements LanguageInterface
                     $tokens[] = new ParsedToken($matches[3], Scope::Operator);
                     $tokens[] = new ParsedToken($matches[4], Scope::String);
                 } else {
-                    $tokens[] = new ParsedToken(' '.$part, Scope::String);
+                    $tokens[] = new ParsedToken(' ' . $part, Scope::String);
                 }
             }
         }

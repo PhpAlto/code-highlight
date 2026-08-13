@@ -1,11 +1,13 @@
-# ALTO \ Code Highlight
+# ALTO Code Highlight
 
 Server-side syntax highlighting for PHP applications, with semantic scopes,
 embedded languages, and no third-party PHP package dependencies at runtime.
 
-[![CI](https://github.com/altophp/code-highlight/actions/workflows/CI.yml/badge.svg)](https://github.com/altophp/code-highlight/actions/workflows/CI.yml)
-[![PHP](https://img.shields.io/badge/PHP-8.4%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+&nbsp; ![PHP Version](https://img.shields.io/badge/PHP-8.4%2B-00B7FF?logoColor=00B7FF&labelColor=050608)
+&nbsp; ![CI](https://img.shields.io/github/actions/workflow/status/altophp/code-highlight/CI.yml?branch=main&label=Tests&labelColor=050608&color=00B7FF)
+&nbsp; [![Packagist](https://img.shields.io/packagist/v/alto/code-highlight?label=Packagist&labelColor=050608&color=00B7FF)](https://packagist.org/packages/alto/code-highlight)
+&nbsp; ![License](https://img.shields.io/github/license/altophp/code-highlight?label=License&labelColor=050608&color=00B7FF)
+&nbsp; [![GitHub Sponsors](https://img.shields.io/github/sponsors/smnandre?logo=githubsponsors&logoColor=00B7FF&label=%20Sponsor&labelColor=050608&color=00B7FF)](https://github.com/sponsors/smnandre)
 
 ![PHP highlighted with the Alto Dark theme](docs/assets/examples/alto-dark/php.png)
 
@@ -14,22 +16,22 @@ process, or external service. Its parsers assign semantic scopes, so themes can
 distinguish a function definition from a call or a type definition from a
 reference.
 
-## Install
+## Installation
+
+Install ALTO Code Highlight with Composer:
 
 ```bash
 composer require alto/code-highlight
 ```
 
-Requirements:
-
-- PHP 8.4 or later;
-- `ext-mbstring`;
-- `ext-tokenizer`.
+ALTO Code Highlight requires PHP 8.4 or later, Mbstring, and Tokenizer.
+Tokenizer is included with PHP; Mbstring is available in most PHP distributions
+but must be enabled.
 
 See the [installation guide](docs/installation.md) for verification and
 troubleshooting.
 
-## Quick start
+## Quick Start
 
 ```php
 <?php
@@ -69,12 +71,12 @@ once per page, then reuse the highlighter for every code block.
 |---|---|
 | [Documentation index](docs/index.md) | Choose the right guide |
 | [Getting started](docs/getting-started.md) | Complete rendering, line numbers, and errors |
-| [Languages](docs/languages.md) | Exact identifiers and language capabilities |
-| [Themes](docs/themes.md) | Built-in variants and visual examples |
-| [Create a theme](docs/creating-a-theme.md) | Implement `ThemeInterface` |
-| [Embedded languages](docs/embedded-languages.md) | HTML, SVG, Markdown, and Twig |
-| [Theme adapters](docs/theme-adapters.md) | Highlight.js, Prism, and TextMate |
-| [Public API](docs/public-api.md) | Supported entry points and extension contracts |
+| [Languages](docs/languages/index.md) | Exact identifiers and language capabilities |
+| [Themes](docs/theming/index.md) | Built-in variants and visual examples |
+| [Create a theme](docs/theming/creating.md) | Implement `ThemeInterface` |
+| [Embedded languages](docs/languages/embedded.md) | HTML, SVG, Markdown, and Twig |
+| [Theme adapters](docs/theming/adapters.md) | Highlight.js, Prism, and TextMate |
+| [Public API](docs/api/index.md) | Supported entry points and extension contracts |
 | [Examples](docs/examples.md) | Compact examples and generated previews |
 
 The complete source examples are available in [`examples/languages/`](examples/languages/).
@@ -93,7 +95,7 @@ xml         yaml
 ```
 
 The special `php-snippet` identifier accepts PHP without an opening `<?php`
-tag. The [language reference](docs/languages.md) documents exact behavior and
+tag. The [language reference](docs/languages/index.md) documents exact behavior and
 embedded-language support.
 
 ## Line numbers and highlighted lines
@@ -116,9 +118,9 @@ $light = new GitHubTheme(dark: false);
 $dark = new GitHubTheme();
 ```
 
-Browse the [built-in theme matrix](docs/themes.md), learn how to
-[create a theme](docs/creating-a-theme.md), or reuse an existing stylesheet
-through a [theme adapter](docs/theme-adapters.md).
+Browse the [built-in theme matrix](docs/theming/index.md), learn how to
+[create a theme](docs/theming/creating.md), or reuse an existing stylesheet
+through a [theme adapter](docs/theming/adapters.md).
 
 ## Integrations
 
@@ -129,9 +131,16 @@ static generators, or any PHP rendering pipeline.
 
 ## Contributing
 
-Issues and pull requests are welcome. Before proposing a change, run:
+Contributions of all kinds are welcome. Visit the
+[project on GitHub](https://github.com/altophp/code-highlight) to
+[report a bug](https://github.com/altophp/code-highlight/issues/new),
+[suggest a feature](https://github.com/altophp/code-highlight/issues/new), or
+[open a pull request](https://github.com/altophp/code-highlight/pulls).
+
+Before submitting code, run:
 
 ```bash
+# Runs PHP CS Fixer, PHPStan, and PHPUnit
 composer qa
 ```
 
@@ -139,6 +148,16 @@ Language parsers use fixtures under `tests/Language/`. Public showcase examples
 live separately under `examples/languages/`; they are short documentation
 samples rather than exhaustive parser tests.
 
+## Support
+
+ALTO Code Highlight is open source. You can support its continued development through
+[GitHub Sponsors](https://github.com/sponsors/smnandre).
+
+Sharing this package with others or
+[starring it on GitHub](https://github.com/altophp/code-highlight) is also much
+appreciated.
+
 ## License
 
-ALTO Code Highlight is released under the [MIT License](LICENSE).
+ALTO Code Highlight is released by [ALTO PHP](https://altophp.com) under the
+[MIT License](LICENSE).

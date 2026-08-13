@@ -83,7 +83,7 @@ interface HighlighterInterface
 ```
 
 - `$code` is the source text.
-- `$language` is an exact [registered identifier](languages.md).
+- `$language` is an exact [registered identifier](languages/index.md).
 - `$lineNumbers` adds a numbered span at the start of every line.
 - `$highlightLines` is a list of 1-indexed line numbers. Highlighted numbers
   receive the `alto-highlighted` class.
@@ -151,7 +151,7 @@ Do not emit it for every code block. The same `Highlighter` instance can render
 multiple blocks with the selected theme.
 
 To switch themes, create the requested theme and a corresponding highlighter
-before rendering the page. See the [built-in theme variants](themes.md).
+before rendering the page. See the [built-in theme variants](theming/index.md).
 
 ## Other public operations
 
@@ -161,4 +161,4 @@ before rendering the page. See the [built-in theme variants](themes.md).
 - `getEmbeddedRegistry()` to inspect the active embedding plans;
 - `setEmbeddingEnabled()` to toggle a configured host/target pair.
 
-See [Embedded languages](embedded-languages.md) for the embedding contracts.
+See [Embedded languages](languages/embedded.md) for the embedding contracts.

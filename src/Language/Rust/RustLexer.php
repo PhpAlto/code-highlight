@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -22,6 +22,8 @@ namespace Alto\Code\Highlight\Language\Rust;
  * @internal
  *
  * @final Not declared final to allow test doubles, but treat as final in production code
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 class RustLexer
 {
@@ -142,7 +144,7 @@ class RustLexer
             if ('b' === $char && $position + 1 < $length && ('"' === $code[$position + 1] || '\'' === $code[$position + 1])) {
                 $quote = $code[$position + 1];
                 if ('"' === $quote) {
-                    $str = 'b'.$this->parseQuotedString($code, $position + 1, '"');
+                    $str = 'b' . $this->parseQuotedString($code, $position + 1, '"');
                     $tokens[] = new RustToken($str, RustTokenType::String);
                     $position += strlen($str);
                     continue;
@@ -180,7 +182,7 @@ class RustLexer
 
                 // Macro invocation: identifier followed by !  (but not !=)
                 if ($position < $length && '!' === $code[$position] && ($position + 1 >= $length || '=' !== $code[$position + 1])) {
-                    $tokens[] = new RustToken($identifier.'!', RustTokenType::Macro);
+                    $tokens[] = new RustToken($identifier . '!', RustTokenType::Macro);
                     ++$position;
                     continue;
                 }
@@ -192,12 +194,12 @@ class RustLexer
 
             // Multi-character operators
             if ($position + 1 < $length) {
-                $two = $char.$code[$position + 1];
+                $two = $char . $code[$position + 1];
 
                 if (in_array($two, ['->', '=>', '::', '..', '&&', '||', '==', '!=', '<=', '>=', '+=', '-=', '*=', '/=', '%=', '&=', '|=', '^=', '<<', '>>', '..='], true)) {
                     // Three-char: ..= <<= >>=
                     if (in_array($two, ['..', '<<', '>>'], true) && $position + 2 < $length && '=' === $code[$position + 2]) {
-                        $tokens[] = new RustToken($two.'=', RustTokenType::Operator);
+                        $tokens[] = new RustToken($two . '=', RustTokenType::Operator);
                         $position += 3;
                         continue;
                     }
@@ -248,10 +250,10 @@ class RustLexer
             return null;
         }
 
-        $raw .= str_repeat('#', $hashes).'"';
+        $raw .= str_repeat('#', $hashes) . '"';
         ++$position;
 
-        $closing = '"'.str_repeat('#', $hashes);
+        $closing = '"' . str_repeat('#', $hashes);
         $closingLen = strlen($closing);
 
         while ($position < $length) {
@@ -324,11 +326,11 @@ class RustLexer
 
             // If followed by a closing quote, it's a char literal (e.g., 'a')
             if ($i < $length && '\'' === $code[$i] && 1 === strlen($content)) {
-                return new RustToken("'".$content."'", RustTokenType::Char);
+                return new RustToken("'" . $content . "'", RustTokenType::Char);
             }
 
             // Otherwise it's a lifetime: 'ident
-            return new RustToken("'".$content, RustTokenType::Lifetime);
+            return new RustToken("'" . $content, RustTokenType::Lifetime);
         }
 
         // Char literal: '\n', '\t', '\\', '\'' etc. or any single char
@@ -362,7 +364,7 @@ class RustLexer
 
         // Single char literal like '+'  or 'x'
         if ($position + 2 < $length && '\'' === $code[$position + 2]) {
-            return new RustToken("'".$next."'", RustTokenType::Char);
+            return new RustToken("'" . $next . "'", RustTokenType::Char);
         }
 
         // Fallback: bare '

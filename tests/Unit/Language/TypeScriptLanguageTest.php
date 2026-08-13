@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -338,7 +338,7 @@ final class TypeScriptLanguageTest extends TestCase
     {
         $tokens = $this->parse('function fn<T>(x: T) {}');
         // T after < should be TypeReference
-        $tTokens = array_filter($tokens, fn ($t) => 'T' === $t->getText());
+        $tTokens = array_filter($tokens, fn($t) => 'T' === $t->getText());
         $this->assertNotEmpty($tTokens);
     }
 
@@ -445,7 +445,7 @@ final class TypeScriptLanguageTest extends TestCase
         // func<T> should not be treated as type assertion
         $tokens = $this->parse('identity<T>(value)');
         // Should not have Meta scope (which is type assertion)
-        $metaTokens = array_filter($tokens, fn ($t) => Scope::Meta === $t->getScope());
+        $metaTokens = array_filter($tokens, fn($t) => Scope::Meta === $t->getScope());
         $this->assertEmpty($metaTokens);
     }
 
@@ -453,7 +453,7 @@ final class TypeScriptLanguageTest extends TestCase
     {
         $tokens = $this->parse('(value)<string>');
         // Should not be type assertion after closing paren
-        $metaTokens = array_filter($tokens, fn ($t) => Scope::Meta === $t->getScope());
+        $metaTokens = array_filter($tokens, fn($t) => Scope::Meta === $t->getScope());
         $this->assertEmpty($metaTokens);
     }
 
@@ -461,7 +461,7 @@ final class TypeScriptLanguageTest extends TestCase
     {
         $tokens = $this->parse('arr[0]<number>');
         // Should not be type assertion after closing bracket
-        $metaTokens = array_filter($tokens, fn ($t) => Scope::Meta === $t->getScope());
+        $metaTokens = array_filter($tokens, fn($t) => Scope::Meta === $t->getScope());
         $this->assertEmpty($metaTokens);
     }
 
@@ -487,7 +487,7 @@ final class TypeScriptLanguageTest extends TestCase
     {
         // a / b should be division, not regex
         $tokens = $this->parse('a / b');
-        $regexTokens = array_filter($tokens, fn ($t) => Scope::RegExp === $t->getScope());
+        $regexTokens = array_filter($tokens, fn($t) => Scope::RegExp === $t->getScope());
         $this->assertEmpty($regexTokens);
     }
 
@@ -536,7 +536,7 @@ final class TypeScriptLanguageTest extends TestCase
     {
         $tokens = $this->parse('Map<string, number>');
         // After comma in generics, should recognize type
-        $numberTokens = array_filter($tokens, fn ($t) => 'number' === $t->getText());
+        $numberTokens = array_filter($tokens, fn($t) => 'number' === $t->getText());
         $this->assertNotEmpty($numberTokens);
     }
 
@@ -562,14 +562,14 @@ final class TypeScriptLanguageTest extends TestCase
         }
 
         $tokenList = array_map(
-            fn ($t) => sprintf('[%s: %s]', $t->getScope()->value, $t->getText()),
-            $tokens
+            fn($t) => sprintf('[%s: %s]', $t->getScope()->value, $t->getText()),
+            $tokens,
         );
         $this->fail(sprintf(
             'Token "%s" with scope %s not found. Found: %s',
             $text,
             $scope->value,
-            implode(', ', $tokenList)
+            implode(', ', $tokenList),
         ));
     }
 }

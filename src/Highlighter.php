@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -31,12 +31,16 @@ use Alto\Code\Highlight\Parser\ParsedStream;
  */
 final class Highlighter implements HighlighterInterface
 {
-    /** @var array<string, LanguageInterface> */
+    /**
+     * @var array<string, LanguageInterface>
+     */
     private array $languages = [];
 
     private EmbeddedLanguageRegistry $embeddedRegistry;
 
-    /** @var array<string, bool> */
+    /**
+     * @var array<string, bool>
+     */
     private array $embeddedLanguageToggles = [];
 
     /**
@@ -81,7 +85,7 @@ final class Highlighter implements HighlighterInterface
 
         // Handle php-snippet specially
         if ('php-snippet' === $language) {
-            $code = '<?php '.$code;
+            $code = '<?php ' . $code;
             $language = 'php';
         }
 
@@ -136,7 +140,7 @@ final class Highlighter implements HighlighterInterface
             if (null !== $plan) {
                 $host = $language->getIdentifier();
                 $triggers = array_filter($plan->getTriggers(), function ($trigger) use ($host) {
-                    $key = $host.':'.$trigger->targetLanguage;
+                    $key = $host . ':' . $trigger->targetLanguage;
 
                     return $this->embeddedLanguageToggles[$key] ?? true;
                 });
@@ -148,7 +152,7 @@ final class Highlighter implements HighlighterInterface
                 // Handle PHP code without opening tag (common in markdown code blocks)
                 $phpTagAdded = false;
                 if ('php' === $identifier && !str_starts_with(ltrim($embeddedCode), '<?')) {
-                    $embeddedCode = '<?php '.$embeddedCode;
+                    $embeddedCode = '<?php ' . $embeddedCode;
                     $phpTagAdded = true;
                 }
 
@@ -187,7 +191,7 @@ final class Highlighter implements HighlighterInterface
      */
     public function setEmbeddingEnabled(string $host, string $target, bool $enabled): void
     {
-        $this->embeddedLanguageToggles[strtolower($host).':'.strtolower($target)] = $enabled;
+        $this->embeddedLanguageToggles[strtolower($host) . ':' . strtolower($target)] = $enabled;
     }
 
     /**
@@ -218,7 +222,7 @@ final class Highlighter implements HighlighterInterface
         $html = sprintf(
             '<pre class="%s"><code%s>',
             $this->joinCssClasses($preClasses),
-            $this->formatClassAttribute($codeClasses)
+            $this->formatClassAttribute($codeClasses),
         );
 
         $currentLine = 1;
@@ -275,7 +279,7 @@ final class Highlighter implements HighlighterInterface
             return null;
         }
 
-        return 'language-'.$language;
+        return 'language-' . $language;
     }
 
     private function detectVendorContainerClass(): ?string
@@ -306,7 +310,7 @@ final class Highlighter implements HighlighterInterface
     {
         $class = $this->joinCssClasses($classes);
 
-        return '' === $class ? '' : ' class="'.$class.'"';
+        return '' === $class ? '' : ' class="' . $class . '"';
     }
 
     /**

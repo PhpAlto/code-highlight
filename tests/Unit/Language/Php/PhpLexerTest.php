@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -35,7 +35,7 @@ final class PhpLexerTest extends TestCase
         $code = "<?php\n\n\n   \$var = 42;";
         $tokens = (new PhpLexer())->tokenize($code);
 
-        $whitespaceTokens = array_values(array_filter($tokens, fn ($token) => T_WHITESPACE === $token->id));
+        $whitespaceTokens = array_values(array_filter($tokens, fn($token) => T_WHITESPACE === $token->id));
 
         self::assertNotEmpty($whitespaceTokens);
 
@@ -77,7 +77,7 @@ final class PhpLexerTest extends TestCase
 
         $whitespaceTokens = array_values(array_filter(
             $tokens,
-            static fn (\PhpToken $token): bool => T_WHITESPACE === $token->id,
+            static fn(\PhpToken $token): bool => T_WHITESPACE === $token->id,
         ));
 
         self::assertNotEmpty($whitespaceTokens);

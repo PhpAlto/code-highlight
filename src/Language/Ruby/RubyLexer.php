@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -22,6 +22,8 @@ namespace Alto\Code\Highlight\Language\Ruby;
  * @internal
  *
  * @final Not declared final to allow test doubles, but treat as final in production code
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 class RubyLexer
 {
@@ -207,14 +209,14 @@ class RubyLexer
 
             // Multi-character operators
             if ($position + 1 < $length) {
-                $two = $char.$code[$position + 1];
+                $two = $char . $code[$position + 1];
                 if (in_array($two, ['::', '..', '...', '<=', '>=', '==', '!=', '=~', '!~', '&&', '||', '**', '+=', '-=', '*=', '/=', '%=', '**=', '&&=', '||=', '&=', '|=', '^=', '<<=', '>>=', '<<', '>>', '->', '=>', '<=>', '!~'], true)) {
                     // Three-char check
                     if (in_array($two, ['...', '**=', '&&=', '||=', '<<=', '>>='], true)) {
                         // Already 3-char in the list above — handled below
                     }
                     if ($position + 2 < $length) {
-                        $three = $two.$code[$position + 2];
+                        $three = $two . $code[$position + 2];
                         if (in_array($three, ['...', '**=', '&&=', '||=', '<<=', '>>='], true)) {
                             $tokens[] = new RubyToken($three, RubyTokenType::Operator);
                             $position += 3;
@@ -289,7 +291,7 @@ class RubyLexer
         }
 
         // Read to end of current line (the <<HEREDOC is on that line)
-        $heredoc = $prefix.$modifier.($quoteChar ?? '').$delimiter.($quoteChar ?? '');
+        $heredoc = $prefix . $modifier . ($quoteChar ?? '') . $delimiter . ($quoteChar ?? '');
         while ($position < $length && "\n" !== $code[$position]) {
             $heredoc .= $code[$position];
             ++$position;
@@ -300,7 +302,7 @@ class RubyLexer
         }
 
         // Read content lines until we hit the delimiter
-        $closing = $delimiter."\n";
+        $closing = $delimiter . "\n";
         while ($position < $length) {
             $lineStart = $position;
             $line = '';
@@ -349,14 +351,14 @@ class RubyLexer
             '<' => '>',
             default => $open,
         };
-        $literal .= $type.$open;
+        $literal .= $type . $open;
         ++$position;
 
         $depth = 1;
         while ($position < $length && $depth > 0) {
             $char = $code[$position];
             if ('\\' === $char && $position + 1 < $length) {
-                $literal .= $char.$code[$position + 1];
+                $literal .= $char . $code[$position + 1];
                 $position += 2;
                 continue;
             }

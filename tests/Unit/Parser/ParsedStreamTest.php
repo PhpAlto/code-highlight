@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -359,7 +359,7 @@ final class ParsedStreamTest extends TestCase
             new ParsedToken('three', Scope::String),
         ]);
 
-        $found = $stream->find(fn ($t) => Scope::String === $t->getScope());
+        $found = $stream->find(fn($t) => Scope::String === $t->getScope());
 
         $this->assertNotNull($found);
         $this->assertEquals('one', $found->getText());
@@ -371,7 +371,7 @@ final class ParsedStreamTest extends TestCase
             new ParsedToken('one', Scope::String),
         ]);
 
-        $found = $stream->find(fn ($t) => Scope::Variable === $t->getScope());
+        $found = $stream->find(fn($t) => Scope::Variable === $t->getScope());
 
         $this->assertNull($found);
     }
@@ -384,7 +384,7 @@ final class ParsedStreamTest extends TestCase
             new ParsedToken('three', Scope::String),
         ]);
 
-        $found = $stream->findAll(fn ($t) => Scope::String === $t->getScope());
+        $found = $stream->findAll(fn($t) => Scope::String === $t->getScope());
 
         $this->assertCount(2, $found);
         $this->assertEquals('one', $found[0]->getText());
@@ -397,7 +397,7 @@ final class ParsedStreamTest extends TestCase
             new ParsedToken('one', Scope::String),
         ]);
 
-        $found = $stream->findAll(fn ($t) => Scope::Variable === $t->getScope());
+        $found = $stream->findAll(fn($t) => Scope::Variable === $t->getScope());
 
         $this->assertEmpty($found);
     }
@@ -409,7 +409,7 @@ final class ParsedStreamTest extends TestCase
             new ParsedToken('two', Scope::String),
         ]);
 
-        $mapped = $stream->map(fn ($t) => $t->withScope(Scope::Keyword));
+        $mapped = $stream->map(fn($t) => $t->withScope(Scope::Keyword));
 
         $this->assertCount(2, $mapped);
         $this->assertEquals(Scope::Keyword, $mapped->getTokens()[0]->getScope());

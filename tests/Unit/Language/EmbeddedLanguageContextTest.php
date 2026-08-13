@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -51,7 +51,7 @@ final class EmbeddedLanguageContextTest extends TestCase
 
     public function testFromResolverCreatesContext(): void
     {
-        $resolver = fn (string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
+        $resolver = fn(string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
 
         $context = EmbeddedLanguageContext::fromResolver($resolver);
 
@@ -60,7 +60,7 @@ final class EmbeddedLanguageContextTest extends TestCase
 
     public function testFromResolverWithPlan(): void
     {
-        $resolver = fn (string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
+        $resolver = fn(string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
         $plan = EmbeddedLanguagePlan::forHost('html', [
             EmbeddedTrigger::tag('style', 'css'),
         ]);
@@ -73,7 +73,7 @@ final class EmbeddedLanguageContextTest extends TestCase
 
     public function testSupportsEmbeddingReturnsTrueWithResolver(): void
     {
-        $resolver = fn (string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
+        $resolver = fn(string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
 
         $context = EmbeddedLanguageContext::fromResolver($resolver);
 
@@ -82,7 +82,7 @@ final class EmbeddedLanguageContextTest extends TestCase
 
     public function testGetPlanReturnsPlan(): void
     {
-        $resolver = fn (string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
+        $resolver = fn(string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
         $plan = EmbeddedLanguagePlan::forHost('html', []);
 
         $context = EmbeddedLanguageContext::fromResolver($resolver, $plan);
@@ -92,7 +92,7 @@ final class EmbeddedLanguageContextTest extends TestCase
 
     public function testGetPlanReturnsNullWhenNoPlan(): void
     {
-        $resolver = fn (string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
+        $resolver = fn(string $lang, string $code) => (new StreamBuilder())->add($code, Scope::String)->build();
 
         $context = EmbeddedLanguageContext::fromResolver($resolver);
 
@@ -132,7 +132,7 @@ final class EmbeddedLanguageContextTest extends TestCase
     {
         $resolver = function (string $lang, string $code) {
             // Simulate a circular dependency by trying to parse the same language again
-            $context = EmbeddedLanguageContext::fromResolver(fn ($l, $c) => (new StreamBuilder())->build());
+            $context = EmbeddedLanguageContext::fromResolver(fn($l, $c) => (new StreamBuilder())->build());
             $context->parseEmbedded('html', '<div></div>');
 
             return (new StreamBuilder())->add($code, Scope::String)->build();
@@ -155,7 +155,7 @@ final class EmbeddedLanguageContextTest extends TestCase
 
             // On first call, try to parse the same language (circular)
             if (1 === $callCount) {
-                $nestedContext = EmbeddedLanguageContext::fromResolver(fn ($l, $c) => (new StreamBuilder())->build());
+                $nestedContext = EmbeddedLanguageContext::fromResolver(fn($l, $c) => (new StreamBuilder())->build());
                 // Manually trigger circular detection by calling with same language
                 $builder = new StreamBuilder();
                 $builder->add($code, Scope::String);
@@ -185,7 +185,7 @@ final class EmbeddedLanguageContextTest extends TestCase
             ++$depth;
 
             if ($depth < 15) {
-                $context = EmbeddedLanguageContext::fromResolver(fn ($l, $c) => (new StreamBuilder())->add($c, Scope::String)->build());
+                $context = EmbeddedLanguageContext::fromResolver(fn($l, $c) => (new StreamBuilder())->add($c, Scope::String)->build());
                 $context->parseEmbedded("lang{$depth}", $code);
             }
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -30,6 +30,8 @@ use Alto\Code\Highlight\Scope;
  * - Boolean/null values: true, false, yes, no, on, off, null, none
  * - Numbers: integers and floats
  * - Environment variable references: ${VAR} or %VAR%
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class IniLanguage implements LanguageInterface
 {

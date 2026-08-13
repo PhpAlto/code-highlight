@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -25,12 +25,16 @@ use Alto\Code\Highlight\Scope;
  * - Circular dependency detection (prevents infinite loops)
  * - Error boundaries (graceful fallback on parse failures)
  * - Nesting depth limits (prevents excessive recursion)
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class EmbeddedLanguageContext
 {
     private const MAX_EMBEDDING_DEPTH = 10;
 
-    /** @var list<string> Stack of currently embedding languages */
+    /**
+     * @var list<string> Stack of currently embedding languages
+     */
     private array $embeddingStack = [];
 
     private int $currentDepth = 0;
@@ -41,8 +45,7 @@ final class EmbeddedLanguageContext
     private function __construct(
         private readonly ?\Closure $resolver,
         private readonly ?EmbeddedLanguagePlan $plan,
-    ) {
-    }
+    ) {}
 
     /**
      * Create a context that disables embedding entirely.
@@ -95,7 +98,7 @@ final class EmbeddedLanguageContext
         if (in_array($language, $this->embeddingStack, true)) {
             return $this->createFallbackStream(
                 $code,
-                "Circular embedding detected: {$language} is already in the embedding stack"
+                "Circular embedding detected: {$language} is already in the embedding stack",
             );
         }
 
@@ -103,7 +106,7 @@ final class EmbeddedLanguageContext
         if ($this->currentDepth >= self::MAX_EMBEDDING_DEPTH) {
             return $this->createFallbackStream(
                 $code,
-                'Maximum embedding depth ({self::MAX_EMBEDDING_DEPTH}) exceeded'
+                'Maximum embedding depth ({self::MAX_EMBEDDING_DEPTH}) exceeded',
             );
         }
 

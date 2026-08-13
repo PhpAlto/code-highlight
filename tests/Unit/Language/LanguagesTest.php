@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -41,7 +41,7 @@ final class LanguagesTest extends TestCase
     public function testGetDefaultLanguagesContainsExpectedLanguages(): void
     {
         $languages = Languages::getDefaultLanguages();
-        $identifiers = array_map(fn ($l) => $l->getIdentifier(), $languages);
+        $identifiers = array_map(fn($l) => $l->getIdentifier(), $languages);
 
         $this->assertContains('php', $identifiers);
         $this->assertContains('html', $identifiers);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -28,6 +28,8 @@ use Alto\Code\Highlight\ThemeInterface;
  * Original Dracula color scheme © Zeno Rocha — MIT License
  *
  * @see https://draculatheme.com
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class DraculaTheme implements ThemeInterface
 {
@@ -105,7 +107,7 @@ final class DraculaTheme implements ThemeInterface
     {
         $classes = [];
         foreach ($map as [$scope, $suffix]) {
-            $classes[$scope->value] = '' === $suffix ? '' : 'dracula-'.$suffix;
+            $classes[$scope->value] = '' === $suffix ? '' : 'dracula-' . $suffix;
         }
 
         return $classes;

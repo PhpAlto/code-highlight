@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -565,7 +565,7 @@ final class CrossLanguageSemanticTest extends TestCase
     {
         return array_values(array_filter(
             $stream->getTokens(),
-            static fn (ParsedToken $token): bool => Scope::Whitespace !== $token->getScope(),
+            static fn(ParsedToken $token): bool => Scope::Whitespace !== $token->getScope(),
         ));
     }
 

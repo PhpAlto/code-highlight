@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -192,7 +192,7 @@ final class PrismThemeAdapter implements ThemeInterface
 
     private function loadFromCdn(string $themeName): string
     {
-        $cdnUrl = self::CDN_BASE.'/'.self::PRISM_VERSION.'/themes/prism-'.$themeName.'.min.css';
+        $cdnUrl = self::CDN_BASE . '/' . self::PRISM_VERSION . '/themes/prism-' . $themeName . '.min.css';
         $css = $this->fetchCss($cdnUrl);
 
         if (null !== $css) {

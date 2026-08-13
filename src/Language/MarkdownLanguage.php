@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -21,6 +21,8 @@ use Alto\Code\Highlight\Scope;
  * Markdown language parser.
  *
  * Supports CommonMark and GitHub Flavored Markdown.
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class MarkdownLanguage implements LanguageInterface, EmbeddedLanguageCapable
 {
@@ -188,7 +190,7 @@ final class MarkdownLanguage implements LanguageInterface, EmbeddedLanguageCapab
             // Bold: **text** or __text__
             if (($position + 1 < $length && '*' === $text[$position] && '*' === $text[$position + 1])
                 || ($position + 1 < $length && '_' === $text[$position] && '_' === $text[$position + 1])) {
-                $delimiter = $text[$position].$text[$position + 1];
+                $delimiter = $text[$position] . $text[$position + 1];
                 $end = strpos($text, $delimiter, $position + 2);
                 if (false !== $end) {
                     $content = substr($text, $position, $end - $position + 2);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -43,12 +43,12 @@ abstract class SemanticLanguageTestCase extends TestCase
         if ($ignoreWhitespace) {
             $tokens = array_values(array_filter(
                 $tokens,
-                static fn (ParsedToken $token): bool => Scope::Whitespace !== $token->getScope(),
+                static fn(ParsedToken $token): bool => Scope::Whitespace !== $token->getScope(),
             ));
         }
 
         $actual = array_map(
-            static fn (ParsedToken $token): array => [$token->getText(), $token->getScope()],
+            static fn(ParsedToken $token): array => [$token->getText(), $token->getScope()],
             $tokens,
         );
 

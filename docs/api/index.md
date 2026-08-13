@@ -26,8 +26,8 @@ values form the semantic vocabulary supplied to themes. The built-in theme
 classes and the Highlight.js, Prism, and TextMate adapters are supported public
 implementations.
 
-See [Creating a theme](creating-a-theme.md) and
-[Theme adapters](theme-adapters.md) for complete examples.
+See [Creating a theme](../theming/creating.md) and
+[Theme adapters](../theming/adapters.md) for complete examples.
 
 ## Language extension contract
 
@@ -40,7 +40,8 @@ Embedded parsers use `EmbeddedLanguageCapable`, `EmbeddedLanguageContext`, and
 the types under `Alto\Code\Highlight\Embedded`. Their documented constructors
 and public methods are covered by the same 1.x compatibility promise.
 
-See [Languages](languages.md) and [Embedded languages](embedded-languages.md)
+See [Languages](../languages/index.md) and
+[Embedded languages](../languages/embedded.md)
 for usage and behavior.
 
 ## Exceptions
