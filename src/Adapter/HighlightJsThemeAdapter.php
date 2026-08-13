@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -222,21 +222,21 @@ final class HighlightJsThemeAdapter implements ThemeInterface
         $css = (string) preg_replace(
             '/(?<![\w.-])\.hljs(?![-\w])/',
             '.alto-highlight code',
-            $css
+            $css,
         );
 
         // Replace pre code.hljs selectors
         $css = (string) preg_replace(
             '/pre\s+code\.hljs/',
             'pre.alto-highlight code',
-            $css
+            $css,
         );
 
         // Ensure all .hljs-* classes are properly scoped
         $css = (string) preg_replace(
             '/(?<![\w.-])(\.hljs-[\w-]+)(?!\s*\{)/',
             '.alto-highlight code $1',
-            $css
+            $css,
         );
 
         return $css;
@@ -247,7 +247,7 @@ final class HighlightJsThemeAdapter implements ThemeInterface
      */
     private function loadFromCdn(string $themeName): string
     {
-        $cdnUrl = self::CDN_BASE.'/'.self::HLJS_VERSION.'/styles/'.$themeName.'.min.css';
+        $cdnUrl = self::CDN_BASE . '/' . self::HLJS_VERSION . '/styles/' . $themeName . '.min.css';
         $css = $this->fetchCss($cdnUrl);
 
         if (null !== $css) {

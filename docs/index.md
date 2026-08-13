@@ -4,27 +4,33 @@ Alto Code Highlight is a server-side syntax highlighter for PHP 8.4 and later.
 It parses source code in PHP and returns escaped, theme-ready HTML. It does not
 require a browser-side highlighter.
 
-## Start here
+## Documentation
 
 - [Installation](installation.md) covers requirements, Composer, and a smoke
   test.
 - [Getting started](getting-started.md) goes from source code to a complete HTML
   page.
-- [Languages](languages.md) lists every accepted language identifier.
-- [Themes](themes.md) lists all built-in theme variants and their constructors.
+- [Examples](examples.md) presents canonical examples and generated visual
+  previews.
 
-## Guides
+## Languages
 
-- [Embedded languages](embedded-languages.md) explains HTML, SVG, Markdown, and
+- [Languages](languages/index.md) lists every accepted language identifier.
+- [Embedded languages](languages/embedded.md) explains HTML, SVG, Markdown, and
   Twig delegation.
-- [Theme adapters](theme-adapters.md) shows how to reuse local Highlight.js,
+
+## Theming
+
+- [Themes](theming/index.md) lists all built-in variants and constructors.
+- [Theme adapters](theming/adapters.md) shows how to reuse local Highlight.js,
   Prism, or TextMate theme files.
-- [Creating a theme](creating-a-theme.md) implements `ThemeInterface` from
+- [Creating a theme](theming/creating.md) implements `ThemeInterface` from
   semantic scopes to CSS.
-- [Public API](public-api.md) defines the supported entry points, extension
+
+## API
+
+- [Public API](api/index.md) defines the supported entry points, extension
   contracts, and compatibility boundary.
-- [Examples](examples.md) links to the canonical source samples and generated
-  visual previews.
 
 ## Public API at a glance
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -32,8 +32,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
      */
     public function __construct(
         public array $tokens,
-    ) {
-    }
+    ) {}
 
     /**
      * Get all tokens in the stream.
@@ -83,7 +82,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
         return new self(
             array_values(array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => !$token->isComment(),
+                static fn(ParsedToken $token): bool => !$token->isComment(),
             )),
         );
     }
@@ -96,7 +95,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
         return new self(
             array_values(array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => !$token->isWhitespace(),
+                static fn(ParsedToken $token): bool => !$token->isWhitespace(),
             )),
         );
     }
@@ -109,7 +108,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
         return new self(
             array_values(array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => !$token->isRemovable(),
+                static fn(ParsedToken $token): bool => !$token->isRemovable(),
             )),
         );
     }
@@ -124,7 +123,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
         return new self(
             array_values(array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => in_array($token->type, $types, true),
+                static fn(ParsedToken $token): bool => in_array($token->type, $types, true),
             )),
         );
     }
@@ -139,7 +138,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
         return new self(
             array_values(array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => !in_array($token->type, $types, true),
+                static fn(ParsedToken $token): bool => !in_array($token->type, $types, true),
             )),
         );
     }
@@ -154,7 +153,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
         return new self(
             array_values(array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => in_array($token->scope, $scopes, true),
+                static fn(ParsedToken $token): bool => in_array($token->scope, $scopes, true),
             )),
         );
     }
@@ -169,7 +168,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
     public function toString(): string
     {
         return implode('', array_map(
-            static fn (ParsedToken $token): string => $token->text,
+            static fn(ParsedToken $token): string => $token->text,
             $this->tokens,
         ));
     }
@@ -182,7 +181,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
     public function texts(): array
     {
         return array_map(
-            static fn (ParsedToken $token): string => $token->text,
+            static fn(ParsedToken $token): string => $token->text,
             $this->tokens,
         );
     }
@@ -195,10 +194,10 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
     public function getStrings(): array
     {
         return array_values(array_map(
-            static fn (ParsedToken $token): string => $token->text,
+            static fn(ParsedToken $token): string => $token->text,
             array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => $token->isString(),
+                static fn(ParsedToken $token): bool => $token->isString(),
             ),
         ));
     }
@@ -211,10 +210,10 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
     public function getComments(): array
     {
         return array_values(array_map(
-            static fn (ParsedToken $token): string => $token->text,
+            static fn(ParsedToken $token): string => $token->text,
             array_filter(
                 $this->tokens,
-                static fn (ParsedToken $token): bool => $token->isComment(),
+                static fn(ParsedToken $token): bool => $token->isComment(),
             ),
         ));
     }
@@ -228,7 +227,7 @@ final readonly class ParsedStream implements \Countable, \IteratorAggregate
     {
         return array_values(array_filter(
             $this->tokens,
-            static fn (ParsedToken $token): bool => $token->isDefinition(),
+            static fn(ParsedToken $token): bool => $token->isDefinition(),
         ));
     }
 

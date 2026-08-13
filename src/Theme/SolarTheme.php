@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -28,13 +28,14 @@ use Alto\Code\Highlight\ThemeInterface;
  * Original Solarized color scheme © Ethan Schoonover — MIT License
  *
  * @see https://ethanschoonover.com/solarized
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class SolarTheme implements ThemeInterface
 {
     public function __construct(
         private readonly bool $dark = false,
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
@@ -52,7 +53,7 @@ final class SolarTheme implements ThemeInterface
 
         $classes = [];
         foreach ($this->scopeMap() as [$scope, $suffix]) {
-            $classes[$scope->value] = '' === $suffix ? '' : $prefix.$suffix;
+            $classes[$scope->value] = '' === $suffix ? '' : $prefix . $suffix;
         }
 
         return $classes;

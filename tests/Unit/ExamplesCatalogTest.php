@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -24,12 +24,12 @@ use PHPUnit\Framework\TestCase;
 #[CoversNothing]
 final class ExamplesCatalogTest extends TestCase
 {
-    private const string CATALOG_PATH = __DIR__.'/../../examples/catalog.php';
+    private const string CATALOG_PATH = __DIR__ . '/../../examples/catalog.php';
 
     public function testCatalogMatchesDefaultLanguageRegistryExactly(): void
     {
         $registryIdentifiers = array_map(
-            static fn (LanguageInterface $language): string => $language->getIdentifier(),
+            static fn(LanguageInterface $language): string => $language->getIdentifier(),
             Languages::getDefaultLanguages(),
         );
         $catalogIdentifiers = array_column(self::catalog(), 'id');
@@ -59,7 +59,7 @@ final class ExamplesCatalogTest extends TestCase
     public function testOnlyExpectedLanguagesAreFeatured(): void
     {
         $featured = array_column(
-            array_filter(self::catalog(), static fn (array $entry): bool => $entry['featured']),
+            array_filter(self::catalog(), static fn(array $entry): bool => $entry['featured']),
             'id',
         );
 
@@ -82,7 +82,7 @@ final class ExamplesCatalogTest extends TestCase
     #[DataProvider('catalogProvider')]
     public function testExampleIsReadableFitsShowcaseAndRoundTripsThroughHighlighter(array $entry): void
     {
-        $path = dirname(self::CATALOG_PATH).'/'.$entry['source'];
+        $path = dirname(self::CATALOG_PATH) . '/' . $entry['source'];
 
         self::assertFileExists($path);
         self::assertIsReadable($path);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -29,6 +29,8 @@ use Alto\Code\Highlight\Scope;
  * - Context-aware parsing may need implementation
  * - Test coverage should be verified
  * - Comment syntax should be validated
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 final class BashLanguage implements LanguageInterface
 {
@@ -188,7 +190,7 @@ final class BashLanguage implements LanguageInterface
             }
 
             if ('\\' === $code[$position] && $position + 1 < strlen($code)) {
-                $string .= $code[$position].$code[$position + 1];
+                $string .= $code[$position] . $code[$position + 1];
                 $position += 2;
                 continue;
             }
@@ -229,7 +231,7 @@ final class BashLanguage implements LanguageInterface
     {
         $hereDoc = '';
         // Skip <<
-        $hereDoc .= $code[$position].$code[$position + 1];
+        $hereDoc .= $code[$position] . $code[$position + 1];
         $position += 2;
 
         // Skip optional dash
@@ -356,7 +358,7 @@ final class BashLanguage implements LanguageInterface
 
             while ($position < strlen($code) && '`' !== $code[$position]) {
                 if ('\\' === $code[$position] && $position + 1 < strlen($code)) {
-                    $subst .= $code[$position].$code[$position + 1];
+                    $subst .= $code[$position] . $code[$position + 1];
                     $position += 2;
                 } else {
                     $subst .= $code[$position];

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -28,8 +28,7 @@ final class AltoTheme implements ThemeInterface
 {
     public function __construct(
         private readonly bool $dark = true,
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
@@ -124,7 +123,7 @@ final class AltoTheme implements ThemeInterface
     {
         $classes = [];
         foreach ($map as [$scope, $suffix]) {
-            $classes[$scope->value] = '' === $suffix ? '' : 'alto-'.$suffix;
+            $classes[$scope->value] = '' === $suffix ? '' : 'alto-' . $suffix;
         }
 
         return $classes;

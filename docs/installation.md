@@ -1,5 +1,7 @@
 # Installation
 
+Install Alto Code Highlight in a PHP 8.4 or later application and verify the runtime before adding it to a page.
+
 ## Requirements
 
 Alto Code Highlight requires:
@@ -89,7 +91,7 @@ the script that executes it. A framework bootstrap usually already includes
 
 ### A language is reported as unsupported
 
-Use an exact identifier from the [language reference](languages.md). The
+Use an exact identifier from the [language reference](languages/index.md). The
 highlighter normalizes case and surrounding whitespace, but does not provide
 aliases such as `js`, `ts`, `sh`, `yml`, or `cs`.
 

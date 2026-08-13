@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -22,6 +22,8 @@ namespace Alto\Code\Highlight\Language\Swift;
  * @internal
  *
  * @final Not declared final to allow test doubles, but treat as final in production code
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 class SwiftLexer
 {
@@ -211,7 +213,7 @@ class SwiftLexer
             }
 
             if ($position + 1 < $length) {
-                $two = $char.$code[$position + 1];
+                $two = $char . $code[$position + 1];
                 if (in_array($two, ['->', '??', '?.', '..', '&&', '||', '==', '!=', '<=', '>=', '+=', '-=', '*=', '/=', '%=', '&=', '|=', '^=', '<<', '>>', '!~', '=~'], true)) {
                     $tokens[] = new SwiftToken($two, SwiftTokenType::Operator);
                     $position += 2;
@@ -255,7 +257,7 @@ class SwiftLexer
             }
 
             if ('\\' === $code[$position] && $position + 1 < $length) {
-                $str .= $code[$position].$code[$position + 1];
+                $str .= $code[$position] . $code[$position + 1];
                 $position += 2;
                 // Skip interpolation content \( ... )
                 if ('(' === $code[$position - 1]) {
@@ -282,7 +284,7 @@ class SwiftLexer
 
             if ('\\' === $char && $position + 1 < $length) {
                 $next = $code[$position + 1];
-                $str .= '\\'.$next;
+                $str .= '\\' . $next;
                 $position += 2;
 
                 // \(...) string interpolation — consume the expression as part of the string token

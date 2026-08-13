@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -75,7 +75,7 @@ abstract class LanguageTestCase extends TestCase
      */
     protected function getFixturesDirectory(): string
     {
-        return __DIR__.'/Language/'.$this->language;
+        return __DIR__ . '/Language/' . $this->language;
     }
 
     /**
@@ -156,7 +156,7 @@ abstract class LanguageTestCase extends TestCase
      */
     protected function getFixtureCodePath(string $fixture): string
     {
-        return $this->getFixturesDirectory().'/'.$fixture;
+        return $this->getFixturesDirectory() . '/' . $fixture;
     }
 
     /**
@@ -168,7 +168,7 @@ abstract class LanguageTestCase extends TestCase
      */
     protected function getFixtureHtmlPath(string $fixture): string
     {
-        return $this->getFixtureCodePath($fixture).'.html';
+        return $this->getFixtureCodePath($fixture) . '.html';
     }
 
     /**
@@ -188,7 +188,7 @@ abstract class LanguageTestCase extends TestCase
         // Remove extension
         $name = $fixture;
         foreach ($this->getFileExtensions() as $ext) {
-            if (str_ends_with($name, '.'.$ext)) {
+            if (str_ends_with($name, '.' . $ext)) {
                 $name = substr($name, 0, -(strlen($ext) + 1));
                 break;
             }
@@ -281,9 +281,9 @@ abstract class LanguageTestCase extends TestCase
         $this->assertSame(
             $expectedHtml,
             $actualHtml,
-            "HTML output does not match for fixture: {$fixture}\n".
-            "Code file: {$codePath}\n".
-            "Expected HTML: {$htmlPath}"
+            "HTML output does not match for fixture: {$fixture}\n" .
+            "Code file: {$codePath}\n" .
+            "Expected HTML: {$htmlPath}",
         );
     }
 
@@ -322,7 +322,7 @@ abstract class LanguageTestCase extends TestCase
         }
 
         // Build fixtures directory dynamically
-        $fixturesDir = __DIR__.'/Language/'.$language;
+        $fixturesDir = __DIR__ . '/Language/' . $language;
 
         if (!is_dir($fixturesDir)) {
             return [];
@@ -374,7 +374,7 @@ abstract class LanguageTestCase extends TestCase
 
         sort($fixtures);
 
-        return array_map(fn ($fixture) => [$fixture], $fixtures);
+        return array_map(fn($fixture) => [$fixture], $fixtures);
     }
 
     /**
@@ -394,12 +394,12 @@ abstract class LanguageTestCase extends TestCase
         $fixtures = $this->discoverFixtures();
 
         echo "\n--- Language: {$this->language} ---\n";
-        echo 'Directory: '.$this->getFixturesDirectory()."\n";
-        echo 'Fixtures found: '.count($fixtures)."\n";
+        echo 'Directory: ' . $this->getFixturesDirectory() . "\n";
+        echo 'Fixtures found: ' . count($fixtures) . "\n";
 
         foreach ($fixtures as $fixture) {
             $embeds = $this->getEmbeddedLanguages($fixture);
-            $embedStr = !empty($embeds) ? ' (+'.implode('+', $embeds).')' : '';
+            $embedStr = !empty($embeds) ? ' (+' . implode('+', $embeds) . ')' : '';
             echo "  • {$fixture}{$embedStr}\n";
         }
     }

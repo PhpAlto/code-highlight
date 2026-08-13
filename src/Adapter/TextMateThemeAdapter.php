@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -38,7 +38,9 @@ final class TextMateThemeAdapter implements ThemeInterface
 
     private bool $isDark;
 
-    /** @var array<string, string> Map of scope value to CSS class name */
+    /**
+     * @var array<string, string> Map of scope value to CSS class name
+     */
     private array $cssClasses;
 
     private string $stylesheet;
@@ -153,11 +155,11 @@ final class TextMateThemeAdapter implements ThemeInterface
         $classes = [];
 
         foreach (Scope::cases() as $scope) {
-            $className = 'alto-tm-'.str_replace('.', '-', $scope->value);
+            $className = 'alto-tm-' . str_replace('.', '-', $scope->value);
             $classes[$scope->value] = $className;
 
             if (isset($scopeStyles[$scope->value])) {
-                $css[] = '.'.$className.' { '.$scopeStyles[$scope->value].' }';
+                $css[] = '.' . $className . ' { ' . $scopeStyles[$scope->value] . ' }';
             }
         }
 
@@ -174,13 +176,13 @@ final class TextMateThemeAdapter implements ThemeInterface
         if (isset($settings['foreground']) && is_string($settings['foreground'])) {
             $color = self::sanitizeCssColor($settings['foreground']);
             if (null !== $color) {
-                $css[] = 'color: '.$color;
+                $css[] = 'color: ' . $color;
             }
         }
         if (isset($settings['background']) && is_string($settings['background'])) {
             $color = self::sanitizeCssColor($settings['background']);
             if (null !== $color) {
-                $css[] = 'background-color: '.$color;
+                $css[] = 'background-color: ' . $color;
             }
         }
         if (isset($settings['fontStyle']) && is_string($settings['fontStyle'])) {
@@ -196,7 +198,7 @@ final class TextMateThemeAdapter implements ThemeInterface
             }
         }
 
-        return implode('; ', $css).';';
+        return implode('; ', $css) . ';';
     }
 
     /**
@@ -302,12 +304,12 @@ final class TextMateThemeAdapter implements ThemeInterface
         $result = [];
         $children = $dict->children();
         for ($i = 0; $i < count($children); $i += 2) {
-            $key = $children[$i];
+            $keyNode = $children[$i] ?? null;
             $valueNode = $children[$i + 1] ?? null;
-            if ('key' !== $key->getName() || null === $valueNode) {
+            if (!$keyNode instanceof \SimpleXMLElement || !$valueNode instanceof \SimpleXMLElement || 'key' !== $keyNode->getName()) {
                 continue;
             }
-            $result[(string) $key] = $this->parseNode($valueNode);
+            $result[(string) $keyNode] = $this->parseNode($valueNode);
         }
 
         return $result;

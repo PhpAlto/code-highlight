@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -26,12 +26,16 @@ use Alto\Code\Highlight\Scope;
  * @internal
  *
  * @final Not declared final to allow test doubles, but treat as final in production code
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 class JavaScriptSemanticParser
 {
     private JavaScriptState $state = JavaScriptState::TopLevel;
 
-    /** @var list<JavaScriptState> */
+    /**
+     * @var list<JavaScriptState>
+     */
     private array $stateStack = [];
 
     /**
@@ -240,10 +244,6 @@ class JavaScriptSemanticParser
 
     private function popState(): void
     {
-        if (!empty($this->stateStack)) {
-            $this->state = array_pop($this->stateStack);
-        } else {
-            $this->state = JavaScriptState::TopLevel;
-        }
+        $this->state = array_pop($this->stateStack) ?? JavaScriptState::TopLevel;
     }
 }

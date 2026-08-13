@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -21,6 +21,8 @@ use Alto\Code\Highlight\Scope;
  * HTML language parser.
  *
  * Handles parsing and semantic analysis of HTML code.
+ *
+ * @author Simon André <smn.andre@gmail.com>
  */
 class HtmlLanguage implements EmbeddedLanguageCapable
 {
@@ -275,7 +277,7 @@ class HtmlLanguage implements EmbeddedLanguageCapable
     private function extractEmbeddedContent(string $code, int &$position, string $tagName): string
     {
         $length = strlen($code);
-        $closingSequence = '</'.$tagName;
+        $closingSequence = '</' . $tagName;
         $currentPos = $position;
 
         while ($currentPos < $length) {

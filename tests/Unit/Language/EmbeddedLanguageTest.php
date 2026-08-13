@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -41,7 +41,9 @@ final class EmbeddedLanguageTest extends TestCase
 
     private EmbeddedLanguageRegistry $registry;
 
-    /** @var array<string, LanguageInterface> */
+    /**
+     * @var array<string, LanguageInterface>
+     */
     private array $languages;
 
     protected function setUp(): void
@@ -195,7 +197,7 @@ HTML;
 
         // Should contain CSS tokens
         $tokens = $stream->getTokens();
-        $tokenTexts = array_map(fn (ParsedToken $t) => $t->getText(), $tokens);
+        $tokenTexts = array_map(fn(ParsedToken $t) => $t->getText(), $tokens);
         $fullText = implode('', $tokenTexts);
 
         self::assertStringContainsString('body', $fullText);
@@ -232,8 +234,8 @@ HTML;
         $plan = $this->registry->getPlan($hostLanguage);
 
         return EmbeddedLanguageContext::fromResolver(
-            fn (string $languageIdentifier, string $code) => $this->languages[strtolower($languageIdentifier)]->parse($code),
-            $plan
+            fn(string $languageIdentifier, string $code) => $this->languages[strtolower($languageIdentifier)]->parse($code),
+            $plan,
         );
     }
 
@@ -314,7 +316,7 @@ HTML;
         self::assertCount(
             count($standaloneTokens),
             $embeddedTokens,
-            sprintf('%s: Token count mismatch. Standalone: %d, Embedded: %d', $message, count($standaloneTokens), count($embeddedTokens))
+            sprintf('%s: Token count mismatch. Standalone: %d, Embedded: %d', $message, count($standaloneTokens), count($embeddedTokens)),
         );
 
         foreach ($standaloneTokens as $index => $standaloneToken) {
@@ -323,7 +325,7 @@ HTML;
             self::assertSame(
                 $standaloneToken->getText(),
                 $embeddedToken->getText(),
-                sprintf('%s: Token text mismatch at index %d', $message, $index)
+                sprintf('%s: Token text mismatch at index %d', $message, $index),
             );
 
             self::assertSame(
@@ -335,8 +337,8 @@ HTML;
                     $index,
                     $standaloneToken->getText(),
                     $standaloneToken->getScope()->value,
-                    $embeddedToken->getScope()->value
-                )
+                    $embeddedToken->getScope()->value,
+                ),
             );
         }
     }

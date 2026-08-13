@@ -213,5 +213,5 @@ Also review the theme in a browser:
 - confirm that source text reconstructs exactly after stripping generated
   markup.
 
-The canonical samples in [Examples](examples.md) provide stable inputs for
+The canonical samples in [Examples](../examples.md) provide stable inputs for
 visual review.

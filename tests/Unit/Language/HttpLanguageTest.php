@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -381,14 +381,14 @@ final class HttpLanguageTest extends TestCase
         }
 
         $tokenList = array_map(
-            fn ($t) => sprintf('[%s: %s]', $t->getScope()->value, json_encode($t->getText())),
-            $tokens
+            fn($t) => sprintf('[%s: %s]', $t->getScope()->value, json_encode($t->getText())),
+            $tokens,
         );
         $this->fail(sprintf(
             'Token "%s" with scope %s not found. Found: %s',
             $text,
             $scope->value,
-            implode(', ', $tokenList)
+            implode(', ', $tokenList),
         ));
     }
 }

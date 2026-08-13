@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -65,7 +65,7 @@ final class PrismThemeAdapterTest extends TestCase
 
     public function testItUsesTokenPrefixForNonEmptyClasses(): void
     {
-        $classes = array_filter($this->makeTheme()->getCssClasses(), static fn (string $class) => '' !== $class);
+        $classes = array_filter($this->makeTheme()->getCssClasses(), static fn(string $class) => '' !== $class);
 
         foreach ($classes as $className) {
             self::assertStringContainsString('token', $className);
@@ -301,7 +301,7 @@ final class PrismThemeAdapterTest extends TestCase
 
     public function testCssClassFormatMatchesPattern(): void
     {
-        foreach (array_filter($this->makeTheme()->getCssClasses(), static fn (string $class) => '' !== $class) as $class) {
+        foreach (array_filter($this->makeTheme()->getCssClasses(), static fn(string $class) => '' !== $class) as $class) {
             self::assertMatchesRegularExpression('/^token\s+[\w-]+$/', $class);
         }
     }

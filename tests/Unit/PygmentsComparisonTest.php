@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -246,7 +246,7 @@ const x: number = 42;',
 
     public static function setUpBeforeClass(): void
     {
-        self::$pygmentsScript = dirname(__DIR__, 2).'/bin/pygments-tokenize';
+        self::$pygmentsScript = dirname(__DIR__, 2) . '/bin/pygments-tokenize';
     }
 
     private static function isPygmentsAvailable(): bool
@@ -263,7 +263,7 @@ const x: number = 42;',
             $process = @proc_open(
                 [$cmd, '-c', 'import pygments'],
                 [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
-                $pipes
+                $pipes,
             );
 
             if (is_resource($process)) {
@@ -321,10 +321,10 @@ const x: number = 42;',
                     $exitCode,
                     self::$pythonCommand,
                     self::$pygmentsScript,
-                    $language
+                    $language,
                 );
             }
-            self::fail('Pygments error: '.$message);
+            self::fail('Pygments error: ' . $message);
         }
 
         return $result['tokens'];
@@ -388,7 +388,7 @@ const x: number = 42;',
 
         return array_combine(
             array_keys($samples),
-            array_map(fn ($lang) => [$lang], array_keys($samples)),
+            array_map(fn($lang) => [$lang], array_keys($samples)),
         );
     }
 
@@ -437,7 +437,7 @@ const x: number = 42;',
             }
         }
 
-        $altoTexts = array_map(fn ($t) => trim($t['text']), $altoTokens);
+        $altoTexts = array_map(fn($t) => trim($t['text']), $altoTokens);
         $missingFromAlto = [];
         foreach ($pygmentsMap as $text => $category) {
             $text = (string) $text;
@@ -465,12 +465,12 @@ const x: number = 42;',
 
         $errorMessages = [];
         if (!empty($mismatches)) {
-            $errorMessages[] = "Category mismatches for '{$language}':\n".implode("\n", $mismatches);
+            $errorMessages[] = "Category mismatches for '{$language}':\n" . implode("\n", $mismatches);
         }
 
         if (!empty($errorMessages)) {
             if (!empty($missingFromAlto)) {
-                $errorMessages[] = "Note: tokens from Pygments not matched in Alto output:\n".implode("\n", $missingFromAlto);
+                $errorMessages[] = "Note: tokens from Pygments not matched in Alto output:\n" . implode("\n", $missingFromAlto);
             }
 
             self::fail(implode("\n\n", $errorMessages));

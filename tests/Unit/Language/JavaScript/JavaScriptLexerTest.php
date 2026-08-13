@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of the ALTO library.
  *
- * © 2026–present Simon André
+ * © 2026-present Simon André
  *
  * For full copyright and license information, please see
  * the LICENSE file distributed with this source code.
@@ -37,7 +37,7 @@ final class JavaScriptLexerTest extends TestCase
         $code = 'const let var function class if else for while return';
         $tokens = $this->lexer->tokenize($code);
 
-        $keywordTokens = array_filter($tokens, fn ($token) => JavaScriptTokenType::Keyword === $token->type);
+        $keywordTokens = array_filter($tokens, fn($token) => JavaScriptTokenType::Keyword === $token->type);
 
         self::assertCount(10, $keywordTokens);
     }
@@ -58,7 +58,7 @@ final class JavaScriptLexerTest extends TestCase
         $code = 'myVar _privateVar $jquery camelCase snake_case';
         $tokens = $this->lexer->tokenize($code);
 
-        $identifiers = array_filter($tokens, fn ($token) => JavaScriptTokenType::Identifier === $token->type);
+        $identifiers = array_filter($tokens, fn($token) => JavaScriptTokenType::Identifier === $token->type);
 
         self::assertCount(5, $identifiers);
         self::assertTrue($this->streamContainsToken($tokens, JavaScriptTokenType::Identifier, 'myVar'));
@@ -171,7 +171,7 @@ final class JavaScriptLexerTest extends TestCase
         $code = '(){}[];,.';
         $tokens = $this->lexer->tokenize($code);
 
-        $punctuation = array_filter($tokens, fn ($token) => JavaScriptTokenType::Punctuation === $token->type);
+        $punctuation = array_filter($tokens, fn($token) => JavaScriptTokenType::Punctuation === $token->type);
 
         self::assertCount(9, $punctuation);
     }
@@ -232,7 +232,7 @@ JS;
         $code = 'const   x   =   42;';
         $tokens = $this->lexer->tokenize($code);
 
-        $whitespaceTokens = array_filter($tokens, fn ($token) => JavaScriptTokenType::Whitespace === $token->type);
+        $whitespaceTokens = array_filter($tokens, fn($token) => JavaScriptTokenType::Whitespace === $token->type);
 
         self::assertNotEmpty($whitespaceTokens);
     }
