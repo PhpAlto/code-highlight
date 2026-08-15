@@ -91,6 +91,40 @@ final class HighlighterTest extends TestCase
 
         $this->assertStringContainsString('<pre class="alto-highlight language-php">', $html);
         $this->assertStringContainsString('$var', $html);
+        $this->assertSame('$var = 42;', $this->extractCodeText($html));
+        $this->assertStringNotContainsString('&lt;?php', $html);
+    }
+
+    public function testPhpLanguageParsesOneLineWithoutSyntheticContext(): void
+    {
+        $highlighter = new Highlighter(new AltoTheme());
+        $code = '$page->getByRole("button")->click();';
+
+        $html = $highlighter->highlight($code, 'php');
+
+        self::assertSame($code, $this->extractCodeText($html));
+        self::assertStringContainsString('<span class="alto-variable">$page</span>', $html);
+        self::assertStringContainsString('<span class="alto-function">getByRole</span>', $html);
+        self::assertStringNotContainsString('&lt;?php', $html);
+        self::assertStringNotContainsString('alto-line-number', $html);
+    }
+
+    public function testOneLinePhpSupportsLineNumbersAndHighlighting(): void
+    {
+        $highlighter = new Highlighter(new AltoTheme());
+        $code = '$page->getByRole("button")->click();';
+
+        $html = $highlighter->highlight(
+            $code,
+            'php',
+            lineNumbers: true,
+            highlightLines: [1],
+        );
+
+        self::assertSame(1, substr_count($html, 'alto-line-number'));
+        self::assertSame(1, substr_count($html, 'alto-highlighted'));
+        self::assertStringContainsString('$page', $html);
+        self::assertStringNotContainsString('&lt;?php', $html);
     }
 
     public function testThrowsExceptionForUnknownLanguage(): void
@@ -607,5 +641,12 @@ MD;
         self::assertStringContainsString('&lt;?php', $html);
         // Should have PHP syntax highlighting
         self::assertStringContainsString('alto-keyword', $html);
+    }
+
+    private function extractCodeText(string $html): string
+    {
+        self::assertSame(1, preg_match('/<code[^>]*>(.*)<\/code>/s', $html, $matches));
+
+        return html_entity_decode(strip_tags($matches[1]), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 }

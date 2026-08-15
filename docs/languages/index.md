@@ -44,20 +44,22 @@ See [Examples](../examples.md) for generated previews.
 
 ## PHP snippets without an opening tag
 
-`php-snippet` is a convenience identifier handled by `Highlighter`; it is not
-a 28th registered language. It lets you highlight PHP fragments that omit the
-opening tag:
+Selecting `php` parses PHP from the first byte, including when the opening tag
+is omitted:
 
 ```php
 $html = $highlighter->highlight(
     '$total = array_sum($prices);',
-    'php-snippet',
+    'php',
 );
 ```
 
-The highlighter temporarily prepends `<?php `, parses the fragment as `php`,
-and omits the synthetic opening tag from the result. The output uses the
-`language-php` class.
+Any synthetic context required by PHP's native tokenizer is absent from the
+returned stream, so text, byte offsets, lines, and columns describe the exact
+source supplied by the caller.
+
+The historical `php-snippet` identifier remains a compatibility alias for
+`php`; it is not a 28th registered language. New code should use `php`.
 
 ## Register a custom language
 

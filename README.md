@@ -94,9 +94,18 @@ sql         svg          swift        twig         typescript
 xml         yaml
 ```
 
-The special `php-snippet` identifier accepts PHP without an opening `<?php`
-tag. The [language reference](docs/languages/index.md) documents exact behavior and
-embedded-language support.
+Choosing `php` parses the source as PHP from its first byte. An opening tag is
+optional:
+
+```php
+$html = $highlighter->highlight(
+    '$total = array_sum($prices);',
+    'php',
+);
+```
+
+The returned text and token positions are relative to the caller's source. The
+legacy `php-snippet` identifier remains an alias for `php`.
 
 ## Line numbers and highlighted lines
 

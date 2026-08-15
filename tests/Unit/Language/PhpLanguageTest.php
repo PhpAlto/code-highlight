@@ -18,8 +18,10 @@ use Alto\Code\Highlight\Language\Php\PhpLexer;
 use Alto\Code\Highlight\Language\Php\PhpSemanticParser;
 use Alto\Code\Highlight\Language\PhpLanguage;
 use Alto\Code\Highlight\Parser\ParsedStream;
+use Alto\Code\Highlight\Parser\ParsedToken;
 use Alto\Code\Highlight\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 #[CoversClass(PhpLanguage::class)]
 final class PhpLanguageTest extends TestCase
@@ -187,5 +189,109 @@ PHP;
         $stream = $language->parse('$x = 1;');
 
         self::assertInstanceOf(ParsedStream::class, $stream);
+    }
+
+    public function testParseWithoutOpeningTagPreservesSourceAndTokenPositions(): void
+    {
+        $language = new PhpLanguage();
+        $code = <<<'PHP'
+$page->getByRole("button")->click();
+    $result = true;
+PHP;
+
+        $stream = $language->parse($code);
+
+        self::assertSame($code, $stream->toString());
+        self::assertFalse($stream->isEmpty());
+        $this->assertTokenPositionsMatchSource($stream->getTokens());
+
+        $page = $stream->find(static fn(ParsedToken $token): bool => '$page' === $token->text);
+        self::assertNotNull($page);
+        self::assertSame(0, $page->offset);
+        self::assertSame(1, $page->line);
+        self::assertSame(0, $page->column);
+
+        $result = $stream->find(static fn(ParsedToken $token): bool => '$result' === $token->text);
+        self::assertNotNull($result);
+        self::assertSame(strpos($code, '$result'), $result->offset);
+        self::assertSame(2, $result->line);
+        self::assertSame(4, $result->column);
+    }
+
+    public function testParseAcceptsEmptySource(): void
+    {
+        $stream = (new PhpLanguage())->parse('');
+
+        self::assertTrue($stream->isEmpty());
+        self::assertSame('', $stream->toString());
+    }
+
+    public function testParseDoesNotInheritParserStateFromPreviousSource(): void
+    {
+        $language = new PhpLanguage();
+        $language->parse('<?php function');
+
+        $stream = $language->parse('run();');
+        $run = $stream->find(static fn(ParsedToken $token): bool => 'run' === $token->text);
+
+        self::assertNotNull($run);
+        self::assertSame(\Alto\Code\Highlight\Scope::FunctionCall, $run->scope);
+    }
+
+    public function testParseDoesNotRewriteSourceWithAnOpeningTag(): void
+    {
+        $language = new PhpLanguage();
+        $code = "  <?php\n\$value = 1;";
+
+        $stream = $language->parse($code);
+
+        self::assertSame($code, $stream->toString());
+        $this->assertTokenPositionsMatchSource($stream->getTokens());
+    }
+
+    #[DataProvider('sourceBoundaryProvider')]
+    public function testParsePreservesBoundaryWhitespace(string $code): void
+    {
+        $stream = (new PhpLanguage())->parse($code);
+
+        self::assertSame($code, $stream->toString());
+        $this->assertTokenPositionsMatchSource($stream->getTokens());
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function sourceBoundaryProvider(): iterable
+    {
+        yield 'leading whitespace' => ['  $value = 1;'];
+        yield 'trailing newline' => ["\$value = 1;\n"];
+        yield 'leading whitespace and trailing newline' => ["\t\$value = 1;\n"];
+    }
+
+    /**
+     * @param list<ParsedToken> $tokens
+     */
+    private function assertTokenPositionsMatchSource(array $tokens): void
+    {
+        $offset = 0;
+        $line = 1;
+        $column = 0;
+
+        foreach ($tokens as $token) {
+            self::assertSame($offset, $token->offset, $token->text);
+            self::assertSame($line, $token->line, $token->text);
+            self::assertSame($column, $token->column, $token->text);
+
+            $offset += strlen($token->text);
+            $newlines = substr_count($token->text, "\n");
+
+            if (0 === $newlines) {
+                $column += strlen($token->text);
+                continue;
+            }
+
+            $line += $newlines;
+            $column = strlen($token->text) - (int) strrpos($token->text, "\n") - 1;
+        }
     }
 }
