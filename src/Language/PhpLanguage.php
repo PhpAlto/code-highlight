@@ -17,6 +17,7 @@ use Alto\Code\Highlight\Exception\ParseException;
 use Alto\Code\Highlight\Language\Php\PhpLexer;
 use Alto\Code\Highlight\Language\Php\PhpSemanticParser;
 use Alto\Code\Highlight\Parser\ParsedStream;
+use Alto\Code\Highlight\Parser\ParsedToken;
 
 /**
  * PHP language parser.
@@ -45,13 +46,40 @@ final class PhpLanguage implements LanguageInterface
     public function parse(string $code): ParsedStream
     {
         try {
+            $prefix = str_starts_with(ltrim($code), '<?') ? '' : '<?php ';
+
             // Pass 1: Tokenize
-            $tokens = $this->lexer->tokenize($code);
+            $tokens = $this->lexer->tokenize($prefix . $code);
 
             // Pass 2: Semantic analysis
-            return $this->parser->parse($tokens);
+            $stream = $this->parser->parse($tokens);
+
+            return '' === $prefix ? $stream : self::withoutSyntheticPrefix($stream, $prefix);
         } catch (\Throwable $e) {
             throw new ParseException('Failed to parse PHP code: ' . $e->getMessage());
         }
+    }
+
+    private static function withoutSyntheticPrefix(ParsedStream $stream, string $prefix): ParsedStream
+    {
+        $tokens = $stream->getTokens();
+
+        if ([] !== $tokens && str_starts_with($tokens[0]->text, $prefix)) {
+            array_shift($tokens);
+        }
+
+        $prefixLength = strlen($prefix);
+
+        return new ParsedStream(array_map(
+            static fn(ParsedToken $token): ParsedToken => new ParsedToken(
+                text: $token->text,
+                scope: $token->scope,
+                type: $token->type,
+                offset: max(0, $token->offset - $prefixLength),
+                line: $token->line,
+                column: 1 === $token->line ? max(0, $token->column - $prefixLength) : $token->column,
+            ),
+            $tokens,
+        ));
     }
 }

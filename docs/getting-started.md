@@ -119,6 +119,24 @@ presentation. Add application CSS for the two structural classes:
 `alto-highlighted` is applied to the line-number span, not to a wrapper around
 the full source line.
 
+## Highlight PHP without an opening tag
+
+Selecting `php` is authoritative: the source is parsed as PHP from its first
+byte even when it is a single line without `<?php`:
+
+```php
+$html = $highlighter->highlight(
+    '$page->getByRole("button")->click();',
+    'php',
+    lineNumbers: true,
+    highlightLines: [1],
+);
+```
+
+The parser may add an opening tag internally for PHP's native tokenizer, but
+that context never appears in the output. Text, line numbers, highlighted
+lines, byte offsets, and columns remain relative to the supplied source.
+
 ## Handle an unknown language
 
 Unknown identifiers throw `LanguageNotFoundException`:

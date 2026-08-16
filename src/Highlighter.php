@@ -83,9 +83,8 @@ final class Highlighter implements HighlighterInterface
         // Normalize language identifier
         $language = strtolower(trim($language));
 
-        // Handle php-snippet specially
+        // Keep the historical convenience identifier as a PHP alias.
         if ('php-snippet' === $language) {
-            $code = '<?php ' . $code;
             $language = 'php';
         }
 
@@ -149,27 +148,9 @@ final class Highlighter implements HighlighterInterface
             }
 
             $context = EmbeddedLanguageContext::fromResolver(function (string $identifier, string $embeddedCode): ParsedStream {
-                // Handle PHP code without opening tag (common in markdown code blocks)
-                $phpTagAdded = false;
-                if ('php' === $identifier && !str_starts_with(ltrim($embeddedCode), '<?')) {
-                    $embeddedCode = '<?php ' . $embeddedCode;
-                    $phpTagAdded = true;
-                }
-
                 $embeddedLanguage = $this->getLanguage($identifier);
-                $stream = $this->parseWithLanguage($embeddedLanguage, $embeddedCode);
 
-                // If we added <?php, remove the first token (the opening tag) from output
-                if ($phpTagAdded && !$stream->isEmpty()) {
-                    $tokens = $stream->getTokens();
-                    // Remove first token if it's the PHP opening tag
-                    if (count($tokens) > 0 && str_starts_with($tokens[0]->getText(), '<?php')) {
-                        $tokens = array_slice($tokens, 1);
-                        $stream = new ParsedStream($tokens);
-                    }
-                }
-
-                return $stream;
+                return $this->parseWithLanguage($embeddedLanguage, $embeddedCode);
             }, $plan);
 
             return $language->parseWithEmbedding($code, $context);

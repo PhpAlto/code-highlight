@@ -17,7 +17,8 @@ their documented signatures and behavior throughout the 1.x series.
 - `setEmbeddingEnabled()` for toggling a configured host and target pair.
 
 `HighlighterInterface` defines the portable highlighting operation for code
-that depends on an abstraction rather than the concrete facade.
+that depends on an abstraction rather than the concrete facade. Selecting
+`php` parses PHP from the first byte even when the opening tag is omitted.
 
 ## Theme extension contract
 
@@ -33,8 +34,8 @@ See [Creating a theme](../theming/creating.md) and
 
 Custom parsers implement `LanguageInterface` and return a `ParsedStream` made
 of `ParsedToken` values. `StreamBuilder`, `TokenType`, and `Scope` are supported
-building blocks for those parsers. `Languages::getDefaultLanguages()` returns
-the built-in registry.
+building blocks for those parsers.
+`Languages::getDefaultLanguages()` returns the built-in registry.
 
 Embedded parsers use `EmbeddedLanguageCapable`, `EmbeddedLanguageContext`, and
 the types under `Alto\Code\Highlight\Embedded`. Their documented constructors

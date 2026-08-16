@@ -74,24 +74,31 @@ class PhpSemanticParser
      */
     public function parse(array $tokens): ParsedStream
     {
+        $this->state = PhpState::TopLevel;
+        $this->stateStack = [];
+
         $parsedTokens = [];
+        $lineStartOffset = 0;
 
         for ($i = 0; $i < count($tokens); ++$i) {
             $token = $tokens[$i];
 
             // Handle PHP 8.4 asymmetric visibility tokens (e.g. "private(set)")
             if ($this->isAsymmetricVisibilityToken($token)) {
-                $this->expandAsymmetricVisibility($token, $parsedTokens);
+                $this->expandAsymmetricVisibility($token, $parsedTokens, $lineStartOffset);
                 $this->updateState($token, $tokens, $i);
+                $this->advanceLineStartOffset($token, $lineStartOffset);
 
                 continue;
             }
 
             // Handle pipe operator |> which is a single token in PHP 8.5
             if (defined('T_PIPE') && T_PIPE === $token->id) {
-                $parsedTokens[] = new ParsedToken('|', Scope::Operator, line: $token->line);
-                $parsedTokens[] = new ParsedToken('>', Scope::Operator, line: $token->line);
+                $column = $token->pos - $lineStartOffset;
+                $parsedTokens[] = new ParsedToken('|', Scope::Operator, offset: $token->pos, line: $token->line, column: $column);
+                $parsedTokens[] = new ParsedToken('>', Scope::Operator, offset: $token->pos + 1, line: $token->line, column: $column + 1);
                 $this->updateState($token, $tokens, $i);
+                $this->advanceLineStartOffset($token, $lineStartOffset);
 
                 continue;
             }
@@ -101,11 +108,14 @@ class PhpSemanticParser
             $parsedTokens[] = new ParsedToken(
                 text: $token->text,
                 scope: $scope,
+                offset: $token->pos,
                 line: $token->line,
+                column: $token->pos - $lineStartOffset,
             );
 
             // Update state based on token
             $this->updateState($token, $tokens, $i);
+            $this->advanceLineStartOffset($token, $lineStartOffset);
         }
 
         return new ParsedStream($parsedTokens);
@@ -430,16 +440,27 @@ class PhpSemanticParser
      *
      * @param list<ParsedToken> $parsedTokens
      */
-    private function expandAsymmetricVisibility(\PhpToken $token, array &$parsedTokens): void
+    private function expandAsymmetricVisibility(\PhpToken $token, array &$parsedTokens, int $lineStartOffset): void
     {
         // Extract the keyword part (e.g. "private" from "private(set)")
         $parenPos = (int) strpos($token->text, '(');
         $keyword = substr($token->text, 0, $parenPos);
         $inner = substr($token->text, $parenPos + 1, -1); // "set"
 
-        $parsedTokens[] = new ParsedToken($keyword, Scope::Keyword, line: $token->line);
-        $parsedTokens[] = new ParsedToken('(', Scope::Punctuation, line: $token->line);
-        $parsedTokens[] = new ParsedToken($inner, Scope::Constant, line: $token->line);
-        $parsedTokens[] = new ParsedToken(')', Scope::Punctuation, line: $token->line);
+        $column = $token->pos - $lineStartOffset;
+        $keywordLength = strlen($keyword);
+        $parsedTokens[] = new ParsedToken($keyword, Scope::Keyword, offset: $token->pos, line: $token->line, column: $column);
+        $parsedTokens[] = new ParsedToken('(', Scope::Punctuation, offset: $token->pos + $keywordLength, line: $token->line, column: $column + $keywordLength);
+        $parsedTokens[] = new ParsedToken($inner, Scope::Constant, offset: $token->pos + $keywordLength + 1, line: $token->line, column: $column + $keywordLength + 1);
+        $parsedTokens[] = new ParsedToken(')', Scope::Punctuation, offset: $token->pos + strlen($token->text) - 1, line: $token->line, column: $column + strlen($token->text) - 1);
+    }
+
+    private function advanceLineStartOffset(\PhpToken $token, int &$lineStartOffset): void
+    {
+        $lastNewline = strrpos($token->text, "\n");
+
+        if (false !== $lastNewline) {
+            $lineStartOffset = $token->pos + $lastNewline + 1;
+        }
     }
 }
